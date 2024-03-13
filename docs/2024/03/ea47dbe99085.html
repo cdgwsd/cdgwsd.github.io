@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Centos 安装 MySQL下载并安装 MySQL123wget http:&#x2F;&#x2F;dev.mysql.com&#x2F;get&#x2F;mysql57-community-release-el7-10.noarch.rpm &amp;&amp;yum -y install mysql57-community-release-el7-10.noarch.rpm &amp;&amp;yum install -y mys">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/2024/03/ea47dbe99085.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Centos 安装 MySQL下载并安装 MySQL123wget http:&#x2F;&#x2F;dev.mysql.com&#x2F;get&#x2F;mysql57-community-release-el7-10.noarch.rpm &amp;&amp;yum -y install mysql57-community-release-el7-10.noarch.rpm &amp;&amp;yum install -y mys">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://cdgwsd.oss-cn-guangzhou.aliyuncs.com/img/202403011451012.png">
+<meta property="og:image" content="https://cdgwsd.oss-cn-guangzhou.aliyuncs.com/img/202403011452787.png">
+<meta property="og:image" content="https://cdgwsd.oss-cn-guangzhou.aliyuncs.com/img/202403011454512.png">
+<meta property="og:image" content="https://cdgwsd.oss-cn-guangzhou.aliyuncs.com/img/202403011455043.png">
+<meta property="og:image" content="https://cdgwsd.oss-cn-guangzhou.aliyuncs.com/img/202403011457305.png">
+<meta property="article:published_time" content="2024-03-13T13:09:57.955Z">
+<meta property="article:modified_time" content="2024-03-10T07:57:51.757Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdgwsd.oss-cn-guangzhou.aliyuncs.com/img/202403011451012.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-Centos 安装 MySQL" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/03/ea47dbe99085.html" class="article-date">
+  <time class="dt-published" datetime="2024-03-13T13:09:57.955Z" itemprop="datePublished">2024-03-13</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Linux/">Linux</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="Centos-安装-MySQL"><a href="#Centos-安装-MySQL" class="headerlink" title="Centos 安装 MySQL"></a>Centos 安装 MySQL</h1><h2 id="下载并安装-MySQL"><a href="#下载并安装-MySQL" class="headerlink" title="下载并安装 MySQL"></a>下载并安装 MySQL</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wget http://dev.mysql.com/get/mysql57-community-release-el7-10.noarch.rpm &amp;&amp;</span><br><span class="line">yum -y install mysql57-community-release-el7-10.noarch.rpm &amp;&amp;</span><br><span class="line">yum install -y mysql-community-server --nogpgcheck</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdgwsd.oss-cn-guangzhou.aliyuncs.com/img/202403011451012.png" alt="image-20240301145145246"></p>
+<h2 id="启动-MySQL"><a href="#启动-MySQL" class="headerlink" title="启动 MySQL"></a>启动 MySQL</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl start mysqld.service</span><br></pre></td></tr></table></figure>
+
+<h2 id="查看-MySQL-初始密码"><a href="#查看-MySQL-初始密码" class="headerlink" title="查看 MySQL 初始密码"></a>查看 MySQL 初始密码</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep <span class="string">&quot;password&quot;</span> /var/log/mysqld.log</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdgwsd.oss-cn-guangzhou.aliyuncs.com/img/202403011452787.png" alt="image-20240301145246431"></p>
+<h2 id="登录-修改密码"><a href="#登录-修改密码" class="headerlink" title="登录 &amp; 修改密码"></a>登录 &amp; 修改密码</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -uroot -p</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdgwsd.oss-cn-guangzhou.aliyuncs.com/img/202403011454512.png" alt="image-20240301145437944"></p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">set</span> global validate_password_policy=0;  <span class="comment">#修改密码安全策略为低（只校验密码长度，至少8位）。</span></span><br><span class="line">ALTER USER <span class="string">&#x27;root&#x27;</span>@<span class="string">&#x27;localhost&#x27;</span> IDENTIFIED BY <span class="string">&#x27;12345678&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdgwsd.oss-cn-guangzhou.aliyuncs.com/img/202403011455043.png" alt="image-20240301145508549"></p>
+<h2 id="授予-root-用户远程管理权限"><a href="#授予-root-用户远程管理权限" class="headerlink" title="授予 root 用户远程管理权限"></a>授予 root 用户远程管理权限</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GRANT ALL PRIVILEGES ON *.* TO <span class="string">&#x27;root&#x27;</span>@<span class="string">&#x27;%&#x27;</span> IDENTIFIED BY <span class="string">&#x27;12345678&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdgwsd.oss-cn-guangzhou.aliyuncs.com/img/202403011457305.png" alt="image-20240301145737027"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/03/ea47dbe99085.html" data-id="cltptjb7l000ntovrgvz14gwu" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2024/03/058fadadff92.html" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2024/03/947dadcfe4b4.html" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java-Web/">Java Web</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Oracle/">Oracle</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Spring/">Spring</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Spring-Boot/">Spring Boot</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Spring-MVC/">Spring MVC</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%97%A5%E8%AE%B0/">日记</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/JDBC/" rel="tag">JDBC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Servlet/" rel="tag">Servlet</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BA%8B%E5%8A%A1/" rel="tag">事务</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5%E6%B1%A0/" rel="tag">数据库连接池</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/JDBC/" style="font-size: 20px;">JDBC</a> <a href="/tags/Servlet/" style="font-size: 10px;">Servlet</a> <a href="/tags/%E4%BA%8B%E5%8A%A1/" style="font-size: 10px;">事务</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5%E6%B1%A0/" style="font-size: 10px;">数据库连接池</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">March 2024</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/03/4a9a07cbb3ef.html">Servlet 获取请求参数</a>
+          </li>
+        
+          <li>
+            <a href="/2024/03/ad9e7716878b.html">JDBC CRUD</a>
+          </li>
+        
+          <li>
+            <a href="/2024/03/112fd92327c2.html">JDBC API</a>
+          </li>
+        
+          <li>
+            <a href="/2024/03/0c61ff4ad6c6.html">JDBC 事物</a>
+          </li>
+        
+          <li>
+            <a href="/2024/03/0e36029b04f7.html">JDBC 批处理</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

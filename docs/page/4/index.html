@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/page/4/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-IO 流" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/03/127a65201cc7.html" class="article-date">
+  <time class="dt-published" datetime="2024-03-13T13:09:57.924Z" itemprop="datePublished">2024-03-13</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Java/">Java</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="I-O-流"><a href="#I-O-流" class="headerlink" title="I&#x2F;O 流"></a>I&#x2F;O 流</h1><p><img src="https://cdgwsd.oss-cn-guangzhou.aliyuncs.com/img/202312271502333.png" alt="image.png"></p>
+<p>下面通过 <code>3W</code> 理论介绍 Java <code>I/O</code> 流：</p>
+<ul>
+<li><p>What</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Java I/O 流是 Java 编程语言中用于处理输入和输出数据的机制。I/O 流主要用于在程序与外部世界之间传输数据。在 Java 中，I/O 流分为输入流和输出流，用于读取和写入数据。I/O 流的工作方式类似于水流的概念，数据可以像水流一样从一个地方传输到另一个地方</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Why</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">在实际应用中，我们经常需要读取文件、网络通信、处理用户输入等操作，这些都需要使用 I/O 流来进行数据的读写。I/O 流的使用可以帮助程序实现更灵活、更复杂的功能，使得程序可以与用户、文件系统、网络等进行有效的通信</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>How</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">在 Java 中，实现输入和输出的主要方式是通过使用输入流与输出流。根据类型不同又分为两大类：字节输入/输出流和字符输入/输出流</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="流类型"><a href="#流类型" class="headerlink" title="流类型"></a>流类型</h2><ul>
+<li>按流向分<ul>
+<li>输入流</li>
+<li>输出流</li>
+</ul>
+</li>
+<li>按数据类型分<ul>
+<li>字节流</li>
+<li>字符流</li>
+</ul>
+</li>
+<li>按功能分<ul>
+<li>节点流：直接操作数据源或目的地</li>
+<li>处理流<ul>
+<li>通过包装节点流，提供对数据的额外处理能力</li>
+<li>不能直接操作数据源或目的地，而是通过包装或封装节点流提供附加功能</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="I-O-流体系"><a href="#I-O-流体系" class="headerlink" title="I&#x2F;O 流体系"></a>I&#x2F;O 流体系</h3><table>
+<thead>
+<tr>
+<th align="center">分类</th>
+<th></th>
+<th align="center">字节输入流</th>
+<th align="center">字节输出流</th>
+<th align="center">字符输入流</th>
+<th align="center">字符输出流</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"></td>
+<td></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center"></td>
+<td></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center"></td>
+<td></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+</tbody></table>
+<h3 id="流关闭"><a href="#流关闭" class="headerlink" title="流关闭"></a>流关闭</h3><p>无论是哪种类型的流，在操作完毕后都需要调用 <code>close()</code> 方法关闭流并释放相应的系统资源</p>
+<table>
+<thead>
+<tr>
+<th>方法名</th>
+<th>方法说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>void close() throws IOException</td>
+<td>流操作完毕后，必须释放系统资源，调用close方法，一般放在finally块中保证一定被执行!</td>
+</tr>
+</tbody></table>
+<h2 id="字节流"><a href="#字节流" class="headerlink" title="字节流"></a>字节流</h2><p>在计算机中，一切数据的存储都是以二进制形式进行存储的，都可以使用字节进行读取和写入</p>
+<h3 id="输入流"><a href="#输入流" class="headerlink" title="输入流"></a>输入流</h3><p><code>InputStream</code> 类是字节输入流的基类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Closeable 接口中定义 close() 方法</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">class</span> <span class="title class_">InputStream</span> <span class="keyword">implements</span> <span class="title class_">Closeable</span> &#123;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>字节输入流常用方法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 从输入流中读取一个字节的数据并返回，读到文件末尾时返回-1</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="type">int</span> <span class="title function_">read</span><span class="params">()</span> <span class="keyword">throws</span> IOException;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 将数据读取到字节数组中，返回读取到的有效字节数，读取到末尾时返回-1</span></span><br><span class="line"><span class="keyword">public</span> <span class="type">int</span> <span class="title function_">read</span><span class="params">(<span class="type">byte</span> b[])</span> <span class="keyword">throws</span> IOException &#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 从数据源中最多读取len个字节，并从偏移量off开始写入到字节数组中，读取到末尾时返回-1</span></span><br><span class="line"><span class="keyword">public</span> <span class="type">int</span> <span class="title function_">read</span><span class="params">(<span class="type">byte</span> b[], <span class="type">int</span> off, <span class="type">int</span> len)</span> <span class="keyword">throws</span> IOException &#123;&#125;</span><br></pre></td></tr></table></figure>
+
+<p><font color=red>返回值之所以是 int 类型而不是 byte 类型，是因为如果将 byte 类型与读取到的数据完全对应，无法判断什么时候读取到末尾</font></p>
+<h3 id="输出流"><a href="#输出流" class="headerlink" title="输出流"></a>输出流</h3><p><code>OutputStream</code> 类是字节输出流的基类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Closeable 接口中定义 close() 方法</span></span><br><span class="line"><span class="comment">// Flushable 接口中定义 flush() 方法</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">class</span> <span class="title class_">OutputStream</span> <span class="keyword">implements</span> <span class="title class_">Closeable</span>, Flushable &#123;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>字节输出流常用方法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 将 int 类型数据写入到输出流中</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title function_">write</span><span class="params">(<span class="type">int</span> b)</span> <span class="keyword">throws</span> IOException;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 将字节数组写入到输出流中</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">write</span><span class="params">(<span class="type">byte</span> b[])</span> <span class="keyword">throws</span> IOException &#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 将字节数组从偏移量off开始写入len长度数据到输出流中</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">write</span><span class="params">(<span class="type">byte</span> b[], <span class="type">int</span> off, <span class="type">int</span> len)</span> <span class="keyword">throws</span> IOException &#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 刷新输出流并强制缓冲的字节被写出</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">flush</span><span class="params">()</span> <span class="keyword">throws</span> IOException &#123;&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="字符流"><a href="#字符流" class="headerlink" title="字符流"></a>字符流</h2><p>字符流用于以字符为单位进行数据输入和输出。在Java中，字符流主要通过 <code>Reader</code> 及其子类实现输入，通过<code>Writer</code> 及其子类实现输出。字符流与字节流的主要区别在于处理的数据单位不同，字符流适用于处理文本数据</p>
+<h3 id="输入流-1"><a href="#输入流-1" class="headerlink" title="输入流"></a>输入流</h3><p><code>Reader</code> 类是字符输入流的基类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">class</span> <span class="title class_">Reader</span> <span class="keyword">implements</span> <span class="title class_">Readable</span>, Closeable &#123;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>字符输入流常用方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 从输入流中读取一个字符,读到文件末尾时返回-1</span></span><br><span class="line"><span class="keyword">public</span> <span class="type">int</span> <span class="title function_">read</span><span class="params">()</span> <span class="keyword">throws</span> IOException &#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 	从输入流中读取字符到char数组中,读到文件末尾时返回-1</span></span><br><span class="line"><span class="keyword">public</span> <span class="type">int</span> <span class="title function_">read</span><span class="params">(<span class="type">char</span> cbuf[])</span> <span class="keyword">throws</span> IOException &#123;&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="输出流-1"><a href="#输出流-1" class="headerlink" title="输出流"></a>输出流</h3><p><code>Writer</code> 类是字符输出流的基类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">class</span> <span class="title class_">Writer</span> <span class="keyword">implements</span> <span class="title class_">Appendable</span>, Closeable, Flushable&#123;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>字符输出流常用方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 写入单个字符到输出流中</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">write</span><span class="params">(<span class="type">int</span> c)</span> <span class="keyword">throws</span> IOException &#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 写入字符数组到输出流中</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">write</span><span class="params">(<span class="type">char</span> cbuf[])</span> <span class="keyword">throws</span> IOException &#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 直接写入字符串到输出流中</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">write</span><span class="params">(String str)</span> <span class="keyword">throws</span> IOException &#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 写入字符串的一部分，偏移量off开始，长度为len</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">write</span><span class="params">(String str, <span class="type">int</span> off, <span class="type">int</span> len)</span> <span class="keyword">throws</span> IOException &#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 追加字符到输出流中</span></span><br><span class="line"><span class="keyword">public</span> Writer <span class="title function_">append</span><span class="params">(CharSequence csq)</span> <span class="keyword">throws</span> IOException &#123;&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="缓冲流"><a href="#缓冲流" class="headerlink" title="缓冲流"></a>缓冲流</h2><p>前面说了节点流，都是直接使用操作系统底层方法读取硬盘中的数据，缓冲流是处理流的一种实现，增强了节点流的性能，为了提高效率，缓冲流类在初始化对象的时候，内部有一个<strong>缓冲数组</strong>，一次性从底层流中读取数据到数组中，程序中执行 <code>read()</code> 或者 <code>read(byte[])</code> 的时候，就直接从内存数组中读取数据</p>
+<p>分类：</p>
+<ul>
+<li>字节缓冲流<ul>
+<li>BufferedInputStream</li>
+<li>BufferedOutputStream</li>
+</ul>
+</li>
+<li>字符缓冲流<ul>
+<li>BufferedReader</li>
+<li>BufferedWriter</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/03/127a65201cc7.html" data-id="cltptjb5k0000tovredbn2vu6" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/page/3/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java-Web/">Java Web</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Oracle/">Oracle</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Spring/">Spring</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Spring-Boot/">Spring Boot</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Spring-MVC/">Spring MVC</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%97%A5%E8%AE%B0/">日记</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/JDBC/" rel="tag">JDBC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Servlet/" rel="tag">Servlet</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BA%8B%E5%8A%A1/" rel="tag">事务</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5%E6%B1%A0/" rel="tag">数据库连接池</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/JDBC/" style="font-size: 20px;">JDBC</a> <a href="/tags/Servlet/" style="font-size: 10px;">Servlet</a> <a href="/tags/%E4%BA%8B%E5%8A%A1/" style="font-size: 10px;">事务</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5%E6%B1%A0/" style="font-size: 10px;">数据库连接池</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">March 2024</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/03/4a9a07cbb3ef.html">Servlet 获取请求参数</a>
+          </li>
+        
+          <li>
+            <a href="/2024/03/ad9e7716878b.html">JDBC CRUD</a>
+          </li>
+        
+          <li>
+            <a href="/2024/03/112fd92327c2.html">JDBC API</a>
+          </li>
+        
+          <li>
+            <a href="/2024/03/0c61ff4ad6c6.html">JDBC 事物</a>
+          </li>
+        
+          <li>
+            <a href="/2024/03/0e36029b04f7.html">JDBC 批处理</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

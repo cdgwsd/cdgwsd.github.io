@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="注解概述 JDK 从 5.0 开始引入注解机制  Java 注解也叫做元数据，以 @注解名 的方式在代码中存在。它是一种在源代码中标注的特殊标记，可以标注在源代码中的类、构造器、方法、属性、参数上。主要用于创建文档，跟踪代码中的依赖性，甚至执行基本编译时检查 格式1234public @interface 注解名&#123;	&#x2F;&#x2F; 属性列表    public 属性格式 属性名() default">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/2024/03/8333b8d7aa3c.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="注解概述 JDK 从 5.0 开始引入注解机制  Java 注解也叫做元数据，以 @注解名 的方式在代码中存在。它是一种在源代码中标注的特殊标记，可以标注在源代码中的类、构造器、方法、属性、参数上。主要用于创建文档，跟踪代码中的依赖性，甚至执行基本编译时检查 格式1234public @interface 注解名&#123;	&#x2F;&#x2F; 属性列表    public 属性格式 属性名() default">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://cdgwsd.oss-cn-guangzhou.aliyuncs.com/img/202204261644529.jpeg">
+<meta property="og:image" content="https://cdgwsd.oss-cn-guangzhou.aliyuncs.com/img/202204261711519.jpeg">
+<meta property="article:published_time" content="2024-03-13T13:09:57.928Z">
+<meta property="article:modified_time" content="2024-03-10T07:57:51.756Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdgwsd.oss-cn-guangzhou.aliyuncs.com/img/202204261644529.jpeg">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-注解" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/03/8333b8d7aa3c.html" class="article-date">
+  <time class="dt-published" datetime="2024-03-13T13:09:57.928Z" itemprop="datePublished">2024-03-13</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Java/">Java</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="注解"><a href="#注解" class="headerlink" title="注解"></a>注解</h1><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><blockquote>
+<p>JDK 从 5.0 开始引入注解机制</p>
+</blockquote>
+<p>Java 注解也叫做<font color = red>元数据</font>，以<font color=red> <code>@注解名</code></font> 的方式在代码中存在。它是一种在源代码中标注的特殊标记，<font color=red>可以标注在源代码中的类、构造器、方法、属性、参数上</font>。主要用于创建文档，跟踪代码中的依赖性，甚至执行基本编译时检查</p>
+<h3 id="格式"><a href="#格式" class="headerlink" title="格式"></a>格式</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> 注解名&#123;</span><br><span class="line">	<span class="comment">// 属性列表</span></span><br><span class="line">    <span class="keyword">public</span> 属性格式 属性名() <span class="keyword">default</span> 默认值;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h3><p>注解大致分为三类：自定义注解、JDK 内置注解、第三方框架提供的注解</p>
+<ul>
+<li>自定义注解：自己定义的注解</li>
+<li>JDK 内置注解：比如 <code>@Override</code> 检验方法重写、<code>@Deprecated</code> 标识方法过期等</li>
+<li>第三方框架提供的注解：如 Spring MVC 的 <code>@RequestMapping</code> 等</li>
+</ul>
+<h3 id="使用位置"><a href="#使用位置" class="headerlink" title="使用位置"></a>使用位置</h3><p>实际开发中，注解常常出现在类、方法、成员变量、形参位置。当然还有其他位置，这里不提及</p>
+<h3 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h3><p>如果说注释是写给人看的，那么注解就是写给程序看的。<strong>它更像一个标签，</strong>贴在一个类、一个方法或者字段上。它的目的是<strong>为当前读取该注解的程序提供判断依据及少量附加信息。</strong>比如程序只要读到加了 <code>@Test</code> 的方法，就知道该方法是待测试方法，又比如 <code>@Before</code> 注解，程序看到这个注解，就知道该方法要放在 <code>@Test</code> 方法之前执行。有时我们还可以通过注解属性，为将来读取这个注解的程序提供必要的附加信息，比如 <code>@RequestMapping(&quot;/user/info&quot;)</code> 提供了 Controller 某个接口的 URL 路径</p>
+<h3 id="级别"><a href="#级别" class="headerlink" title="级别"></a>级别</h3><p>注解和类、接口、枚举是同一级别的</p>
+<h2 id="使用反射读取注解信息"><a href="#使用反射读取注解信息" class="headerlink" title="使用反射读取注解信息"></a>使用反射读取注解信息</h2><p>上文说过，注解就像一个标签，是贴在程序代码上供另一个程序读取的。所以三者关系是：</p>
+<p><img src="https://cdgwsd.oss-cn-guangzhou.aliyuncs.com/img/202204261644529.jpeg" alt="img"></p>
+<p>要牢记，只要用到注解，必然有三角关系：</p>
+<ul>
+<li><strong>定义</strong>注解</li>
+<li><strong>使用</strong>注解</li>
+<li><strong>读取</strong>注解</li>
+</ul>
+<p>接下来我们通过反射读取注解</p>
+<h3 id="定义注解"><a href="#定义注解" class="headerlink" title="定义注解"></a>定义注解</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> MyAnnotation &#123;</span><br><span class="line">    String <span class="title function_">desc</span><span class="params">()</span> <span class="keyword">default</span> <span class="string">&quot;自定义注解&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="使用注解"><a href="#使用注解" class="headerlink" title="使用注解"></a>使用注解</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@MyAnnotation(desc = &quot;作用于类的注解&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Demo</span> &#123;</span><br><span class="line">    <span class="meta">@MyAnnotation(desc = &quot;作用于属性的注解&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@MyAnnotation</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">say</span><span class="params">()</span>&#123;</span><br><span class="line">        System.out.println(name);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="获取注解信息"><a href="#获取注解信息" class="headerlink" title="获取注解信息"></a>获取注解信息</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">AnnotationTest</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> NoSuchFieldException, NoSuchMethodException &#123;</span><br><span class="line">        Class&lt;Demo&gt; demoClass = Demo.class;</span><br><span class="line">        <span class="type">MyAnnotation</span> <span class="variable">annotationOnClass</span> <span class="operator">=</span> demoClass.getAnnotation(MyAnnotation.class);</span><br><span class="line">        System.out.println(annotationOnClass.desc());</span><br><span class="line"></span><br><span class="line">        <span class="type">Field</span> <span class="variable">field</span> <span class="operator">=</span> demoClass.getDeclaredField(<span class="string">&quot;name&quot;</span>);</span><br><span class="line">        <span class="type">MyAnnotation</span> <span class="variable">annotationOnField</span> <span class="operator">=</span> field.getAnnotation(MyAnnotation.class);</span><br><span class="line">        System.out.println(annotationOnField.desc());</span><br><span class="line"></span><br><span class="line">        <span class="type">Method</span> <span class="variable">method</span> <span class="operator">=</span> demoClass.getMethod(<span class="string">&quot;say&quot;</span>);</span><br><span class="line">        <span class="type">MyAnnotation</span> <span class="variable">annotationOnMethod</span> <span class="operator">=</span> method.getAnnotation(MyAnnotation.class);</span><br><span class="line">        System.out.println(annotationOnMethod.desc());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>运行代码，出现以下错误</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Exception in thread <span class="string">&quot;main&quot;</span> java.lang.NullPointerException</span><br><span class="line">	at me.zyp.AnnotationTest.main(AnnotationTest.java:<span class="number">16</span>)</span><br></pre></td></tr></table></figure>
+
+<p>这是因为注解其实有所谓“保留策略”的说法。大家学习 JSP 时，应该学过 <code>&lt;!-- --&gt;</code> 和 <code>&lt;%-- --&gt;</code> 的区别：前者可以在浏览器检查网页源代码时看到，而另一个在服务器端输出时就被抹去了。同样的，注解通过保留策略，控制自己可以保留到哪个阶段。保留策略也是通过注解实现，它属于元注解，也叫元数据</p>
+<h2 id="元注解"><a href="#元注解" class="headerlink" title="元注解"></a>元注解</h2><p><strong>所谓元注解，就是加在注解上的注解</strong>，作为程序员，常用的元注解：</p>
+<ul>
+<li><code>@Documented</code>：用于制作文档，不重要，可以忽略</li>
+<li><code>@Target</code>：加载注解上，限定该注解的使用位置。不写时，默认各个位置都可以</li>
+<li><code>@Retention</code>：注解保留策略</li>
+</ul>
+<h3 id="注解保留策略"><a href="#注解保留策略" class="headerlink" title="注解保留策略"></a>注解保留策略</h3><p>注解保留策略有三种：Source、Class、Runtime</p>
+<p><img src="https://cdgwsd.oss-cn-guangzhou.aliyuncs.com/img/202204261711519.jpeg" alt="img"></p>
+<p>一般来说，普通开发者使用注解的时机都是运行时，比如反射读取注解（也有类似 Lombok 这类编译期注解）。既然反射是运行时调用，那就要求注解的信息必须保留到虚拟机将 .class 文件加载到内存为止。如果你需要反射读取注解，却把保留策略设置为 RetentionPolicy.SOURCE、RetentionPolicy.CLASS，那就读取不到了</p>
+<h3 id="加了保留策略的自定义注解"><a href="#加了保留策略的自定义注解" class="headerlink" title="加了保留策略的自定义注解"></a>加了保留策略的自定义注解</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Retention(RUNTIME)</span></span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> MyAnnotation &#123;</span><br><span class="line">    String <span class="title function_">desc</span><span class="params">()</span> <span class="keyword">default</span> <span class="string">&quot;自定义注解&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>运行测试</p>
+<figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">作用于类的注解</span><br><span class="line">作用于属性的注解</span><br><span class="line">自定义注解</span><br></pre></td></tr></table></figure>
+
+<h2 id="注解属性数据类型"><a href="#注解属性数据类型" class="headerlink" title="注解属性数据类型"></a>注解属性数据类型</h2><ul>
+<li>八种基本数据类型</li>
+<li>String</li>
+<li>枚举</li>
+<li>Class</li>
+<li>注解类型</li>
+<li>以上类型的一维数组</li>
+</ul>
+<h3 id="value-属性"><a href="#value-属性" class="headerlink" title="value 属性"></a>value 属性</h3><p>如果注解的属性只有一个，且叫value，那么使用该注解时，可以不用指定属性名，因为默认就是给value赋值</p>
+<p>但是注解的属性如果有多个，无论是否叫value，都必须写明属性的对应关系</p>
+<h3 id="数组属性"><a href="#数组属性" class="headerlink" title="数组属性"></a>数组属性</h3><p>如果数组的元素只有一个，可以省略花括号 {}</p>
+<h2 id="自定义-Junit"><a href="#自定义-Junit" class="headerlink" title="自定义 Junit"></a>自定义 Junit</h2><h3 id="定义注解-1"><a href="#定义注解-1" class="headerlink" title="定义注解"></a>定义注解</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Target(ElementType.METHOD)</span></span><br><span class="line"><span class="meta">@Retention(RetentionPolicy.RUNTIME)</span></span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> MyTest &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="使用注解-1"><a href="#使用注解-1" class="headerlink" title="使用注解"></a>使用注解</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">JunitTest</span> &#123;</span><br><span class="line">    <span class="meta">@MyTest</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">say</span><span class="params">()</span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;JunitTest&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MyJunitFrameWork</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> InstantiationException, IllegalAccessException, InvocationTargetException &#123;</span><br><span class="line">        Class&lt;JunitTest&gt; junitTestClass = JunitTest.class;</span><br><span class="line">        <span class="type">JunitTest</span> <span class="variable">junitTest</span> <span class="operator">=</span> junitTestClass.newInstance();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 获取所有方法</span></span><br><span class="line">        Method[] declaredMethods = junitTestClass.getDeclaredMethods();</span><br><span class="line">        <span class="keyword">for</span> (Method method:declaredMethods)&#123;</span><br><span class="line">            <span class="comment">// 判断是否加了@MyTest注解</span></span><br><span class="line">            <span class="keyword">if</span> (method.isAnnotationPresent(MyTest.class))&#123;</span><br><span class="line">                method.invoke(junitTest);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/03/8333b8d7aa3c.html" data-id="cltptjc9y0023tovrfob2f3ts" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2024/03/947dadcfe4b4.html" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2024/03/ed6e87d756a7.html" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java-Web/">Java Web</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Oracle/">Oracle</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Spring/">Spring</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Spring-Boot/">Spring Boot</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Spring-MVC/">Spring MVC</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%97%A5%E8%AE%B0/">日记</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/JDBC/" rel="tag">JDBC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Servlet/" rel="tag">Servlet</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BA%8B%E5%8A%A1/" rel="tag">事务</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5%E6%B1%A0/" rel="tag">数据库连接池</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/JDBC/" style="font-size: 20px;">JDBC</a> <a href="/tags/Servlet/" style="font-size: 10px;">Servlet</a> <a href="/tags/%E4%BA%8B%E5%8A%A1/" style="font-size: 10px;">事务</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5%E6%B1%A0/" style="font-size: 10px;">数据库连接池</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">March 2024</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/03/4a9a07cbb3ef.html">Servlet 获取请求参数</a>
+          </li>
+        
+          <li>
+            <a href="/2024/03/ad9e7716878b.html">JDBC CRUD</a>
+          </li>
+        
+          <li>
+            <a href="/2024/03/112fd92327c2.html">JDBC API</a>
+          </li>
+        
+          <li>
+            <a href="/2024/03/0c61ff4ad6c6.html">JDBC 事物</a>
+          </li>
+        
+          <li>
+            <a href="/2024/03/0e36029b04f7.html">JDBC 批处理</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

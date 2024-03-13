@@ -69,12 +69,16 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-测试文档" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+    <article id="post-Servlet/获取请求参数" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2024/03/7beaff61512a.html" class="article-date">
-  <time class="dt-published" datetime="2024-03-13T12:57:18.000Z" itemprop="datePublished">2024-03-13</time>
+    <a href="/2024/03/4a9a07cbb3ef.html" class="article-date">
+  <time class="dt-published" datetime="2024-03-13T13:11:47.000Z" itemprop="datePublished">2024-03-13</time>
 </a>
     
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Java-Web/">Java Web</a>
+  </div>
+
   </div>
   <div class="article-inner">
     
@@ -83,7 +87,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2024/03/7beaff61512a.html">测试文档</a>
+      <a class="p-name article-title" href="/2024/03/4a9a07cbb3ef.html">Servlet 获取请求参数</a>
     </h1>
   
 
@@ -91,11 +95,550 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        
+        <h1 id="Servlet-获取请求参数"><a href="#Servlet-获取请求参数" class="headerlink" title="Servlet 获取请求参数"></a>Servlet 获取请求参数</h1><h2 id="Http-协议"><a href="#Http-协议" class="headerlink" title="Http 协议"></a>Http 协议</h2><blockquote>
+<p>HTTP 是 hypertext transfer protocol（超文本传输协议）的简写，它是 TCP&#x2F;IP 协议的一个应用层协议，用于定义 WEB 浏览器与 WEB 服务器之间交换数据的过程。客户端连上 WEB 服务器后，若想获得 WEB 服务器中的某个 web 资源，需遵守一定的通讯格式，HTTP 协议用于定义客户端与 web 服务器通迅的格式</p>
+</blockquote>
+<p>Http 协议由 Http 请求和 Http 响应组成，当在浏览器中输入网址访问某个网站时，浏览器会将请求封装成一个 Http 请求发送给服务器站点，服务器接收到请求后会组织响应数据封装成一个 Http 响应返回给浏览器。<strong>即没有请求就没有响应</strong></p>
+<p><img src="https://cdgwsd.oss-cn-guangzhou.aliyuncs.com/img/202312141705013.png" alt="img"></p>
+<h3 id="Http-请求"><a href="#Http-请求" class="headerlink" title="Http 请求"></a>Http 请求</h3><p>客户端发送一个 HTTP 请求到服务器的报文包括以下格式</p>
+<ul>
+<li>请求行</li>
+<li>请求头</li>
+<li>空行</li>
+<li>请求数据（请求体 body）</li>
+</ul>
+<p><img src="https://cdgwsd.oss-cn-guangzhou.aliyuncs.com/img/202312141723682.png" alt="image.png"></p>
+<p>请求体可以为空，常见的 <code>GET</code> 请求就是这种情况。但当请求体不为空时，接收的一端需要知道它是什么类型的数据，采用什么编码。这时候，就需要在 <code>Content-Type</code> 来指明请求体 body 的媒体格式（MIME）类型</p>
+<h4 id="Get-请求"><a href="#Get-请求" class="headerlink" title="Get 请求"></a>Get 请求</h4><p>在 HTTP 协议中，GET 请求是通过 URL 传递参数的，通常不包含请求体（body）</p>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">GET</span> <span class="string">/user?id=1</span> <span class="meta">HTTP/1.1</span></span><br><span class="line"><span class="attribute">Host</span><span class="punctuation">: </span>img.mukewang.com</span><br><span class="line"><span class="attribute">User-Agent</span><span class="punctuation">: </span>Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.106 Safari/537.36</span><br><span class="line"><span class="attribute">Accept</span><span class="punctuation">: </span>image/webp,image/*,*/*;q=0.8</span><br><span class="line"><span class="attribute">Referer</span><span class="punctuation">: </span>http://www.imooc.com/</span><br><span class="line"><span class="attribute">Accept-Encoding</span><span class="punctuation">: </span>gzip, deflate, sdch</span><br><span class="line"><span class="attribute">Accept-Language</span><span class="punctuation">: </span>zh-CN,zh;q=0.8</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>理论上 HTTP 协议并没有规定 GET 请求不能包含请求体。但在实际应用中，主流的 Web 浏览器和 Web 服务器都遵循这样的约定，即 GET 请求不包含请求体，参数通过 URL 传递。如果在 GET 请求中添加了请求体，一些服务器或中间件可能会忽略它，而一些严格遵循规范的服务器可能会拒绝处理这样的请求</p>
+</blockquote>
+<h4 id="Post-请求"><a href="#Post-请求" class="headerlink" title="Post 请求"></a>Post 请求</h4><p>在 HTTP 协议中，POST 请求是通过请求体传递参数的，通常不在 URL 中传递参数</p>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">POST / HTTP1.1</span><br><span class="line"><span class="attribute">Host</span><span class="punctuation">: </span>www.wrox.com</span><br><span class="line"><span class="attribute">User-Agent</span><span class="punctuation">: </span>Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; .NET CLR 2.0.50727; .NET CLR 3.0.04506.648; .NET CLR 3.5.21022)</span><br><span class="line"><span class="attribute">Content-Type</span><span class="punctuation">: </span>application/x-www-form-urlencoded</span><br><span class="line"><span class="attribute">Content-Length</span><span class="punctuation">: </span>40</span><br><span class="line"><span class="attribute">Connection</span><span class="punctuation">: </span>Keep-Alive</span><br><span class="line"></span><br><span class="line">name=zzc&amp;age=24</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>在使用 POST 请求时，通常更好的做法是将参数放在请求体中，特别是当需要传递较大的数据时，而不是依赖 URL。这样做更安全，更符合HTTP协议的设计理念</p>
+</blockquote>
+<h3 id="Http-响应"><a href="#Http-响应" class="headerlink" title="Http 响应"></a>Http 响应</h3><p>HTTP响应也由四个部分组成，分别是：</p>
+<ul>
+<li>状态行</li>
+<li>响应头</li>
+<li>空行</li>
+<li>响应体</li>
+</ul>
+<p><img src="https://cdgwsd.oss-cn-guangzhou.aliyuncs.com/img/202312141732190.png" alt="image.png"></p>
+<p>在响应消息中，也返回了 <code>Content-Type</code> 字段。它用来告诉客户端实际返回的内容的内容类型</p>
+<h2 id="Content-Type"><a href="#Content-Type" class="headerlink" title="Content-Type"></a>Content-Type</h2><p><code>Content-Type</code> 是 HTTP 请求和响应头的字段之一，用于指示请求或响应中的实体的媒体类型（Media Type）。它告诉接收方如何解析请求体或响应体的内容</p>
+<p>常见的 <code>Content-Type</code> 值如下：</p>
+<ul>
+<li><strong><code>text/plain</code>：</strong> 表示纯文本，没有特定的格式</li>
+<li><strong><code>text/html</code>：</strong> 表示 HTML 格式的文档</li>
+<li><strong><code>application/json</code>：</strong> 表示 JSON 格式的数据</li>
+<li><strong><code>application/xml</code>：</strong> 表示 XML 格式的数据</li>
+<li><strong><code>multipart/form-data</code>：</strong> 表示多部分表单数据，通常用于文件上传</li>
+<li><strong><code>application/x-www-form-urlencoded</code>：</strong> 表示表单数据，参数以键值对形式编码在请求体中</li>
+</ul>
+<h3 id="application-x-www-form-urlencoded"><a href="#application-x-www-form-urlencoded" class="headerlink" title="application&#x2F;x-www-form-urlencoded"></a>application&#x2F;x-www-form-urlencoded</h3><p>该类型是浏览器表单 <code>POST</code> 提交的默认方式</p>
+<p>在服务器端可以直接使用 <code>request.getParameter()</code> 方法获取请求参数，原因是对于 <code>application/x-www-form-urlencoded</code> 类型的请求，Servlet 容器会自动解析请求体中的参数，并将其提供给开发者使用</p>
+<p><font color=red>在标准的Servlet流程中，一旦使用了 <code>request.getParameter()</code> 方法，就会导致 Servlet 容器尝试解析请求体中的数据，并将其缓存起来，使得后续对 <code>request.getInputStream()</code> 或 <code>request.getReader()</code> 的调用将无法再获取到请求体的数据</font></p>
+<p>除了使用 <code>request.getParameter()</code> 方法，也可以直接读取 request 的输入流</p>
+<h3 id="multipart-form-data"><a href="#multipart-form-data" class="headerlink" title="multipart&#x2F;form-data"></a>multipart&#x2F;form-data</h3><p><code>multipart/form-data</code> 是常见的 POST 数据提交的方式；支持向服务器发送二进制数据；多用于<strong>文件上传</strong></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">&quot;/&quot;</span> <span class="attr">method</span>=<span class="string">&quot;post&quot;</span> <span class="attr">enctype</span>=<span class="string">&quot;multipart/form-data&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">name</span>=<span class="string">&quot;description&quot;</span> <span class="attr">value</span>=<span class="string">&quot;some text&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;file&quot;</span> <span class="attr">name</span>=<span class="string">&quot;myFile&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">&quot;submit&quot;</span>&gt;</span>Submit<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>在 <code>multipart/form-data</code> 格式中，数据被划分为多个部分，每个部分之间用一个 <code>boundary</code> 字符串来分割。这个 <code>boundary</code> 字符串在 HTTP 请求头中被定义，并且在每个部分的开头和结尾都会使用它来标识各部分的开始和结束</p>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">POST</span> <span class="string">/foo</span> <span class="meta">HTTP/1.1</span></span><br><span class="line"><span class="attribute">Content-Length</span><span class="punctuation">: </span>68137</span><br><span class="line"><span class="attribute">Content-Type</span><span class="punctuation">: </span>multipart/form-data; boundary=---------------------------974767299852498929531610575</span><br><span class="line"></span><br><span class="line"><span class="language-vhdl"><span class="comment">---------------------------974767299852498929531610575</span></span></span><br><span class="line"><span class="language-vhdl">Content-Disposition: form-data; name=<span class="string">&quot;description&quot;</span></span></span><br><span class="line"><span class="language-vhdl">Content-<span class="keyword">Type</span>: </span></span><br><span class="line"><span class="language-vhdl">some <span class="literal">text</span></span></span><br><span class="line"><span class="language-vhdl"><span class="comment">---------------------------974767299852498929531610575</span></span></span><br><span class="line"><span class="language-vhdl">Content-Disposition: form-data; name=<span class="string">&quot;myFile&quot;</span>; filename=<span class="string">&quot;foo.txt&quot;</span></span></span><br><span class="line"><span class="language-vhdl">Content-<span class="keyword">Type</span>: <span class="literal">text</span>/plain</span></span><br><span class="line"><span class="language-vhdl">(content <span class="keyword">of</span> the uploaded <span class="keyword">file</span> foo.txt)</span></span><br><span class="line"><span class="language-vhdl"><span class="comment">--974767299852498929531610575--</span></span></span><br><span class="line"><span class="language-vhdl"></span></span><br></pre></td></tr></table></figure>
+
+<p>在Servlet中，处理这种类型的请求需要使用特定的类库，例如<code>Apache Commons FileUpload</code></p>
+<h3 id="application-json"><a href="#application-json" class="headerlink" title="application&#x2F;json"></a>application&#x2F;json</h3><p><code>application/json</code>：它是告诉服务器请求体是序列化后的 JSON 字符串。该类型数据可以通过读取 request 的输入流完成</p>
+<ul>
+<li><p>使用 request.getReader</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 从请求的输入流中获取 JSON 数据</span></span><br><span class="line"><span class="type">BufferedReader</span> <span class="variable">reader</span> <span class="operator">=</span> request.getReader();</span><br><span class="line"><span class="type">StringBuilder</span> <span class="variable">jsonInput</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">StringBuilder</span>();</span><br><span class="line">String line;</span><br><span class="line"><span class="keyword">while</span> ((line = reader.readLine()) != <span class="literal">null</span>) &#123;</span><br><span class="line">    jsonInput.append(line);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用 request.getInputStream</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">InputStream</span> <span class="variable">inputStream</span> <span class="operator">=</span> request.getInputStream();</span><br><span class="line"><span class="type">StringBuilder</span> <span class="variable">stringBuilder</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">StringBuilder</span>();</span><br><span class="line"><span class="type">byte</span>[] b = <span class="keyword">new</span> <span class="title class_">byte</span>[<span class="number">4096</span>];</span><br><span class="line"><span class="keyword">for</span> (<span class="type">int</span> n; (n = inputStream.read(b)) != -<span class="number">1</span>; ) &#123;</span><br><span class="line">    stringBuilder.append(<span class="keyword">new</span> <span class="title class_">String</span>(b, <span class="number">0</span>, n, <span class="string">&quot;utf-8&quot;</span>));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/03/7beaff61512a.html" data-id="cltpt3g3e0004o8vr4i74fcv7" data-title="测试文档" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/03/4a9a07cbb3ef.html" data-id="cltptwq2c002utovr89w17v97" data-title="Servlet 获取请求参数" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Servlet/" rel="tag">Servlet</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-JDBC/JDBC CRUD" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/03/ad9e7716878b.html" class="article-date">
+  <time class="dt-published" datetime="2024-03-13T13:11:01.000Z" itemprop="datePublished">2024-03-13</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Java-Web/">Java Web</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2024/03/ad9e7716878b.html">JDBC CRUD</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="JDBC-CRUD"><a href="#JDBC-CRUD" class="headerlink" title="JDBC CRUD"></a>JDBC CRUD</h1><h2 id="查询"><a href="#查询" class="headerlink" title="查询"></a>查询</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">testInsert</span><span class="params">()</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">    Class.forName(<span class="string">&quot;com.mysql.jdbc.Driver&quot;</span>);</span><br><span class="line">    <span class="keyword">try</span> (<span class="type">Connection</span> <span class="variable">connection</span> <span class="operator">=</span> DriverManager.getConnection(<span class="string">&quot;jdbc:mysql://120.24.90.60:3306/mybatis_study?useSSL=false&quot;</span>, <span class="string">&quot;root&quot;</span>, <span class="string">&quot;12345678&quot;</span>)) &#123;</span><br><span class="line">        <span class="keyword">try</span> (<span class="type">PreparedStatement</span> <span class="variable">prepareStatement</span> <span class="operator">=</span> connection.prepareStatement(<span class="string">&quot;insert into t_user(name,age,salary,sex) values(?,?,?,?)&quot;</span>, <span class="number">1</span>)) &#123;</span><br><span class="line">            prepareStatement.setString(<span class="number">1</span>, <span class="string">&quot;李四&quot;</span>);</span><br><span class="line">            prepareStatement.setInt(<span class="number">2</span>, <span class="number">27</span>);</span><br><span class="line">            prepareStatement.setDouble(<span class="number">3</span>, <span class="number">2.75</span>);</span><br><span class="line">            prepareStatement.setInt(<span class="number">4</span>, <span class="number">1</span>);</span><br><span class="line">            <span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> prepareStatement.executeUpdate();</span><br><span class="line">            System.out.println(i);</span><br><span class="line">            <span class="keyword">try</span> (<span class="type">ResultSet</span> <span class="variable">generatedKeys</span> <span class="operator">=</span> prepareStatement.getGeneratedKeys()) &#123;</span><br><span class="line">                <span class="keyword">while</span> (generatedKeys.next()) &#123;</span><br><span class="line">                    System.out.println(generatedKeys.getInt(<span class="number">1</span>));</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="新增"><a href="#新增" class="headerlink" title="新增"></a>新增</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">testInsert</span><span class="params">()</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">    Class.forName(<span class="string">&quot;com.mysql.jdbc.Driver&quot;</span>);</span><br><span class="line">    <span class="keyword">try</span> (<span class="type">Connection</span> <span class="variable">connection</span> <span class="operator">=</span> DriverManager.getConnection(<span class="string">&quot;jdbc:mysql://120.24.90.60:3306/mybatis_study?useSSL=false&quot;</span>, <span class="string">&quot;root&quot;</span>, <span class="string">&quot;12345678&quot;</span>)) &#123;</span><br><span class="line">        <span class="keyword">try</span> (<span class="type">PreparedStatement</span> <span class="variable">prepareStatement</span> <span class="operator">=</span> connection.prepareStatement(<span class="string">&quot;insert into t_user(name,age,salary,sex) values(?,?,?,?)&quot;</span>, <span class="number">1</span>)) &#123;</span><br><span class="line">            prepareStatement.setString(<span class="number">1</span>, <span class="string">&quot;李四&quot;</span>);</span><br><span class="line">            prepareStatement.setInt(<span class="number">2</span>, <span class="number">27</span>);</span><br><span class="line">            prepareStatement.setDouble(<span class="number">3</span>, <span class="number">2.75</span>);</span><br><span class="line">            prepareStatement.setInt(<span class="number">4</span>, <span class="number">1</span>);</span><br><span class="line">            <span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> prepareStatement.executeUpdate();</span><br><span class="line">            System.out.println(i);</span><br><span class="line">            <span class="keyword">try</span> (<span class="type">ResultSet</span> <span class="variable">generatedKeys</span> <span class="operator">=</span> prepareStatement.getGeneratedKeys()) &#123;</span><br><span class="line">                <span class="keyword">while</span> (generatedKeys.next()) &#123;</span><br><span class="line">                    System.out.println(generatedKeys.getInt(<span class="number">1</span>));</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="获取自增主键"><a href="#获取自增主键" class="headerlink" title="获取自增主键"></a>获取自增主键</h3><p>如果数据库的表设置了自增主键，那么在执行 <code>INSERT</code> 语句时，并不需要指定主键，数据库会自动分配主键。对于使用自增主键的程序，有个额外的步骤，就是如何获取插入后的自增主键的值</p>
+<p>在创建 <code>PreparedStatement</code> 的时候，指定一个 <code>RETURN_GENERATED_KEYS</code> 标志位，表示 JDBC 驱动必须返回插入的自增主键，然后使用 <code>getGeneratedKeys()</code> 方法获取自增主键</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// int RETURN_GENERATED_KEYS = 1; 返回自增主键</span></span><br><span class="line"><span class="comment">// int NO_GENERATED_KEYS = 2; 不返回</span></span><br><span class="line">PreparedStatement <span class="title function_">prepareStatement</span><span class="params">(String sql, <span class="type">int</span> autoGeneratedKeys)</span></span><br></pre></td></tr></table></figure>
+
+<p>如果自增列有多个，可以通过数组进行指定</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">PreparedStatement <span class="title function_">prepareStatement</span><span class="params">(String sql, <span class="type">int</span> columnIndexes[])</span>;</span><br><span class="line">    </span><br><span class="line">PreparedStatement <span class="title function_">prepareStatement</span><span class="params">(String sql, String columnNames[])</span>;</span><br></pre></td></tr></table></figure>
+
+<h2 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">testDel</span><span class="params">()</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">    Class.forName(<span class="string">&quot;com.mysql.jdbc.Driver&quot;</span>);</span><br><span class="line">    <span class="keyword">try</span> (<span class="type">Connection</span> <span class="variable">connection</span> <span class="operator">=</span> DriverManager.getConnection(<span class="string">&quot;jdbc:mysql://120.24.90.60:3306/mybatis_study?useSSL=false&quot;</span>, <span class="string">&quot;root&quot;</span>, <span class="string">&quot;12345678&quot;</span>)) &#123;</span><br><span class="line">        <span class="keyword">try</span> (<span class="type">PreparedStatement</span> <span class="variable">prepareStatement</span> <span class="operator">=</span> connection.prepareStatement(<span class="string">&quot;delete from t_user where id = ?&quot;</span>)) &#123;</span><br><span class="line">            prepareStatement.setInt(<span class="number">1</span>, <span class="number">4</span>);</span><br><span class="line">            <span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> prepareStatement.executeUpdate();</span><br><span class="line">            System.out.println(i);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="更新"><a href="#更新" class="headerlink" title="更新"></a>更新</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">testUpdate</span><span class="params">()</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">    Class.forName(<span class="string">&quot;com.mysql.jdbc.Driver&quot;</span>);</span><br><span class="line">    <span class="keyword">try</span> (<span class="type">Connection</span> <span class="variable">connection</span> <span class="operator">=</span> DriverManager.getConnection(<span class="string">&quot;jdbc:mysql://120.24.90.60:3306/mybatis_study?useSSL=false&quot;</span>, <span class="string">&quot;root&quot;</span>, <span class="string">&quot;12345678&quot;</span>)) &#123;</span><br><span class="line">        <span class="keyword">try</span> (<span class="type">PreparedStatement</span> <span class="variable">prepareStatement</span> <span class="operator">=</span> connection.prepareStatement(<span class="string">&quot;update t_user set name = ? where id = ?&quot;</span>)) &#123;</span><br><span class="line">            prepareStatement.setString(<span class="number">1</span>, <span class="string">&quot;张三&quot;</span>);</span><br><span class="line">            prepareStatement.setInt(<span class="number">2</span>, <span class="number">1</span>);</span><br><span class="line">            <span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> prepareStatement.executeUpdate();</span><br><span class="line">            System.out.println(i);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/03/ad9e7716878b.html" data-id="cltptjb6j0007tovrgjeadq0i" data-title="JDBC CRUD" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JDBC/" rel="tag">JDBC</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-JDBC/JDBC API" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/03/112fd92327c2.html" class="article-date">
+  <time class="dt-published" datetime="2024-03-13T13:10:58.000Z" itemprop="datePublished">2024-03-13</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Java-Web/">Java Web</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2024/03/112fd92327c2.html">JDBC API</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="JDBC-API"><a href="#JDBC-API" class="headerlink" title="JDBC API"></a>JDBC API</h1><h2 id="Driver-Manager"><a href="#Driver-Manager" class="headerlink" title="Driver Manager"></a>Driver Manager</h2><h3 id="驱动管理类"><a href="#驱动管理类" class="headerlink" title="驱动管理类"></a>驱动管理类</h3><h3 id="getConnection-url-user-pwd-获取数据库连接"><a href="#getConnection-url-user-pwd-获取数据库连接" class="headerlink" title="getConnection(url,user,pwd) 获取数据库连接"></a>getConnection(url,user,pwd) 获取数据库连接</h3><h2 id="Connection"><a href="#Connection" class="headerlink" title="Connection"></a>Connection</h2><h3 id="数据库连接对象"><a href="#数据库连接对象" class="headerlink" title="数据库连接对象"></a>数据库连接对象</h3><h3 id="createStatement-创建-Statement-对象"><a href="#createStatement-创建-Statement-对象" class="headerlink" title="createStatement() 创建 Statement 对象"></a>createStatement() 创建 Statement 对象</h3><h3 id="preparedStatement-String-sql-生成预处理对象"><a href="#preparedStatement-String-sql-生成预处理对象" class="headerlink" title="preparedStatement(String sql) 生成预处理对象"></a>preparedStatement(String sql) 生成预处理对象</h3><h2 id="Statement"><a href="#Statement" class="headerlink" title="Statement"></a>Statement</h2><h3 id="执行静态-SQL-语句并返回执行结果"><a href="#执行静态-SQL-语句并返回执行结果" class="headerlink" title="执行静态 SQL 语句并返回执行结果"></a>执行静态 SQL 语句并返回执行结果</h3><h3 id="int-executeUpdate-String-sql-执行-DML-语句，返回受影响行数"><a href="#int-executeUpdate-String-sql-执行-DML-语句，返回受影响行数" class="headerlink" title="int executeUpdate(String sql) 执行 DML 语句，返回受影响行数"></a>int executeUpdate(String sql) 执行 DML 语句，返回受影响行数</h3><h3 id="ResultSet-executeQuery-String-sql-执行查询语句，返回结果集"><a href="#ResultSet-executeQuery-String-sql-执行查询语句，返回结果集" class="headerlink" title="ResultSet executeQuery(String sql) 执行查询语句，返回结果集"></a>ResultSet executeQuery(String sql) 执行查询语句，返回结果集</h3><h3 id="boolean-execute-String-sql-执行任意-sql，返回执行结果"><a href="#boolean-execute-String-sql-执行任意-sql，返回执行结果" class="headerlink" title="boolean execute(String sql) 执行任意 sql，返回执行结果"></a>boolean execute(String sql) 执行任意 sql，返回执行结果</h3><h2 id="PreparedStatement"><a href="#PreparedStatement" class="headerlink" title="PreparedStatement"></a>PreparedStatement</h2><h3 id="执行预编译-SQL-语句"><a href="#执行预编译-SQL-语句" class="headerlink" title="执行预编译 SQL 语句"></a>执行预编译 SQL 语句</h3><h3 id="int-executeUpdate-执行-DML-语句，返回受影响行数"><a href="#int-executeUpdate-执行-DML-语句，返回受影响行数" class="headerlink" title="int executeUpdate() 执行 DML 语句，返回受影响行数"></a>int executeUpdate() 执行 DML 语句，返回受影响行数</h3><h3 id="ResultSet-executeQuery-执行查询语句，返回结果集"><a href="#ResultSet-executeQuery-执行查询语句，返回结果集" class="headerlink" title="ResultSet executeQuery() 执行查询语句，返回结果集"></a>ResultSet executeQuery() 执行查询语句，返回结果集</h3><h3 id="boolean-execute-执行任意-sql，返回执行结果"><a href="#boolean-execute-执行任意-sql，返回执行结果" class="headerlink" title="boolean execute() 执行任意 sql，返回执行结果"></a>boolean execute() 执行任意 sql，返回执行结果</h3><h3 id="setXxx-占位符索引，占位符值"><a href="#setXxx-占位符索引，占位符值" class="headerlink" title="setXxx(占位符索引，占位符值)"></a>setXxx(占位符索引，占位符值)</h3><h3 id="SetObj-占位符索引，占位符值"><a href="#SetObj-占位符索引，占位符值" class="headerlink" title="SetObj(占位符索引，占位符值)"></a>SetObj(占位符索引，占位符值)</h3><h4 id="setObject-方法可以自动识别-Java-对象的类型，并将其转换为对应的-SQL-类型"><a href="#setObject-方法可以自动识别-Java-对象的类型，并将其转换为对应的-SQL-类型" class="headerlink" title="setObject() 方法可以自动识别 Java 对象的类型，并将其转换为对应的 SQL 类型"></a>setObject() 方法可以自动识别 Java 对象的类型，并将其转换为对应的 SQL 类型</h4><h4 id="如果传入参数值为-null，则必须显式指定参数类型或者使用-setNull-方法"><a href="#如果传入参数值为-null，则必须显式指定参数类型或者使用-setNull-方法" class="headerlink" title="如果传入参数值为 null，则必须显式指定参数类型或者使用 setNull() 方法"></a>如果传入参数值为 null，则必须显式指定参数类型或者使用 setNull() 方法</h4><h5 id="ps-setObject-1-null-Types-INTEGER"><a href="#ps-setObject-1-null-Types-INTEGER" class="headerlink" title="ps.setObject(1, null, Types.INTEGER);"></a>ps.setObject(1, null, Types.INTEGER);</h5><h5 id="ps-setNull-1"><a href="#ps-setNull-1" class="headerlink" title="ps.setNull(1);"></a>ps.setNull(1);</h5><h2 id="ResultSet"><a href="#ResultSet" class="headerlink" title="ResultSet"></a>ResultSet</h2><h3 id="数据库查询结果集"><a href="#数据库查询结果集" class="headerlink" title="数据库查询结果集"></a>数据库查询结果集</h3><h3 id="next-向下移动一行，如果没有下一行，返回-false"><a href="#next-向下移动一行，如果没有下一行，返回-false" class="headerlink" title="next() 向下移动一行，如果没有下一行，返回 false"></a>next() 向下移动一行，如果没有下一行，返回 false</h3><h3 id="previous-向上移动一行，如果没有上一行，返回-false"><a href="#previous-向上移动一行，如果没有上一行，返回-false" class="headerlink" title="previous 向上移动一行，如果没有上一行，返回 false"></a>previous 向上移动一行，如果没有上一行，返回 false</h3><h3 id="Xxx-getXxx-列索引-列名-返回对应列的值"><a href="#Xxx-getXxx-列索引-列名-返回对应列的值" class="headerlink" title="Xxx getXxx(列索引|列名) 返回对应列的值"></a>Xxx getXxx(列索引|列名) 返回对应列的值</h3><h3 id="Object-getObject-列索引-列名-返回对应列的值"><a href="#Object-getObject-列索引-列名-返回对应列的值" class="headerlink" title="Object getObject(列索引|列名) 返回对应列的值"></a>Object getObject(列索引|列名) 返回对应列的值</h3>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/03/112fd92327c2.html" data-id="cltptjb6l0009tovrdt7c06bl" data-title="JDBC API" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JDBC/" rel="tag">JDBC</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-JDBC/JDBC 事物" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/03/0c61ff4ad6c6.html" class="article-date">
+  <time class="dt-published" datetime="2024-03-13T13:10:55.000Z" itemprop="datePublished">2024-03-13</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Java-Web/">Java Web</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2024/03/0c61ff4ad6c6.html">JDBC 事物</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="JDBC-事物"><a href="#JDBC-事物" class="headerlink" title="JDBC 事物"></a>JDBC 事物</h1><p>数据库事务（Transaction）是由若干个 SQL 语句构成的一个操作序列。数据库系统保证在一个事务中的所有 SQL 要么全部执行成功，要么全部不执行，即数据库事务具有 ACID 特性：</p>
+<ul>
+<li>Atomicity：原子性</li>
+<li>Consistency：一致性</li>
+<li>Isolation：隔离性</li>
+<li>Durability：持久性</li>
+</ul>
+<p>要在 JDBC 中执行事务，本质上就是如何把多条 SQL 包裹在一个数据库事务中执行。JDBC 事物具有以下特点</p>
+<ul>
+<li>JDBC 程序中当一个 Connection 对象创建时，默认情况下是自动提交事务：每次执行一个 SQL 语句时，如果执行成功，就会向数据库自动提交，而不能回滚</li>
+<li>JDBC 程序中为了让多个 SQL 语句作为一个整体执行，需要使用事务</li>
+<li>调用 Connection 的 <code>setAutocommit(false)</code> 可以取消自动提交事务</li>
+<li>在所有的 SQL 语句都成功执行后，调用 Connection 的 <code>commit()</code> 方法提交事务</li>
+<li>在其中某个操作失败或出现异常时，调用 Connection 的 <code>rolback()</code> 方法回滚事务</li>
+</ul>
+<h2 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">testTransAction</span><span class="params">()</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">    Class.forName(<span class="string">&quot;com.mysql.jdbc.Driver&quot;</span>);</span><br><span class="line">    <span class="type">Connection</span> <span class="variable">connection</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">    <span class="type">PreparedStatement</span> <span class="variable">prepareStatement</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        connection = DriverManager.getConnection(<span class="string">&quot;jdbc:mysql://120.24.90.60:3306/mybatis_study?useSSL=false&amp;characterEncoding=UTF-8&quot;</span>, <span class="string">&quot;root&quot;</span>, <span class="string">&quot;12345678&quot;</span>);</span><br><span class="line">        connection.setAutoCommit(<span class="literal">false</span>);</span><br><span class="line">        prepareStatement = connection.prepareStatement(<span class="string">&quot;update t_user set name = ? where id = ?&quot;</span>);</span><br><span class="line">        prepareStatement.setString(<span class="number">1</span>, <span class="string">&quot;lisi&quot;</span>);</span><br><span class="line">        prepareStatement.setInt(<span class="number">2</span>, <span class="number">1</span>);</span><br><span class="line">        <span class="type">int</span> <span class="variable">id</span> <span class="operator">=</span> prepareStatement.executeUpdate();</span><br><span class="line">        connection.commit();</span><br><span class="line">        System.out.println(id);</span><br><span class="line">        connection.setAutoCommit(<span class="literal">true</span>);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">        connection.rollback();</span><br><span class="line">        System.out.println(e.getMessage());</span><br><span class="line">    &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (prepareStatement != <span class="literal">null</span>) &#123;</span><br><span class="line">            prepareStatement.close();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (connection != <span class="literal">null</span>) &#123;</span><br><span class="line">            connection.close();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/03/0c61ff4ad6c6.html" data-id="cltptjb6m000atovrayd6ecoh" data-title="JDBC 事物" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JDBC/" rel="tag">JDBC</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BA%8B%E5%8A%A1/" rel="tag">事务</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-JDBC/JDBC 批处理" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/03/0e36029b04f7.html" class="article-date">
+  <time class="dt-published" datetime="2024-03-13T13:10:53.000Z" itemprop="datePublished">2024-03-13</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Java-Web/">Java Web</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2024/03/0e36029b04f7.html">JDBC 批处理</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="JDBC-批处理"><a href="#JDBC-批处理" class="headerlink" title="JDBC 批处理"></a>JDBC 批处理</h1><p>使用 JDBC 操作数据库的时候，经常会执行一些批量操作。</p>
+<p>例如，一次性给会员增加可用优惠券若干，我们可以执行以下 SQL 代码：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> coupons (user_id, type, expires) <span class="keyword">VALUES</span> (<span class="number">123</span>, <span class="string">&#x27;DISCOUNT&#x27;</span>, <span class="string">&#x27;2030-12-31&#x27;</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> coupons (user_id, type, expires) <span class="keyword">VALUES</span> (<span class="number">234</span>, <span class="string">&#x27;DISCOUNT&#x27;</span>, <span class="string">&#x27;2030-12-31&#x27;</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> coupons (user_id, type, expires) <span class="keyword">VALUES</span> (<span class="number">345</span>, <span class="string">&#x27;DISCOUNT&#x27;</span>, <span class="string">&#x27;2030-12-31&#x27;</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> coupons (user_id, type, expires) <span class="keyword">VALUES</span> (<span class="number">456</span>, <span class="string">&#x27;DISCOUNT&#x27;</span>, <span class="string">&#x27;2030-12-31&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>实际上执行 JDBC 时，因为只有占位符参数不同，所以 SQL 实际上是一样的：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (var params : paramsList) &#123;</span><br><span class="line">    PreparedStatement ps <span class="operator">=</span> conn.preparedStatement(&quot;INSERT INTO coupons (user_id, type, expires) VALUES (?,?,?)&quot;);</span><br><span class="line">    ps.setLong(params.get(<span class="number">0</span>));</span><br><span class="line">    ps.setString(params.get(<span class="number">1</span>));</span><br><span class="line">    ps.setString(params.get(<span class="number">2</span>));</span><br><span class="line">    ps.executeUpdate();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>类似的还有，给每个员工薪水增加 10%～30%：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">UPDATE</span> employees <span class="keyword">SET</span> salary <span class="operator">=</span> salary <span class="operator">*</span> ? <span class="keyword">WHERE</span> id <span class="operator">=</span> ?</span><br></pre></td></tr></table></figure>
+
+<p>通过一个循环来执行每个 <code>PreparedStatement</code> 虽然可行，但是性能很低。SQL 数据库对 SQL 语句相同，但只有参数不同的若干语句可以作为 <font color=red>batch</font> 执行，即批量执行，这种操作有特别优化，速度远远快于循环执行每个 SQL</p>
+<p>在 JDBC 代码中，我们可以利用 SQL 数据库的这一特性，<font color=red>把同一个 SQL 但参数不同的若干次操作合并为一个 batch 执行</font>。我们以批量插入为例，示例代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span> (<span class="type">PreparedStatement</span> <span class="variable">ps</span> <span class="operator">=</span> conn.prepareStatement(<span class="string">&quot;INSERT INTO students (name, gender, grade, score) VALUES (?, ?, ?, ?)&quot;</span>)) &#123;</span><br><span class="line">    <span class="comment">// 对同一个PreparedStatement反复设置参数并调用addBatch():</span></span><br><span class="line">    <span class="keyword">for</span> (Student s : students) &#123;</span><br><span class="line">        ps.setString(<span class="number">1</span>, s.name);</span><br><span class="line">        ps.setBoolean(<span class="number">2</span>, s.gender);</span><br><span class="line">        ps.setInt(<span class="number">3</span>, s.grade);</span><br><span class="line">        ps.setInt(<span class="number">4</span>, s.score);</span><br><span class="line">        ps.addBatch(); <span class="comment">// 添加到batch</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 执行batch:</span></span><br><span class="line">    <span class="type">int</span>[] ns = ps.executeBatch();</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> n : ns) &#123;</span><br><span class="line">        System.out.println(n + <span class="string">&quot; inserted.&quot;</span>); <span class="comment">// batch中每个SQL执行的结果数量</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>执行 batch 和执行一个SQL不同点在于，需要对同一个 <code>PreparedStatement</code> 反复设置参数并调用 <code>addBatch()</code>，这样就相当于给一个 SQL 加上了多组参数，相当于变成了“多行” SQL。</p>
+<p>第二个不同点是调用的不是 <code>executeUpdate()</code>，而是 <code>executeBatch()</code>，因为我们设置了多组参数，相应地，返回结果也是多个 <code>int</code> 值，因此返回类型是 <code>int[]</code>，循环 <code>int[]</code> 数组即可获取每组参数执行后影响的结果数量</p>
+<h2 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL"></a>MySQL</h2><p>JDBC 连接 MySQL 数据库时，如果需要使用批处理功能，需要在连接 URL 中设置 <code>rewriteBatchedStatements = true</code></p>
+<blockquote>
+<p>当设置 <code>rewriteBatchedStatements=true</code> 时，MySQL 将尝试将一组相似的 SQL 语句重写为单个 SQL 语句。这样做可以减少通信开销，并且在数据库端可以更有效地执行批处理操作，从而提高整体性能。</p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/03/0e36029b04f7.html" data-id="cltptjb6p000dtovrckabcfbd" data-title="JDBC 批处理" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JDBC/" rel="tag">JDBC</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-JDBC/JDBC 连接池" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/03/d085a79f3a51.html" class="article-date">
+  <time class="dt-published" datetime="2024-03-13T13:10:32.000Z" itemprop="datePublished">2024-03-13</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Java-Web/">Java Web</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2024/03/d085a79f3a51.html">JDBC 连接池</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="JDBC-连接池"><a href="#JDBC-连接池" class="headerlink" title="JDBC 连接池"></a>JDBC 连接池</h1><p>在执行 JDBC 的增删改查操作时，如果每一次操作都要建立一次数据库连接，操作，关闭连接，那么创建和销毁JDBC 连接的开销就太大。为了避免频繁地创建和销毁 JDBC 连接，我们可以通过连接池（Connection Pool）<font color=red>复用</font>已经创建好的连接</p>
+<h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><p>数据库连接池是一种管理和维护数据库连接的技术，其原理可以简单描述如下：</p>
+<ol>
+<li><strong>连接池初始化：</strong> 在应用程序启动时，数据库连接池会初始化一定数量的数据库连接，并将这些连接保存在一个连接池中</li>
+<li><strong>连接请求处理：</strong> 当应用程序需要与数据库交互时，它会从连接池中请求一个数据库连接</li>
+<li><strong>连接复用：</strong> 如果连接池中有空闲连接可用，那么连接池会返回一个空闲连接给应用程序使用。如果连接池中没有空闲连接，且此时连接数已达最大连接数则请求进入等待队列，否则连接池会创建一个新的连接并返回给应用程序使用</li>
+<li><strong>连接释放：</strong> 当应用程序使用完数据库连接后，它会将连接<font color=red>释放回连接池，而不是关闭连接</font>。连接池会将释放的连接标记为空闲状态，以备后续的重用</li>
+<li><strong>连接池管理：</strong> 连接池会负责管理连接的状态和生命周期。它会监控连接的空闲时间，如果连接空闲时间过长，则可能会关闭连接并释放资源。此外，连接池还可以根据需求动态调整连接池中连接的数量，以适应当前的数据库负载和应用程序的需求</li>
+</ol>
+<p><img src="https://cdgwsd.oss-cn-guangzhou.aliyuncs.com/img/202403121130817.png" alt="img"></p>
+<h2 id="连接池种类"><a href="#连接池种类" class="headerlink" title="连接池种类"></a>连接池种类</h2><p>JDBC 连接池有一个标准的接口 <code>javax.sql.DataSource</code>，这个类位于 Java 标准库中，但仅仅是接口。要使用JDBC 连接池，我们必须选择一个 JDBC 连接池的实现。常用的 JDBC 连接池有：</p>
+<ul>
+<li>C3P0：速度较慢，稳定性可以</li>
+<li>HikariCP：速度快，稳定</li>
+<li>Druid：速度快，稳定</li>
+<li>BoneCP：速度快</li>
+</ul>
+<h3 id="C3P0"><a href="#C3P0" class="headerlink" title="C3P0"></a>C3P0</h3><h4 id="通过类进行配置"><a href="#通过类进行配置" class="headerlink" title="通过类进行配置"></a>通过类进行配置</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">testC3P0ByClass</span><span class="params">()</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">    <span class="type">ComboPooledDataSource</span> <span class="variable">dataSource</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ComboPooledDataSource</span>();</span><br><span class="line">    <span class="comment">// 设置数据源连接信息</span></span><br><span class="line">    dataSource.setDriverClass(<span class="string">&quot;com.mysql.jdbc.Driver&quot;</span>);</span><br><span class="line">    dataSource.setJdbcUrl(<span class="string">&quot;jdbc:mysql://120.24.90.60:3306/mybatis_study?useSSL=false&amp;characterEncoding=UTF-8&quot;</span>);</span><br><span class="line">    dataSource.setUser(<span class="string">&quot;root&quot;</span>);</span><br><span class="line">    dataSource.setPassword(<span class="string">&quot;12345678&quot;</span>);</span><br><span class="line">    <span class="comment">// 设置连接池信息</span></span><br><span class="line">    <span class="comment">// 最大连接数</span></span><br><span class="line">    dataSource.setMaxPoolSize(<span class="number">50</span>);</span><br><span class="line">    <span class="comment">// 初始连接数</span></span><br><span class="line">    dataSource.setInitialPoolSize(<span class="number">10</span>);</span><br><span class="line">    <span class="keyword">try</span> (<span class="type">Connection</span> <span class="variable">connection</span> <span class="operator">=</span> dataSource.getConnection()) &#123;</span><br><span class="line">        <span class="keyword">try</span> (<span class="type">PreparedStatement</span> <span class="variable">prepareStatement</span> <span class="operator">=</span> connection.prepareStatement(<span class="string">&quot;select * from t_user where id = ?&quot;</span>)) &#123;</span><br><span class="line">            prepareStatement.setInt(<span class="number">1</span>, <span class="number">1</span>);</span><br><span class="line">            <span class="keyword">try</span> (<span class="type">ResultSet</span> <span class="variable">resultSet</span> <span class="operator">=</span> prepareStatement.executeQuery()) &#123;</span><br><span class="line">                <span class="keyword">while</span> (resultSet.next()) &#123;</span><br><span class="line">                    System.out.println(resultSet.getInt(<span class="string">&quot;id&quot;</span>));</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">c3p0-config</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 数据源名称代表连接池 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">named-config</span> <span class="attr">name</span>=<span class="string">&quot;mybatis_study&quot;</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 驱动类 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;driverClass&quot;</span>&gt;</span>com.mysql.jdbc.Driver<span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- url--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;jdbcUrl&quot;</span>&gt;</span>jdbc:mysql://120.24.90.60:3306/mybatis_study?useSSL=false<span class="symbol">&amp;amp;</span>characterEncoding=UTF-8<span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 用户名 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;user&quot;</span>&gt;</span>root<span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 密码 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;password&quot;</span>&gt;</span>12345678<span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 每次增长的连接数--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;acquireIncrement&quot;</span>&gt;</span>5<span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 初始的连接数 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;initialPoolSize&quot;</span>&gt;</span>10<span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 最小连接数 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;minPoolSize&quot;</span>&gt;</span>5<span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 最大连接数 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;maxPoolSize&quot;</span>&gt;</span>50<span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">&lt;!-- 可连接的最多的命令对象数 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;maxStatements&quot;</span>&gt;</span>5<span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">&lt;!-- 每个连接对象可连接的最多的命令对象数 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;maxStatementsPerConnection&quot;</span>&gt;</span>2<span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">named-config</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">c3p0-config</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>测试代码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">testC3P0ByXML</span><span class="params">()</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">    <span class="type">ComboPooledDataSource</span> <span class="variable">dataSource</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ComboPooledDataSource</span>(<span class="string">&quot;mybatis_study&quot;</span>);</span><br><span class="line">    <span class="keyword">try</span> (<span class="type">Connection</span> <span class="variable">connection</span> <span class="operator">=</span> dataSource.getConnection()) &#123;</span><br><span class="line">        <span class="keyword">try</span> (<span class="type">PreparedStatement</span> <span class="variable">prepareStatement</span> <span class="operator">=</span> connection.prepareStatement(<span class="string">&quot;select * from t_user where id = ?&quot;</span>)) &#123;</span><br><span class="line">            prepareStatement.setInt(<span class="number">1</span>, <span class="number">1</span>);</span><br><span class="line">            <span class="keyword">try</span> (<span class="type">ResultSet</span> <span class="variable">resultSet</span> <span class="operator">=</span> prepareStatement.executeQuery()) &#123;</span><br><span class="line">                <span class="keyword">while</span> (resultSet.next()) &#123;</span><br><span class="line">                    System.out.println(resultSet.getInt(<span class="string">&quot;id&quot;</span>));</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="DRUID"><a href="#DRUID" class="headerlink" title="DRUID"></a>DRUID</h3><p>配置文件</p>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 数据库驱动</span></span><br><span class="line"><span class="attr">driverClassName</span>=<span class="string">com.mysql.jdbc.Driver</span></span><br><span class="line"><span class="comment"># 数据库连接URL</span></span><br><span class="line"><span class="attr">url</span>=<span class="string">jdbc:mysql://120.24.90.60:3306/mybatis_study?useSSL=false</span></span><br><span class="line"><span class="comment"># 数据库用户名</span></span><br><span class="line"><span class="attr">username</span>=<span class="string">root</span></span><br><span class="line"><span class="comment"># 数据库密码</span></span><br><span class="line"><span class="attr">password</span>=<span class="string">12345678</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"># 初始化连接数</span></span><br><span class="line"><span class="attr">initialSize</span>=<span class="string">5</span></span><br><span class="line"><span class="comment"># 最小空闲连接数</span></span><br><span class="line"><span class="attr">minIdle</span>=<span class="string">5</span></span><br><span class="line"><span class="comment"># 最大活跃连接数</span></span><br><span class="line"><span class="attr">maxActive</span>=<span class="string">20</span></span><br><span class="line"><span class="comment"># 获取连接时最大等待时间（单位：毫秒）</span></span><br><span class="line"><span class="attr">maxWait</span>=<span class="string">60000</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"># 获取连接时是否检测连接的有效性</span></span><br><span class="line"><span class="attr">testWhileIdle</span>=<span class="string">true</span></span><br><span class="line"><span class="comment"># 定期检测连接的有效性，单位：毫秒</span></span><br><span class="line"><span class="attr">timeBetweenEvictionRunsMillis</span>=<span class="string">60000</span></span><br><span class="line"><span class="comment"># 连接在池中最小生存时间，单位：毫秒</span></span><br><span class="line"><span class="attr">minEvictableIdleTimeMillis</span>=<span class="string">300000</span></span><br></pre></td></tr></table></figure>
+
+<p>测试代码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">testDruid</span><span class="params">()</span> <span class="keyword">throws</span> Exception&#123;</span><br><span class="line">    <span class="type">Properties</span> <span class="variable">properties</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Properties</span>();</span><br><span class="line">    properties.load(<span class="built_in">this</span>.getClass().getClassLoader().getResourceAsStream(<span class="string">&quot;druid.properties&quot;</span>));</span><br><span class="line">    <span class="type">DataSource</span> <span class="variable">dataSource</span> <span class="operator">=</span> DruidDataSourceFactory.createDataSource(properties);</span><br><span class="line">    <span class="keyword">try</span> (<span class="type">Connection</span> <span class="variable">connection</span> <span class="operator">=</span> dataSource.getConnection()) &#123;</span><br><span class="line">        <span class="keyword">try</span> (<span class="type">PreparedStatement</span> <span class="variable">prepareStatement</span> <span class="operator">=</span> connection.prepareStatement(<span class="string">&quot;select * from t_user where id = ?&quot;</span>)) &#123;</span><br><span class="line">            prepareStatement.setInt(<span class="number">1</span>, <span class="number">1</span>);</span><br><span class="line">            <span class="keyword">try</span> (<span class="type">ResultSet</span> <span class="variable">resultSet</span> <span class="operator">=</span> prepareStatement.executeQuery()) &#123;</span><br><span class="line">                <span class="keyword">while</span> (resultSet.next()) &#123;</span><br><span class="line">                    System.out.println(resultSet.getInt(<span class="string">&quot;id&quot;</span>));</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/03/d085a79f3a51.html" data-id="cltptjb6t000ltovr4udzcsdn" data-title="JDBC 连接池" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JDBC/" rel="tag">JDBC</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5%E6%B1%A0/" rel="tag">数据库连接池</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-JDBC/JDBC 简介" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/03/4f3efe834772.html" class="article-date">
+  <time class="dt-published" datetime="2024-03-13T13:10:29.000Z" itemprop="datePublished">2024-03-13</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Java-Web/">Java Web</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2024/03/4f3efe834772.html">JDBC 简介</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="JDBC-简介"><a href="#JDBC-简介" class="headerlink" title="JDBC 简介"></a>JDBC 简介</h1><p>什么是 JDBC？JDBC 是 Java DataBase Connectivity 的缩写，它是 Java 程序访问数据库的标准接口</p>
+<p>使用 Java 程序访问数据库时，Java 代码并不是直接通过 TCP 连接去访问数据库，而是通过 JDBC 接口来访问，JDBC 接口则通过 JDBC 驱动来实现真正对数据库的访问</p>
+<p>例如，我们在 Java 代码中如果要访问 MySQL，那么必须编写代码操作 JDBC 接口。JDBC 接口是 Java 标准库自带的，所以可以直接编译。而具体的 JDBC 驱动是由数据库厂商提供的，例如，MySQL 的 JDBC 驱动由 Oracle 提供。因此，访问某个具体的数据库，我们只需要引入该厂商提供的 JDBC 驱动，就可以通过 JDBC 接口来访问，这样保证了 Java 程序编写的是一套数据库访问代码，却可以访问各种不同的数据库，因为他们都提供了标准的 JDBC驱动：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">┌ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ┐</span><br><span class="line"></span><br><span class="line">│  ┌───────────────┐  │</span><br><span class="line">   │   Java App    │</span><br><span class="line">│  └───────────────┘  │</span><br><span class="line">           │</span><br><span class="line">│          ▼          │</span><br><span class="line">   ┌───────────────┐</span><br><span class="line">│  │JDBC Interface │◀─┼─── JDK</span><br><span class="line">   └───────────────┘</span><br><span class="line">│          │          │</span><br><span class="line">           ▼</span><br><span class="line">│  ┌───────────────┐  │</span><br><span class="line">   │  JDBC Driver  │◀───── 数据库厂商</span><br><span class="line">│  └───────────────┘  │</span><br><span class="line">           │</span><br><span class="line">└ ─ ─ ─ ─ ─│─ ─ ─ ─ ─ ┘</span><br><span class="line">           ▼</span><br><span class="line">   ┌───────────────┐</span><br><span class="line">   │   Database    │</span><br><span class="line">   └───────────────┘</span><br></pre></td></tr></table></figure>
+
+<p>从代码来看，Java 标准库自带的 JDBC 接口其实就是定义了一组接口，而某个具体的 JDBC 驱动其实就是实现了这些接口的类：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">┌ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ┐</span><br><span class="line"></span><br><span class="line">│  ┌───────────────┐  │</span><br><span class="line">   │   Java App    │</span><br><span class="line">│  └───────────────┘  │</span><br><span class="line">           │</span><br><span class="line">│          ▼          │</span><br><span class="line">   ┌───────────────┐</span><br><span class="line">│  │JDBC Interface │◀─┼─── JDK</span><br><span class="line">   └───────────────┘</span><br><span class="line">│          │          │</span><br><span class="line">           ▼</span><br><span class="line">│  ┌───────────────┐  │</span><br><span class="line">   │ MySQL Driver  │◀───── Oracle 公司</span><br><span class="line">│  └───────────────┘  │</span><br><span class="line">           │</span><br><span class="line">└ ─ ─ ─ ─ ─│─ ─ ─ ─ ─ ┘</span><br><span class="line">           ▼</span><br><span class="line">   ┌───────────────┐</span><br><span class="line">   │     MySQL     │</span><br><span class="line">   └───────────────┘</span><br></pre></td></tr></table></figure>
+
+<p>实际上，一个 MySQL 的 JDBC 的驱动就是一个 jar 包，它本身也是纯 Java 编写的。我们自己编写的代码只需要引用 Java 标准库提供的 <code>java.sql</code> 和 <code>javax.sql</code> 包下面的相关接口，由此再间接地通过 MySQL 驱动的 jar 包通过网络访问 MySQL 服务器，所有复杂的网络通讯都被封装到 JDBC 驱动中，因此，Java 程序本身只需要引入一个 MySQL 驱动的 jar 包就可以正常访问 MySQL 服务器：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">┌ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ┐</span><br><span class="line">   ┌───────────────┐</span><br><span class="line">│  │   App.class   │  │</span><br><span class="line">   └───────────────┘</span><br><span class="line">│          │          │</span><br><span class="line">           ▼</span><br><span class="line">│  ┌───────────────┐  │</span><br><span class="line">   │  java.sql.*   │</span><br><span class="line">│  └───────────────┘  │</span><br><span class="line">           │</span><br><span class="line">│          ▼          │</span><br><span class="line">   ┌───────────────┐     TCP    ┌───────────────┐</span><br><span class="line">│  │ mysql-xxx.jar │──┼────────▶│     MySQL     │</span><br><span class="line">   └───────────────┘            └───────────────┘</span><br><span class="line">└ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ┘</span><br><span class="line">          JVM</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/03/4f3efe834772.html" data-id="cltptjb6n000btovrdyu09uyc" data-title="JDBC 简介" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JDBC/" rel="tag">JDBC</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-JDBC/Apache DBUtils" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/03/ff4889513449.html" class="article-date">
+  <time class="dt-published" datetime="2024-03-13T13:10:25.000Z" itemprop="datePublished">2024-03-13</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Java-Web/">Java Web</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2024/03/ff4889513449.html">Apache DBUtils</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="Apache-DBUtils"><a href="#Apache-DBUtils" class="headerlink" title="Apache DBUtils"></a>Apache DBUtils</h1><p>学习 <code>Apache DBUtils</code> 之前我们先回顾一下传统的 JDBC 有什么缺点：</p>
+<ol>
+<li><p>返回的结果集 ResultSet 与 Connection 是关联的，当调用 Connection 的 close 方法关闭连接后（放回连接池），ResultSet 对象就不能用了。如果在关闭连接后仍调用ResultSet，会报异常，如下图所示 : </p>
+<p><img src="https://cdgwsd.oss-cn-guangzhou.aliyuncs.com/img/202403122023050.png" alt="img"></p>
+</li>
+<li><p>即使获取完 ResultSet 的数据之后再关闭连接，ResultSet 也仅仅使用了一次，<font color=red>不利于数据的管理</font></p>
+</li>
+<li><p>ResultSet 获取结果只能通过 <code>getXxx(int|String)</code> 或 <code>getObject(int|String)</code> 方法，不符合日常代码习惯</p>
+</li>
+</ol>
+<p>而 <code>Apache DBUtils</code> 就是为了解决上述问题出现爱你的</p>
+<blockquote>
+<p>Apache DBUtils 通过创造一个 Java 类用于对应一张表，该类中所有的属性对应表中的所有字段，即该类的每个对象都表示了表中的一条记录。查询到表中有几条记录，就创建几个该类的实例，不同实例的属性可以自行设置。这样一来，我们只需要将该类的对象存放在 ArrayList 集合中，就实现了数据的“迁移”，结果集中的数据也得以复用</p>
+</blockquote>
+<p><img src="https://cdgwsd.oss-cn-guangzhou.aliyuncs.com/img/202403122029560.png" alt="image-20240312202952102"></p>
+<h2 id="API"><a href="#API" class="headerlink" title="API"></a>API</h2><p>dbutils 中常用类与接口如下：</p>
+<ul>
+<li><strong>QueryRunner</strong> 类 : 该类封装了SQL的执行，并且是线程安全的；可以实现增删查改，并且支持批处理</li>
+<li><strong>ResultSetHandler</strong> 接口 : 该接口用于处理 <code>java.sql.ResultSet</code>，将数据按照要求转换为另一种格式。常见实现类如下<ul>
+<li><strong>ArrayHandler</strong> : 将结果集中的第一行数据转换成对象数组</li>
+<li><strong>ArrayListHandler</strong> : 将结果集中的每一行数据转换成对象数组，再存入 List 中</li>
+<li><strong>BeanHandler</strong> : 将结果集中的第一行数据封装到一个对应的 JavaBean 实例中（适用于返回单条记录的情况）</li>
+<li><strong>BeanListHandler</strong> : 将结果集中的每一行数据都封装到对应的 JavaBean 实例中，再存放到 List 集合中</li>
+<li><strong>ColumnListHandler</strong> : 将结果集中某一列的数据存放到 List 中</li>
+<li><strong>KeyedHandler(name)</strong> : 将结果集中的每行数据都封装到 Map 里，然后将所有的map再单独存放到一个 map 中，其 key 为指定的key</li>
+<li><strong>MapHandler</strong> : 将结果集中的第一行数据封装到一个 Map 里，key 是列名，value 就是对应的值</li>
+<li><strong>MapListHandler</strong> : 将结果集中的每一行数据都封装到 Map 里，再存入 List</li>
+<li><strong>ScalarHandler</strong> : 将结果集中的一列映射为一个 Object 对象，适用于返回单行单列的情况</li>
+</ul>
+</li>
+</ul>
+<h2 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h2><p>表结构</p>
+<p><img src="C:\Users\ZYP\AppData\Roaming\Typora\typora-user-images\image-20240312205221034.png" alt="image-20240312205221034"></p>
+<p>实体类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Getter</span></span><br><span class="line"><span class="meta">@Setter</span></span><br><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="meta">@ToString</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">User</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> id;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> age;</span><br><span class="line">    <span class="keyword">private</span> <span class="type">double</span> salary;</span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> sex;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>测试</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">testDBUtils</span><span class="params">()</span> <span class="keyword">throws</span> Exception&#123;</span><br><span class="line">    <span class="type">Properties</span> <span class="variable">properties</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Properties</span>();</span><br><span class="line">    properties.load(<span class="built_in">this</span>.getClass().getClassLoader().getResourceAsStream(<span class="string">&quot;druid.properties&quot;</span>));</span><br><span class="line">    <span class="type">DataSource</span> <span class="variable">dataSource</span> <span class="operator">=</span> DruidDataSourceFactory.createDataSource(properties);</span><br><span class="line">    <span class="keyword">try</span> (<span class="type">Connection</span> <span class="variable">connection</span> <span class="operator">=</span> dataSource.getConnection()) &#123;</span><br><span class="line">        <span class="type">String</span> <span class="variable">sql</span> <span class="operator">=</span> <span class="string">&quot;select * from t_user where id = ?&quot;</span>;</span><br><span class="line">        <span class="type">QueryRunner</span> <span class="variable">queryRunner</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">QueryRunner</span>();</span><br><span class="line">        List&lt;User&gt; userList = (List&lt;User&gt;) queryRunner.query(connection, sql, <span class="keyword">new</span> <span class="title class_">BeanListHandler</span>(User.class), <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; userList.size(); i++) &#123;</span><br><span class="line">            <span class="comment">// User(id=1, name=lisi, age=1, salary=0.0, sex=0)</span></span><br><span class="line">            System.out.println(userList.get(i));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="源码解析"><a href="#源码解析" class="headerlink" title="源码解析"></a>源码解析</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> &lt;T&gt; T <span class="title function_">query</span><span class="params">(Connection conn, <span class="type">boolean</span> closeConn, String sql, ResultSetHandler&lt;T&gt; rsh, Object... params)</span> &#123;</span><br><span class="line">    <span class="type">PreparedStatement</span> <span class="variable">stmt</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">    <span class="type">ResultSet</span> <span class="variable">rs</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">    <span class="type">T</span> <span class="variable">result</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="comment">// 调用 conn.preparedStatement() 方法创建 prepareStatement</span></span><br><span class="line">        stmt = <span class="built_in">this</span>.prepareStatement(conn, sql);</span><br><span class="line">        <span class="comment">// 设置参数</span></span><br><span class="line">        <span class="built_in">this</span>.fillStatement(stmt, params);</span><br><span class="line">        <span class="comment">// 获取结果集</span></span><br><span class="line">        rs = <span class="built_in">this</span>.wrap(stmt.executeQuery());</span><br><span class="line">        <span class="comment">// 根据 Handler 类型针对结果集做处理</span></span><br><span class="line">        result = rsh.handle(rs);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (SQLException e) &#123;</span><br><span class="line">        <span class="built_in">this</span>.rethrow(e, sql, params);</span><br><span class="line">    &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">        <span class="comment">// 关闭连接</span></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            close(rs);</span><br><span class="line">        &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">            close(stmt);</span><br><span class="line">            <span class="keyword">if</span> (closeConn) &#123;</span><br><span class="line">                close(conn);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">	<span class="comment">// 返回结果集</span></span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>BeanListHandler 处理结果集</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> &lt;T&gt; List&lt;T&gt; <span class="title function_">toBeanList</span><span class="params">(ResultSet rs, Class&lt;? extends T&gt; type)</span> <span class="keyword">throws</span> SQLException &#123;</span><br><span class="line">    List&lt;T&gt; results = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;T&gt;();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (!rs.next()) &#123;</span><br><span class="line">        <span class="keyword">return</span> results;</span><br><span class="line">    &#125;</span><br><span class="line">	<span class="comment">// 获取类信息</span></span><br><span class="line">    PropertyDescriptor[] props = <span class="built_in">this</span>.propertyDescriptors(type);</span><br><span class="line">    <span class="comment">// 获取结果集元信息</span></span><br><span class="line">    <span class="type">ResultSetMetaData</span> <span class="variable">rsmd</span> <span class="operator">=</span> rs.getMetaData();</span><br><span class="line">    <span class="type">int</span>[] columnToProperty = <span class="built_in">this</span>.mapColumnsToProperties(rsmd, props);</span><br><span class="line">    <span class="keyword">do</span> &#123;     </span><br><span class="line">        <span class="comment">// 实例化对象</span></span><br><span class="line">        results.add(<span class="built_in">this</span>.createBean(rs, type, props, columnToProperty));</span><br><span class="line">    &#125; <span class="keyword">while</span> (rs.next());</span><br><span class="line">    <span class="keyword">return</span> results;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="DML"><a href="#DML" class="headerlink" title="DML"></a>DML</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">testDBUtilsDML</span><span class="params">()</span> <span class="keyword">throws</span> Exception&#123;</span><br><span class="line">    <span class="type">Properties</span> <span class="variable">properties</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Properties</span>();</span><br><span class="line">    properties.load(<span class="built_in">this</span>.getClass().getClassLoader().getResourceAsStream(<span class="string">&quot;druid.properties&quot;</span>));</span><br><span class="line">    <span class="type">DataSource</span> <span class="variable">dataSource</span> <span class="operator">=</span> DruidDataSourceFactory.createDataSource(properties);</span><br><span class="line">    <span class="keyword">try</span> (<span class="type">Connection</span> <span class="variable">connection</span> <span class="operator">=</span> dataSource.getConnection()) &#123;</span><br><span class="line">        <span class="type">String</span> <span class="variable">sql</span> <span class="operator">=</span> <span class="string">&quot;insert into t_user(name) values(?)&quot;</span>;</span><br><span class="line">        <span class="type">QueryRunner</span> <span class="variable">queryRunner</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">QueryRunner</span>();</span><br><span class="line">        <span class="comment">// 返回自增列</span></span><br><span class="line">        <span class="type">Long</span> <span class="variable">id</span> <span class="operator">=</span> queryRunner.insert(connection, sql, <span class="keyword">new</span> <span class="title class_">ScalarHandler</span>&lt;&gt;(), <span class="string">&quot;zhansan&quot;</span>);</span><br><span class="line">        System.out.println(id);</span><br><span class="line">        <span class="type">User</span> <span class="variable">user</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">User</span>();</span><br><span class="line">        user.setAge(<span class="number">20</span>);</span><br><span class="line">        user.setName(<span class="string">&quot;zhangsan&quot;</span>);</span><br><span class="line">        user.setId(Math.toIntExact(id));</span><br><span class="line">        sql = <span class="string">&quot;update t_user set name = ?,age = ? where id = ?&quot;</span>;</span><br><span class="line">        <span class="comment">// 返回受影响行数</span></span><br><span class="line">        <span class="type">int</span> <span class="variable">update</span> <span class="operator">=</span> queryRunner.update(connection, sql, user.getName(), user.getAge(), user.getId());</span><br><span class="line">        System.out.println(update);</span><br><span class="line">        sql = <span class="string">&quot;delete from t_user where id = ?&quot;</span>;</span><br><span class="line">        <span class="comment">// 返回受影响行数</span></span><br><span class="line">        update = queryRunner.update(connection, sql, id);</span><br><span class="line">        System.out.println(update);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/03/ff4889513449.html" data-id="cltptjb6i0006tovrcbqigaf1" data-title="Apache DBUtils" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JDBC/" rel="tag">JDBC</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-大纲" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/03/d83729c39df8.html" class="article-date">
+  <time class="dt-published" datetime="2024-03-13T13:09:58.010Z" itemprop="datePublished">2024-03-13</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="NOTE"><a href="#NOTE" class="headerlink" title="NOTE"></a>NOTE</h1><h2 id="Java-SE"><a href="#Java-SE" class="headerlink" title="Java SE"></a>Java SE</h2><h3 id="基本程序结构"><a href="#基本程序结构" class="headerlink" title="基本程序结构"></a>基本程序结构</h3><h3 id="类与对象"><a href="#类与对象" class="headerlink" title="类与对象"></a>类与对象</h3><h3 id="泛型"><a href="#泛型" class="headerlink" title="泛型"></a>泛型</h3><h3 id="集合"><a href="#集合" class="headerlink" title="集合"></a>集合</h3><h3 id="多线程"><a href="#多线程" class="headerlink" title="多线程"></a>多线程</h3><h3 id="I-O"><a href="#I-O" class="headerlink" title="I&#x2F;O"></a>I&#x2F;O</h3><h3 id="反射"><a href="#反射" class="headerlink" title="反射"></a>反射</h3><h2 id="Java-Web"><a href="#Java-Web" class="headerlink" title="Java Web"></a>Java Web</h2><h3 id="Http"><a href="#Http" class="headerlink" title="Http"></a>Http</h3><h3 id="Servlet"><a href="#Servlet" class="headerlink" title="Servlet"></a>Servlet</h3><h3 id="Filter"><a href="#Filter" class="headerlink" title="Filter"></a>Filter</h3><h3 id="Lintener"><a href="#Lintener" class="headerlink" title="Lintener"></a>Lintener</h3><h2 id="Spring"><a href="#Spring" class="headerlink" title="Spring"></a>Spring</h2><h3 id="Spring-Framework"><a href="#Spring-Framework" class="headerlink" title="Spring Framework"></a>Spring Framework</h3><h4 id="IOC"><a href="#IOC" class="headerlink" title="IOC"></a>IOC</h4><h4 id="AOP"><a href="#AOP" class="headerlink" title="AOP"></a>AOP</h4><h4 id="事物"><a href="#事物" class="headerlink" title="事物"></a>事物</h4><h3 id="Spring-MVC"><a href="#Spring-MVC" class="headerlink" title="Spring MVC"></a>Spring MVC</h3><h3 id="Spring-Boot"><a href="#Spring-Boot" class="headerlink" title="Spring Boot"></a>Spring Boot</h3><h2 id="架构-中间件"><a href="#架构-中间件" class="headerlink" title="架构|中间件"></a>架构|中间件</h2><h3 id="Tomcat"><a href="#Tomcat" class="headerlink" title="Tomcat"></a>Tomcat</h3><h3 id="MyBatis"><a href="#MyBatis" class="headerlink" title="MyBatis"></a>MyBatis</h3><h2 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h2><h3 id="SQL-语言"><a href="#SQL-语言" class="headerlink" title="SQL 语言"></a>SQL 语言</h3><h3 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL"></a>MySQL</h3><h3 id="Oracle"><a href="#Oracle" class="headerlink" title="Oracle"></a>Oracle</h3><h3 id="Redis"><a href="#Redis" class="headerlink" title="Redis"></a>Redis</h3>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/03/d83729c39df8.html" data-id="cltptjcb10027tovr10xf4az6" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -107,46 +650,136 @@
 
 
   
-    <article id="post-hello-world" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+    <article id="post-工厂模式" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2024/03/1b5775850385.html" class="article-date">
-  <time class="dt-published" datetime="2024-03-13T11:53:10.201Z" itemprop="datePublished">2024-03-13</time>
+    <a href="/2024/03/ce72f0da3634.html" class="article-date">
+  <time class="dt-published" datetime="2024-03-13T13:09:58.007Z" itemprop="datePublished">2024-03-13</time>
 </a>
     
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a>
+  </div>
+
   </div>
   <div class="article-inner">
     
     
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2024/03/1b5775850385.html">Hello World</a>
-    </h1>
-  
-
-      </header>
-    
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+        <h1 id="工厂模式"><a href="#工厂模式" class="headerlink" title="工厂模式"></a>工厂模式</h1><blockquote>
+<p>工厂模式是一种创建型设计模式，它提供了一种将对象的实例化过程封装起来的方法。<font color=red>使用工厂模式的主要目的是解耦对象的创建和使用</font>，从而提高代码的灵活性、可维护性和可扩展性</p>
+</blockquote>
+<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>使用 new 关键字创建对象会增加程序的<strong>耦合性</strong>，使代码难以维护和扩展。例如，针对下面 PC 接口及其实现</p>
+<p>PC 接口：电脑标准规范类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">PC</span> &#123;</span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">powerOn</span><span class="params">()</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>HuaweiPC 类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">HuaweiPc</span> <span class="keyword">implements</span> <span class="title class_">PC</span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">powerOn</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;华为电脑开机&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>现在，假设有一个 PCApp 类，负责使用 PC 对象</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">PCApp</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">PC</span> <span class="variable">pc</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">HuaweiPc</span>();</span><br><span class="line">        pc.powerOn();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p>在上述例子中，PCApp 类直接使用 new 关键字实例化了 HuaweiPC 类，这样的做法存在以下问题</p>
+<ul>
+<li><p>紧耦合</p>
+<p>PCApp 类直接依赖于 HuaweiPC 类的具体实现，如果后续我们修改 HuaweiPC 类的构造方法、添加新的属性或者修改类的实现，那么 PCApp 类也必须相应的进行修改</p>
+</li>
+<li><p>扩展困难</p>
+<p>后续如果增加新的产品，就必须修改客户端代码</p>
+</li>
+</ul>
+<p>为了解决上述的问题，我们可以将对象实例化过程封装起来，对客户端类屏蔽具体实现细节</p>
+<h2 id="简单工厂模式"><a href="#简单工厂模式" class="headerlink" title="简单工厂模式"></a>简单工厂模式</h2><p><img src="https://cdgwsd.oss-cn-guangzhou.aliyuncs.com/img/202204251721797.png" alt="在这里插入图片描述"></p>
+<p>继续以创建 PC 为例，增加 XiaomiPC 产品</p>
+<p>XiaomiPc 类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">XiaomiPc</span> <span class="keyword">implements</span> <span class="title class_">PC</span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">powerOn</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;小米电脑开机&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+<p>工厂类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SimpleFactory</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> PC <span class="title function_">createPC</span><span class="params">(String type)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="string">&quot;huawei&quot;</span>.equals(type))&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">HuaweiPc</span>();</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(<span class="string">&quot;xiaomi&quot;</span>.equals(type))&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">XiaomiPc</span>();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<p>PCApp 类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">PCApp</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">PC</span> <span class="variable">xiaomiPC</span> <span class="operator">=</span> SimpleFactory.createPC(<span class="string">&quot;xiaomi&quot;</span>);</span><br><span class="line">        xiaomiPC.powerOn();</span><br><span class="line">        <span class="type">PC</span> <span class="variable">huaweiPC</span> <span class="operator">=</span> SimpleFactory.createPC(<span class="string">&quot;huawei&quot;</span>);</span><br><span class="line">        huaweiPC.powerOn();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h3><ul>
+<li>封装了对象的创建过程，使得客户端不需要知道具体的创建细节</li>
+<li>客户端代码更加简洁，易于使用</li>
+</ul>
+<h3 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h3><ul>
+<li>工厂类集中了所有产品的创建逻辑，一旦需要添加新的产品类型，可能需要修改工厂类，违反了开闭原则</li>
+</ul>
+<p>为了解决简单工厂模式的缺点，可以对工厂类进行抽象，将不同产品的创建过程独立出来，由工厂子类决定实例化哪个类</p>
+<h2 id="工厂方法模式"><a href="#工厂方法模式" class="headerlink" title="工厂方法模式"></a>工厂方法模式</h2><p>和简单工厂模式中工厂负责生产所有产品相比，工厂方法模式将生成具体产品的任务分发给具体的产品工厂，其 UML 类图如下：</p>
+<p><img src="https://cdgwsd.oss-cn-guangzhou.aliyuncs.com/img/202204251731302.png" alt="在这里插入图片描述"></p>
+<p>也就是定义一个抽象工厂，其定义了产品的生产接口，但不负责具体的产品，将生产任务交给不同的派生类工厂。这样不用通过指定类型来创建对象</p>
+<p>AbstractFactory</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">AbstractFactory</span> &#123;</span><br><span class="line">    PC <span class="title function_">createPc</span><span class="params">()</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>HuaweiPCFactory 类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">HuaweiPCFactory</span> <span class="keyword">implements</span> <span class="title class_">AbstractFactory</span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> PC <span class="title function_">createPc</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">HuaweiPc</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>XiaomiPCFactory 类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">XiaomiPCFactory</span> <span class="keyword">implements</span> <span class="title class_">AbstractFactory</span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> PC <span class="title function_">createPc</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">XiaomiPc</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>PCApp 类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">PCApp</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">PC</span> <span class="variable">huaweiPC</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">HuaweiPCFactory</span>().createPc();</span><br><span class="line">        huaweiPC.powerOn();</span><br><span class="line">        <span class="type">PC</span> <span class="variable">xiaomiPC</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">XiaomiPCFactory</span>().createPc();</span><br><span class="line">        xiaomiPC.powerOn();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="优点-1"><a href="#优点-1" class="headerlink" title="优点"></a>优点</h3><ul>
+<li>使系统更具扩展性，可以方便地添加新的产品类和对应的工厂类</li>
+<li>遵循开闭原则，客户端代码不需要修改，只需要添加新的工厂和产品类</li>
+</ul>
+<h3 id="缺点-1"><a href="#缺点-1" class="headerlink" title="缺点"></a>缺点</h3><ul>
+<li>类的数量较多，增加了系统的复杂性</li>
+</ul>
+<p>上面两种模式不管工厂怎么拆分抽象，都只是针对一类产品 PC（AbstractProduct），如果要生成另一种产品 Phone，应该怎么表示呢？</p>
+<p>最简单的方式是把 2 中介绍的工厂方法模式完全复制一份，不过这次生产的是 Phone。但同时也就意味着我们要完全复制和修改 PC 生产管理的所有代码，显然这是一个笨办法，并不利于扩展和维护。</p>
+<h2 id="抽象工厂模式"><a href="#抽象工厂模式" class="headerlink" title="抽象工厂模式"></a>抽象工厂模式</h2><p>通过在 AbstarctFactory 中增加创建产品的接口，并在具体子工厂中实现新加产品的创建，当然前提是子工厂支持生产该产品。否则继承的这个接口可以什么也不干</p>
+<p><img src="https://cdgwsd.oss-cn-guangzhou.aliyuncs.com/img/202204251754252.png" alt="在这里插入图片描述"></p>
+<p>从上面类图结构中可以清楚的看到如何在工厂方法模式中通过增加新产品接口来实现产品的增加的</p>
+<p>AbstractFactory 类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">AbstractFactory</span> &#123;</span><br><span class="line">    PC <span class="title function_">createPc</span><span class="params">()</span>;</span><br><span class="line">    Phone <span class="title function_">createPhone</span><span class="params">()</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>HuaweiPhoneFactory</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">HuaweiFactory</span> <span class="keyword">implements</span> <span class="title class_">AbstractFactory</span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> PC <span class="title function_">createPc</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">HuaweiPc</span>();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> Phone <span class="title function_">createPhone</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>XiaomiPhoneFactory</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">XiaomiFactory</span> <span class="keyword">implements</span> <span class="title class_">AbstractFactory</span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> PC <span class="title function_">createPc</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">XiaomiPc</span>();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> Phone <span class="title function_">createPhone</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">XiaomiPhone</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>演示</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">testFactoryMethod2</span><span class="params">()</span>&#123;</span><br><span class="line">    <span class="type">PC</span> <span class="variable">huaweiPC</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">HuaweiFactory</span>().createPc();</span><br><span class="line">    huaweiPC.powerOn();</span><br><span class="line">    <span class="type">PC</span> <span class="variable">xiaomiPC</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">XiaomiFactory</span>().createPc();</span><br><span class="line">    xiaomiPC.powerOn();</span><br><span class="line">    <span class="type">Phone</span> <span class="variable">xiaomiPhone</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">XiaomiFactory</span>().createPhone();</span><br><span class="line">    xiaomiPhone.powerOn();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="优点-2"><a href="#优点-2" class="headerlink" title="优点"></a>优点</h3><ul>
+<li>提供了一种创建一组相关对象的接口，避免了不同产品之间的兼容性问题</li>
+<li>客户端代码与具体产品类解耦，更容易替换产品系列</li>
+</ul>
+<h3 id="缺点-2"><a href="#缺点-2" class="headerlink" title="缺点"></a>缺点</h3><ul>
+<li>新增产品类时，需要同时修改抽象工厂接口和所有的具体工厂类，不太符合开闭原则</li>
+</ul>
+<h2 id="对比"><a href="#对比" class="headerlink" title="对比"></a>对比</h2><ul>
+<li><strong>关注点不同：</strong><ul>
+<li><strong>简单工厂模式</strong> 关注于整个工厂的创建逻辑</li>
+<li><strong>工厂方法模式</strong> 关注于单个产品的创建逻辑</li>
+<li><strong>抽象工厂模式</strong> 关注于一组相关产品的创建逻辑</li>
+</ul>
+</li>
+<li><strong>抽象程度不同：</strong><ul>
+<li><strong>简单工厂模式</strong> 抽象程度相对较低，只有一个工厂类</li>
+<li><strong>工厂方法模式</strong> 在简单工厂模式的基础上提高了抽象程度，引入了工厂接口和具体工厂类</li>
+<li><strong>抽象工厂模式</strong> 抽象程度更高，引入了多个抽象工厂接口和多个具体工厂类</li>
+</ul>
+</li>
+<li><strong>适用场景不同：</strong><ul>
+<li><strong>简单工厂模式</strong> 适用于创建对象的逻辑较为简单的情况</li>
+<li><strong>工厂方法模式</strong> 适用于创建对象的逻辑较为复杂，且可能有多个具体工厂类的情况</li>
+<li><strong>抽象工厂模式</strong> 适用于创建一组相关或相互依赖对象的情况，且系统需要保持一定的产品系列</li>
+</ul>
+</li>
+</ul>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/03/1b5775850385.html" data-id="cltprdi9h0000v8qr026cfdxf" data-title="Hello World" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/03/ce72f0da3634.html" data-id="cltptjb9m001ytovrgclr6zjq" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -159,18 +792,44 @@
 
   
 
+
+  <nav id="page-nav">
+    
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+  </nav>
 
 </section>
         
           <aside id="sidebar">
   
     
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java-Web/">Java Web</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Oracle/">Oracle</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Spring/">Spring</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Spring-Boot/">Spring Boot</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Spring-MVC/">Spring MVC</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%97%A5%E8%AE%B0/">日记</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a></li></ul>
+    </div>
+  </div>
+
 
   
     
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/JDBC/" rel="tag">JDBC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Servlet/" rel="tag">Servlet</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BA%8B%E5%8A%A1/" rel="tag">事务</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5%E6%B1%A0/" rel="tag">数据库连接池</a></li></ul>
+    </div>
+  </div>
+
 
   
     
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/JDBC/" style="font-size: 20px;">JDBC</a> <a href="/tags/Servlet/" style="font-size: 10px;">Servlet</a> <a href="/tags/%E4%BA%8B%E5%8A%A1/" style="font-size: 10px;">事务</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5%E6%B1%A0/" style="font-size: 10px;">数据库连接池</a>
+    </div>
+  </div>
+
   
     
   <div class="widget-wrap">
@@ -189,11 +848,23 @@
       <ul>
         
           <li>
-            <a href="/2024/03/7beaff61512a.html">测试文档</a>
+            <a href="/2024/03/4a9a07cbb3ef.html">Servlet 获取请求参数</a>
           </li>
         
           <li>
-            <a href="/2024/03/1b5775850385.html">Hello World</a>
+            <a href="/2024/03/ad9e7716878b.html">JDBC CRUD</a>
+          </li>
+        
+          <li>
+            <a href="/2024/03/112fd92327c2.html">JDBC API</a>
+          </li>
+        
+          <li>
+            <a href="/2024/03/0c61ff4ad6c6.html">JDBC 事物</a>
+          </li>
+        
+          <li>
+            <a href="/2024/03/0e36029b04f7.html">JDBC 批处理</a>
           </li>
         
       </ul>

@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>JDBC 批处理 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="JDBC 批处理使用 JDBC 操作数据库的时候，经常会执行一些批量操作。 例如，一次性给会员增加可用优惠券若干，我们可以执行以下 SQL 代码： 1234INSERT INTO coupons (user_id, type, expires) VALUES (123, &#x27;DISCOUNT&#x27;, &#x27;2030-12-31&#x27;);INSERT INTO coupon">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JDBC 批处理">
+<meta property="og:url" content="http://example.com/2024/03/0e36029b04f7.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="JDBC 批处理使用 JDBC 操作数据库的时候，经常会执行一些批量操作。 例如，一次性给会员增加可用优惠券若干，我们可以执行以下 SQL 代码： 1234INSERT INTO coupons (user_id, type, expires) VALUES (123, &#x27;DISCOUNT&#x27;, &#x27;2030-12-31&#x27;);INSERT INTO coupon">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-03-13T13:10:53.000Z">
+<meta property="article:modified_time" content="2024-03-13T13:11:29.548Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="JDBC">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-JDBC/JDBC 批处理" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/03/0e36029b04f7.html" class="article-date">
+  <time class="dt-published" datetime="2024-03-13T13:10:53.000Z" itemprop="datePublished">2024-03-13</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Java-Web/">Java Web</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      JDBC 批处理
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="JDBC-批处理"><a href="#JDBC-批处理" class="headerlink" title="JDBC 批处理"></a>JDBC 批处理</h1><p>使用 JDBC 操作数据库的时候，经常会执行一些批量操作。</p>
+<p>例如，一次性给会员增加可用优惠券若干，我们可以执行以下 SQL 代码：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> coupons (user_id, type, expires) <span class="keyword">VALUES</span> (<span class="number">123</span>, <span class="string">&#x27;DISCOUNT&#x27;</span>, <span class="string">&#x27;2030-12-31&#x27;</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> coupons (user_id, type, expires) <span class="keyword">VALUES</span> (<span class="number">234</span>, <span class="string">&#x27;DISCOUNT&#x27;</span>, <span class="string">&#x27;2030-12-31&#x27;</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> coupons (user_id, type, expires) <span class="keyword">VALUES</span> (<span class="number">345</span>, <span class="string">&#x27;DISCOUNT&#x27;</span>, <span class="string">&#x27;2030-12-31&#x27;</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> coupons (user_id, type, expires) <span class="keyword">VALUES</span> (<span class="number">456</span>, <span class="string">&#x27;DISCOUNT&#x27;</span>, <span class="string">&#x27;2030-12-31&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>实际上执行 JDBC 时，因为只有占位符参数不同，所以 SQL 实际上是一样的：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (var params : paramsList) &#123;</span><br><span class="line">    PreparedStatement ps <span class="operator">=</span> conn.preparedStatement(&quot;INSERT INTO coupons (user_id, type, expires) VALUES (?,?,?)&quot;);</span><br><span class="line">    ps.setLong(params.get(<span class="number">0</span>));</span><br><span class="line">    ps.setString(params.get(<span class="number">1</span>));</span><br><span class="line">    ps.setString(params.get(<span class="number">2</span>));</span><br><span class="line">    ps.executeUpdate();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>类似的还有，给每个员工薪水增加 10%～30%：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">UPDATE</span> employees <span class="keyword">SET</span> salary <span class="operator">=</span> salary <span class="operator">*</span> ? <span class="keyword">WHERE</span> id <span class="operator">=</span> ?</span><br></pre></td></tr></table></figure>
+
+<p>通过一个循环来执行每个 <code>PreparedStatement</code> 虽然可行，但是性能很低。SQL 数据库对 SQL 语句相同，但只有参数不同的若干语句可以作为 <font color=red>batch</font> 执行，即批量执行，这种操作有特别优化，速度远远快于循环执行每个 SQL</p>
+<p>在 JDBC 代码中，我们可以利用 SQL 数据库的这一特性，<font color=red>把同一个 SQL 但参数不同的若干次操作合并为一个 batch 执行</font>。我们以批量插入为例，示例代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span> (<span class="type">PreparedStatement</span> <span class="variable">ps</span> <span class="operator">=</span> conn.prepareStatement(<span class="string">&quot;INSERT INTO students (name, gender, grade, score) VALUES (?, ?, ?, ?)&quot;</span>)) &#123;</span><br><span class="line">    <span class="comment">// 对同一个PreparedStatement反复设置参数并调用addBatch():</span></span><br><span class="line">    <span class="keyword">for</span> (Student s : students) &#123;</span><br><span class="line">        ps.setString(<span class="number">1</span>, s.name);</span><br><span class="line">        ps.setBoolean(<span class="number">2</span>, s.gender);</span><br><span class="line">        ps.setInt(<span class="number">3</span>, s.grade);</span><br><span class="line">        ps.setInt(<span class="number">4</span>, s.score);</span><br><span class="line">        ps.addBatch(); <span class="comment">// 添加到batch</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 执行batch:</span></span><br><span class="line">    <span class="type">int</span>[] ns = ps.executeBatch();</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> n : ns) &#123;</span><br><span class="line">        System.out.println(n + <span class="string">&quot; inserted.&quot;</span>); <span class="comment">// batch中每个SQL执行的结果数量</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>执行 batch 和执行一个SQL不同点在于，需要对同一个 <code>PreparedStatement</code> 反复设置参数并调用 <code>addBatch()</code>，这样就相当于给一个 SQL 加上了多组参数，相当于变成了“多行” SQL。</p>
+<p>第二个不同点是调用的不是 <code>executeUpdate()</code>，而是 <code>executeBatch()</code>，因为我们设置了多组参数，相应地，返回结果也是多个 <code>int</code> 值，因此返回类型是 <code>int[]</code>，循环 <code>int[]</code> 数组即可获取每组参数执行后影响的结果数量</p>
+<h2 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL"></a>MySQL</h2><p>JDBC 连接 MySQL 数据库时，如果需要使用批处理功能，需要在连接 URL 中设置 <code>rewriteBatchedStatements = true</code></p>
+<blockquote>
+<p>当设置 <code>rewriteBatchedStatements=true</code> 时，MySQL 将尝试将一组相似的 SQL 语句重写为单个 SQL 语句。这样做可以减少通信开销，并且在数据库端可以更有效地执行批处理操作，从而提高整体性能。</p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/03/0e36029b04f7.html" data-id="cltptjb6p000dtovrckabcfbd" data-title="JDBC 批处理" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JDBC/" rel="tag">JDBC</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2024/03/0c61ff4ad6c6.html" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          JDBC 事物
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2024/03/d085a79f3a51.html" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">JDBC 连接池</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java-Web/">Java Web</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Oracle/">Oracle</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Spring/">Spring</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Spring-Boot/">Spring Boot</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Spring-MVC/">Spring MVC</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%97%A5%E8%AE%B0/">日记</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/JDBC/" rel="tag">JDBC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Servlet/" rel="tag">Servlet</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BA%8B%E5%8A%A1/" rel="tag">事务</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5%E6%B1%A0/" rel="tag">数据库连接池</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/JDBC/" style="font-size: 20px;">JDBC</a> <a href="/tags/Servlet/" style="font-size: 10px;">Servlet</a> <a href="/tags/%E4%BA%8B%E5%8A%A1/" style="font-size: 10px;">事务</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5%E6%B1%A0/" style="font-size: 10px;">数据库连接池</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">March 2024</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/03/4a9a07cbb3ef.html">Servlet 获取请求参数</a>
+          </li>
+        
+          <li>
+            <a href="/2024/03/ad9e7716878b.html">JDBC CRUD</a>
+          </li>
+        
+          <li>
+            <a href="/2024/03/112fd92327c2.html">JDBC API</a>
+          </li>
+        
+          <li>
+            <a href="/2024/03/0c61ff4ad6c6.html">JDBC 事物</a>
+          </li>
+        
+          <li>
+            <a href="/2024/03/0e36029b04f7.html">JDBC 批处理</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

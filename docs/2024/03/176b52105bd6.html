@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="BeanFactorySpring 容器最重要的作用就是负责实例化应用程序中的对象（Bean）。包括创建对象、初始化对象以及维护对象的生命周期 Spring 提供了两种主要容器  BeanFactory 容器： 介绍： BeanFactory 是 Spring 框架最基本的容器接口。它提供了最简单的容器实现，负责管理 Spring 应用程序中的 Bean 特点： 延迟初始化，即在需要使用 Bean">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/2024/03/176b52105bd6.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="BeanFactorySpring 容器最重要的作用就是负责实例化应用程序中的对象（Bean）。包括创建对象、初始化对象以及维护对象的生命周期 Spring 提供了两种主要容器  BeanFactory 容器： 介绍： BeanFactory 是 Spring 框架最基本的容器接口。它提供了最简单的容器实现，负责管理 Spring 应用程序中的 Bean 特点： 延迟初始化，即在需要使用 Bean">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://cdgwsd.oss-cn-guangzhou.aliyuncs.com/img/202311131729272.png">
+<meta property="og:image" content="https://cdgwsd.oss-cn-guangzhou.aliyuncs.com/img/202311131746624.png">
+<meta property="og:image" content="https://cdgwsd.oss-cn-guangzhou.aliyuncs.com/img/202311132028270.png">
+<meta property="og:image" content="https://cdgwsd.oss-cn-guangzhou.aliyuncs.com/img/202311131747563.png">
+<meta property="article:published_time" content="2024-03-13T13:09:57.973Z">
+<meta property="article:modified_time" content="2024-03-10T07:57:51.765Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdgwsd.oss-cn-guangzhou.aliyuncs.com/img/202311131729272.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-Spring 容器结构" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/03/176b52105bd6.html" class="article-date">
+  <time class="dt-published" datetime="2024-03-13T13:09:57.973Z" itemprop="datePublished">2024-03-13</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Spring/">Spring</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="BeanFactory"><a href="#BeanFactory" class="headerlink" title="BeanFactory"></a>BeanFactory</h1><p>Spring 容器最重要的作用就是负责实例化应用程序中的对象（Bean）。包括创建对象、初始化对象以及维护对象的生命周期</p>
+<p>Spring 提供了两种主要容器</p>
+<ol>
+<li><strong>BeanFactory</strong> 容器：<ul>
+<li><strong>介绍：</strong> <code>BeanFactory</code> 是 Spring 框架最基本的容器接口。它提供了最简单的容器实现，负责管理 Spring 应用程序中的 Bean</li>
+<li><strong>特点：</strong> 延迟初始化，即在需要使用 Bean 时才进行初始化</li>
+<li><strong>主要实现类：</strong> <code>XmlBeanFactory</code> 是 <code>BeanFactory</code> 接口的一个实现，它从 XML 文件中加载 Bean 定义</li>
+</ul>
+</li>
+<li><strong>ApplicationContext 容器：</strong><ul>
+<li><strong>介绍：</strong> <code>ApplicationContext</code> 是 <code>BeanFactory</code> 的子接口，提供了更多的企业级功能。它是一个更高级别的容器，除了提供 Bean 的管理之外，还提供了事件机制、AOP 等功能。</li>
+<li><strong>特点：</strong> 提前初始化，即在容器启动时就进行初始化</li>
+<li><strong>主要实现类：</strong><ul>
+<li><code>ClassPathXmlApplicationContext</code>：从类路径加载 XML 配置文件创建容器</li>
+<li><code>FileSystemXmlApplicationContext</code>：从文件系统路径加载 XML 配置文件创建容器</li>
+<li><code>AnnotationConfigApplicationContext</code>：基于 Java 配置类（使用注解）创建容器</li>
+<li>其他如 <code>GenericWebApplicationContext</code> 等，用于特定环境或特定配置</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h1 id="BeanFactory-属性"><a href="#BeanFactory-属性" class="headerlink" title="BeanFactory 属性"></a>BeanFactory 属性</h1><p><img src="https://cdgwsd.oss-cn-guangzhou.aliyuncs.com/img/202311131729272.png" alt="image-20231113172930753"></p>
+<p>BeanFactory 中有几个重要的属性</p>
+<ul>
+<li><code>beanDefinitionMap</code>：用于存储 bean 定义的映射</li>
+<li><code>beanDefinitionNames</code>：用于存储所有 bean 的名称</li>
+<li><code>singletonObjects</code>：用于存储单例 bean 的实例</li>
+<li><code>earlySingletonObjects</code>：用于存储尚未完全初始化的单例 bean 的实例</li>
+<li><code>registeredSingletons</code>：用于存储已注册的单例 bean 的名称</li>
+<li><code>beanPostProcessors</code>：用于存储 bean 后置处理器</li>
+</ul>
+<h2 id="BeanDefinitionMap"><a href="#BeanDefinitionMap" class="headerlink" title="BeanDefinitionMap"></a>BeanDefinitionMap</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* key：Bean 的名称</span></span><br><span class="line"><span class="comment">* Value：包含了 Bean 各种配置信息，如：Bean 类名、作用域、构造函数参数、属性值等的 BeanDefinition 对象</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">final</span> Map&lt;String, BeanDefinition&gt; beanDefinitionMap</span><br></pre></td></tr></table></figure>
+
+
+
+<p><img src="https://cdgwsd.oss-cn-guangzhou.aliyuncs.com/img/202311131746624.png" alt="image-20231113174626481"></p>
+<h2 id="BeanDefinitionNames"><a href="#BeanDefinitionNames" class="headerlink" title="BeanDefinitionNames"></a>BeanDefinitionNames</h2><p><img src="https://cdgwsd.oss-cn-guangzhou.aliyuncs.com/img/202311132028270.png" alt="image-20231113202800504"></p>
+<h2 id="SingletonObjects"><a href="#SingletonObjects" class="headerlink" title="SingletonObjects"></a>SingletonObjects</h2><p>用于缓存 Spring 容器中已经创建并初始化的单例（singleton）bean 的实例。在 Spring 中，单例 bean 是指在容器启动时创建的，且整个应用中只存在一个实例的 bean。</p>
+<p><img src="https://cdgwsd.oss-cn-guangzhou.aliyuncs.com/img/202311131747563.png" alt="image-20231113174746687"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/03/176b52105bd6.html" data-id="cltptjb8t000xtovrfgog4p23" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2024/03/a3a8357937da.html" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2024/03/d49d02e24b6a.html" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java-Web/">Java Web</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Oracle/">Oracle</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Spring/">Spring</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Spring-Boot/">Spring Boot</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Spring-MVC/">Spring MVC</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%97%A5%E8%AE%B0/">日记</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/JDBC/" rel="tag">JDBC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Servlet/" rel="tag">Servlet</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BA%8B%E5%8A%A1/" rel="tag">事务</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5%E6%B1%A0/" rel="tag">数据库连接池</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/JDBC/" style="font-size: 20px;">JDBC</a> <a href="/tags/Servlet/" style="font-size: 10px;">Servlet</a> <a href="/tags/%E4%BA%8B%E5%8A%A1/" style="font-size: 10px;">事务</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5%E6%B1%A0/" style="font-size: 10px;">数据库连接池</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">March 2024</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/03/4a9a07cbb3ef.html">Servlet 获取请求参数</a>
+          </li>
+        
+          <li>
+            <a href="/2024/03/ad9e7716878b.html">JDBC CRUD</a>
+          </li>
+        
+          <li>
+            <a href="/2024/03/112fd92327c2.html">JDBC API</a>
+          </li>
+        
+          <li>
+            <a href="/2024/03/0c61ff4ad6c6.html">JDBC 事物</a>
+          </li>
+        
+          <li>
+            <a href="/2024/03/0e36029b04f7.html">JDBC 批处理</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,1064 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/page/3/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-Spring" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/03/a3a8357937da.html" class="article-date">
+  <time class="dt-published" datetime="2024-03-13T13:09:57.974Z" itemprop="datePublished">2024-03-13</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Spring/">Spring</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="Spring"><a href="#Spring" class="headerlink" title="Spring"></a>Spring</h1><h2 id="前置"><a href="#前置" class="headerlink" title="前置"></a>前置</h2><h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><blockquote>
+<p>Spring 是一个轻量级的开源 Java 框架，提供了全面的基础设施和功能，用于简化企业级应用程序的开发和管理</p>
+</blockquote>
+<p>Spring 的轻量级主要体现在以下方面</p>
+<ul>
+<li><p>非侵入性<br>Spring 框架不会强制应用程序继承特定的类或实现特定的接口。开发者可以选择性地利用 Spring 的功能，而不会对应用程序的整体架构造成过多的限制</p>
+</li>
+<li><p>模块化设计<br>Spring 框架被设计为一系列相互协作的模块，每个模块都有特定的责任。这种模块化设计使得开发者可以根据实际需求选择使用框架的哪些部分，而不必引入整个框架</p>
+<ul>
+<li>controller：SpringMVC</li>
+<li>service：AOP</li>
+<li>dao：jdbcTemplate</li>
+</ul>
+</li>
+<li><p>灵活配置<br>开发者可以根据需要采用多种配置方式，如 XML、注解和 Java 配置</p>
+</li>
+</ul>
+<h3 id="设计模式"><a href="#设计模式" class="headerlink" title="设计模式"></a>设计模式</h3><blockquote>
+<p>设计模式是在软件设计中反复出现的问题的可重用解决方案，它提供了一套经过验证的最佳实践，能够帮助开发者更有效地解决特定类型的问题</p>
+</blockquote>
+<p>Spring 容器涉及到了多种设计模式，其中主要的设计模式有：</p>
+<ul>
+<li><p>单例模式<br>Spring 中的 IoC 容器默认使用单例模式管理 Bean</p>
+</li>
+<li><p>[[工厂模式]]<br>Spring 使用工厂模式创建和管理 Bean。IoC 容器负责实例化、配置和组装 Bean，开发者只需配置 Bean 的元数据</p>
+</li>
+<li><p>代理模式</p>
+</li>
+<li><p>观察者模式</p>
+</li>
+<li><p>模板模式</p>
+</li>
+<li><p>策略模式</p>
+</li>
+<li><p>装饰者模式</p>
+</li>
+<li><p>建造者模式</p>
+</li>
+</ul>
+<h2 id="IoC"><a href="#IoC" class="headerlink" title="IoC"></a>IoC</h2><blockquote>
+<p>Spring 的 IoC（Inversion of Control，控制反转）是一种设计原则，它将应用程序中对象的创建和管理交由 Spring 容器负责，而不是由开发者手动管理，通过这种方式实现了对象的解耦和更灵活的组件化开发</p>
+</blockquote>
+<p>在 Spring 中 ApplicationContext 是 IoC 容器的一种实现，用于管理和组织应用程序中的 Bean 对象</p>
+<h3 id="ApplicationContext"><a href="#ApplicationContext" class="headerlink" title="ApplicationContext"></a>ApplicationContext</h3><p><code>ApplicationContext</code> 是 Spring 框架的核心接口之一，它代表着一个 IoC 容器，负责管理和组织应用程序中的 Bean 对象，提供了丰富的功能，包括依赖注入、Bean 的生命周期管理以及对各种应用程序服务的访问<br>ApplicationContext 被设计为接口类型，有以下好处：</p>
+<ul>
+<li><p>灵活性：使用接口类型设计允许存在不同的 <code>ApplicationContext</code> 实现，以适用不同的使用场景和需求</p>
+<ul>
+<li><code>ClassPathXmlApplicationContext</code>：基于 XML 配置的非 Web 应用程序</li>
+<li><code>XmlWebApplicationContext</code>：Web 应用程序</li>
+</ul>
+</li>
+<li><p>可扩展</p>
+</li>
+<li><p>替代性</p>
+</li>
+<li><p>标准化：约定一种标准的创建和配置 Spring IoC 容器的方法</p>
+</li>
+</ul>
+<h3 id="API"><a href="#API" class="headerlink" title="API"></a>API</h3><ul>
+<li>IoC 常用 API</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">ApplicationContext</span> <span class="variable">ctx</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ClassPathXmlApplicationContext</span>(<span class="string">&quot;applicationContext.xml&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">//通过这种⽅式获得对象，就不需要强制类型转换</span></span><br><span class="line"><span class="type">Person</span> <span class="variable">person</span> <span class="operator">=</span> ctx.getBean(<span class="string">&quot;person&quot;</span>, Person.class);</span><br><span class="line">System.out.println(<span class="string">&quot;person = &quot;</span> + person);</span><br><span class="line"></span><br><span class="line"><span class="comment">//当前Spring的配置⽂件中 只能有⼀个 bean class是Person类型</span></span><br><span class="line"><span class="type">Person</span> <span class="variable">person</span> <span class="operator">=</span> ctx.getBean(Person.class);</span><br><span class="line">System.out.println(<span class="string">&quot;person = &quot;</span> + person);</span><br><span class="line"></span><br><span class="line"><span class="comment">//获取的是Spring⼯⼚配置⽂件中所有bean标签的id值 person person1</span></span><br><span class="line">String[] beanDefinitionNames = ctx.getBeanDefinitionNames();</span><br><span class="line"><span class="keyword">for</span> (String beanDefinitionName : beanDefinitionNames) &#123;</span><br><span class="line">     System.out.println(<span class="string">&quot;beanDefinitionName = &quot;</span> + beanDefinitionName);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//根据类型获得Spring配置⽂件中对应的id值</span></span><br><span class="line">String[] beanNamesForType = ctx.getBeanNamesForType(Person.class);</span><br><span class="line"><span class="keyword">for</span> (String id : beanNamesForType) &#123;</span><br><span class="line">     System.out.println(<span class="string">&quot;id = &quot;</span> + id);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//⽤于判断是否存在指定id值的bean</span></span><br><span class="line"><span class="keyword">if</span> (ctx.containsBeanDefinition(<span class="string">&quot;a&quot;</span>)) &#123;</span><br><span class="line">     System.out.println(<span class="string">&quot;true = &quot;</span> + <span class="literal">true</span>);</span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">     System.out.println(<span class="string">&quot;false = &quot;</span> + <span class="literal">false</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//⽤于判断是否存在指定id值的bean</span></span><br><span class="line"><span class="keyword">if</span> (ctx.containsBean(<span class="string">&quot;person&quot;</span>)) &#123;</span><br><span class="line">     System.out.println(<span class="string">&quot;true = &quot;</span> + <span class="literal">true</span>);</span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">     System.out.println(<span class="string">&quot;false = &quot;</span> + <span class="literal">false</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>配置文件细节</li>
+</ul>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="bullet">1.</span> 只配置class属性 <span class="language-xml"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">&quot;com.baizhiedu.basic.Person&quot;</span>/&gt;</span></span></span><br><span class="line"><span class="code">	a) 上述这种配置 有没有 id 值？有：com.baizhiedu.basic.Person#0</span></span><br><span class="line"><span class="code">	b) 应⽤场景：如果这个 bean 只需要使⽤⼀次，那么就可以省略 id 值；如果这个 bean 会使⽤多次，或者被其他 bean 引⽤则需要设置 id 值</span></span><br><span class="line"><span class="code">2. name属性</span></span><br><span class="line"><span class="code">	作⽤：⽤于在 Spring 的配置⽂件中，为 bean 对象定义别名（⼩名）</span></span><br><span class="line"><span class="code">	相同：</span></span><br><span class="line"><span class="code"> 		1. ctx.getBean(&quot;id|name&quot;) --&gt; object</span></span><br><span class="line"><span class="code"> 		2. &lt;bean id=&quot;&quot; class=&quot;&quot;/&gt; 等效 &lt;bean name=&quot;&quot; class=&quot;&quot;/&gt;</span></span><br><span class="line"><span class="code">	区别：</span></span><br><span class="line"><span class="code"> 		1. 别名可以定义多个,但是 id 属性只能有⼀个值</span></span><br><span class="line"><span class="code">		2. XML 的 id 属性的值，命名要求：必须以字母开头，跟字⺟、数字、下划线、连字符。不能以特殊字符开头 /person；name属性的值，命名没有要求。XML发展到了今天：ID 属性已不存在限制</span></span><br><span class="line"><span class="code">		3. containsBeanDefinition 方法只能判断 id 属性，不能判断 name 属性；containsBean 方法即可以判断 id 属性，也可以判断 name 属性</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="注入"><a href="#注入" class="headerlink" title="注入"></a>注入</h3><p>Spring IoC 注入是指 Spring 容器负责将依赖关系和配置信息自动注入到应用程序的组件中（即为组件的成员变量赋值），以此实现对象之间的解耦和灵活性</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/03/a3a8357937da.html" data-id="cltptjb8u000ztovr08p233uw" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Spring 容器结构" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/03/176b52105bd6.html" class="article-date">
+  <time class="dt-published" datetime="2024-03-13T13:09:57.973Z" itemprop="datePublished">2024-03-13</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Spring/">Spring</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="BeanFactory"><a href="#BeanFactory" class="headerlink" title="BeanFactory"></a>BeanFactory</h1><p>Spring 容器最重要的作用就是负责实例化应用程序中的对象（Bean）。包括创建对象、初始化对象以及维护对象的生命周期</p>
+<p>Spring 提供了两种主要容器</p>
+<ol>
+<li><strong>BeanFactory</strong> 容器：<ul>
+<li><strong>介绍：</strong> <code>BeanFactory</code> 是 Spring 框架最基本的容器接口。它提供了最简单的容器实现，负责管理 Spring 应用程序中的 Bean</li>
+<li><strong>特点：</strong> 延迟初始化，即在需要使用 Bean 时才进行初始化</li>
+<li><strong>主要实现类：</strong> <code>XmlBeanFactory</code> 是 <code>BeanFactory</code> 接口的一个实现，它从 XML 文件中加载 Bean 定义</li>
+</ul>
+</li>
+<li><strong>ApplicationContext 容器：</strong><ul>
+<li><strong>介绍：</strong> <code>ApplicationContext</code> 是 <code>BeanFactory</code> 的子接口，提供了更多的企业级功能。它是一个更高级别的容器，除了提供 Bean 的管理之外，还提供了事件机制、AOP 等功能。</li>
+<li><strong>特点：</strong> 提前初始化，即在容器启动时就进行初始化</li>
+<li><strong>主要实现类：</strong><ul>
+<li><code>ClassPathXmlApplicationContext</code>：从类路径加载 XML 配置文件创建容器</li>
+<li><code>FileSystemXmlApplicationContext</code>：从文件系统路径加载 XML 配置文件创建容器</li>
+<li><code>AnnotationConfigApplicationContext</code>：基于 Java 配置类（使用注解）创建容器</li>
+<li>其他如 <code>GenericWebApplicationContext</code> 等，用于特定环境或特定配置</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h1 id="BeanFactory-属性"><a href="#BeanFactory-属性" class="headerlink" title="BeanFactory 属性"></a>BeanFactory 属性</h1><p><img src="https://cdgwsd.oss-cn-guangzhou.aliyuncs.com/img/202311131729272.png" alt="image-20231113172930753"></p>
+<p>BeanFactory 中有几个重要的属性</p>
+<ul>
+<li><code>beanDefinitionMap</code>：用于存储 bean 定义的映射</li>
+<li><code>beanDefinitionNames</code>：用于存储所有 bean 的名称</li>
+<li><code>singletonObjects</code>：用于存储单例 bean 的实例</li>
+<li><code>earlySingletonObjects</code>：用于存储尚未完全初始化的单例 bean 的实例</li>
+<li><code>registeredSingletons</code>：用于存储已注册的单例 bean 的名称</li>
+<li><code>beanPostProcessors</code>：用于存储 bean 后置处理器</li>
+</ul>
+<h2 id="BeanDefinitionMap"><a href="#BeanDefinitionMap" class="headerlink" title="BeanDefinitionMap"></a>BeanDefinitionMap</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* key：Bean 的名称</span></span><br><span class="line"><span class="comment">* Value：包含了 Bean 各种配置信息，如：Bean 类名、作用域、构造函数参数、属性值等的 BeanDefinition 对象</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">final</span> Map&lt;String, BeanDefinition&gt; beanDefinitionMap</span><br></pre></td></tr></table></figure>
+
+
+
+<p><img src="https://cdgwsd.oss-cn-guangzhou.aliyuncs.com/img/202311131746624.png" alt="image-20231113174626481"></p>
+<h2 id="BeanDefinitionNames"><a href="#BeanDefinitionNames" class="headerlink" title="BeanDefinitionNames"></a>BeanDefinitionNames</h2><p><img src="https://cdgwsd.oss-cn-guangzhou.aliyuncs.com/img/202311132028270.png" alt="image-20231113202800504"></p>
+<h2 id="SingletonObjects"><a href="#SingletonObjects" class="headerlink" title="SingletonObjects"></a>SingletonObjects</h2><p>用于缓存 Spring 容器中已经创建并初始化的单例（singleton）bean 的实例。在 Spring 中，单例 bean 是指在容器启动时创建的，且整个应用中只存在一个实例的 bean。</p>
+<p><img src="https://cdgwsd.oss-cn-guangzhou.aliyuncs.com/img/202311131747563.png" alt="image-20231113174746687"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/03/176b52105bd6.html" data-id="cltptjb8t000xtovrfgog4p23" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-IoC" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/03/d49d02e24b6a.html" class="article-date">
+  <time class="dt-published" datetime="2024-03-13T13:09:57.972Z" itemprop="datePublished">2024-03-13</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Spring/">Spring</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="IoC"><a href="#IoC" class="headerlink" title="IoC"></a>IoC</h1><p>Spring 的 IoC（Inversion of Control，控制反转）是一种设计原则，它将应用程序中对象的创建和管理交由 Spring 容器负责，而不是由开发者手动管理，通过这种方式实现了对象的解耦和更灵活的组件化开发</p>
+<p>在 Spring 中 ApplicationContext 是 IoC 容器的一种实现，用于管理和组织应用程序中的 Bean 对象</p>
+<h2 id="ApplicationContext"><a href="#ApplicationContext" class="headerlink" title="ApplicationContext"></a>ApplicationContext</h2><p><code>ApplicationContext</code> 是 Spring 框架的核心接口之一，它代表着一个 IoC 容器，负责管理和组织应用程序中的 Bean 对象，提供了丰富的功能，包括依赖注入、Bean 的生命周期管理以及对各种应用程序服务的访问</p>
+<p>ApplicationContext 被设计为接口类型，有以下好处：</p>
+<ul>
+<li>灵活性：使用接口类型设计允许存在不同的 <code>ApplicationContext</code> 实现，以适用不同的使用场景和需求<ul>
+<li><code>ClassPathXmlApplicationContext</code>：基于 XML 配置的非 Web 应用程序</li>
+<li><code>XmlWebApplicationContext</code>：Web 应用程序</li>
+</ul>
+</li>
+<li>可扩展</li>
+<li>替代性</li>
+<li>标准化：约定一种标准的创建和配置 Spring IoC 容器的方法</li>
+</ul>
+<h2 id="API"><a href="#API" class="headerlink" title="API"></a>API</h2><ul>
+<li>IoC 常用 API</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">ApplicationContext</span> <span class="variable">ctx</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ClassPathXmlApplicationContext</span>(<span class="string">&quot;applicationContext.xml&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">//通过这种⽅式获得对象，就不需要强制类型转换</span></span><br><span class="line"><span class="type">Person</span> <span class="variable">person</span> <span class="operator">=</span> ctx.getBean(<span class="string">&quot;person&quot;</span>, Person.class);</span><br><span class="line">System.out.println(<span class="string">&quot;person = &quot;</span> + person);</span><br><span class="line"></span><br><span class="line"><span class="comment">//当前Spring的配置⽂件中 只能有⼀个 bean class是Person类型</span></span><br><span class="line"><span class="type">Person</span> <span class="variable">person</span> <span class="operator">=</span> ctx.getBean(Person.class);</span><br><span class="line">System.out.println(<span class="string">&quot;person = &quot;</span> + person);</span><br><span class="line"></span><br><span class="line"><span class="comment">//获取的是Spring⼯⼚配置⽂件中所有bean标签的id值 person person1</span></span><br><span class="line">String[] beanDefinitionNames = ctx.getBeanDefinitionNames();</span><br><span class="line"><span class="keyword">for</span> (String beanDefinitionName : beanDefinitionNames) &#123;</span><br><span class="line">     System.out.println(<span class="string">&quot;beanDefinitionName = &quot;</span> + beanDefinitionName);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//根据类型获得Spring配置⽂件中对应的id值</span></span><br><span class="line">String[] beanNamesForType = ctx.getBeanNamesForType(Person.class);</span><br><span class="line"><span class="keyword">for</span> (String id : beanNamesForType) &#123;</span><br><span class="line">     System.out.println(<span class="string">&quot;id = &quot;</span> + id);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//⽤于判断是否存在指定id值的bean</span></span><br><span class="line"><span class="keyword">if</span> (ctx.containsBeanDefinition(<span class="string">&quot;a&quot;</span>)) &#123;</span><br><span class="line">     System.out.println(<span class="string">&quot;true = &quot;</span> + <span class="literal">true</span>);</span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">     System.out.println(<span class="string">&quot;false = &quot;</span> + <span class="literal">false</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//⽤于判断是否存在指定id值的bean</span></span><br><span class="line"><span class="keyword">if</span> (ctx.containsBean(<span class="string">&quot;person&quot;</span>)) &#123;</span><br><span class="line">     System.out.println(<span class="string">&quot;true = &quot;</span> + <span class="literal">true</span>);</span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">     System.out.println(<span class="string">&quot;false = &quot;</span> + <span class="literal">false</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>配置文件细节</li>
+</ul>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="bullet">1.</span> 只配置class属性 <span class="language-xml"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">&quot;me.zyp.basic.Person&quot;</span>/&gt;</span></span></span><br><span class="line"><span class="code">	a) 上述这种配置 有没有 id 值？有：me.zyp.basic.Person#0</span></span><br><span class="line"><span class="code">	b) 应⽤场景：如果这个 bean 只需要使⽤⼀次，那么就可以省略 id 值；如果这个 bean 会使⽤多次，或者被其他 bean 引⽤则需要设置 id 值</span></span><br><span class="line"><span class="code">2. name属性</span></span><br><span class="line"><span class="code">	作⽤：⽤于在 Spring 的配置⽂件中，为 bean 对象定义别名（⼩名）</span></span><br><span class="line"><span class="code">	相同：</span></span><br><span class="line"><span class="code"> 		1. ctx.getBean(&quot;id|name&quot;) --&gt; object</span></span><br><span class="line"><span class="code"> 		2. &lt;bean id=&quot;&quot; class=&quot;&quot;/&gt; 等效 &lt;bean name=&quot;&quot; class=&quot;&quot;/&gt;</span></span><br><span class="line"><span class="code">	区别：</span></span><br><span class="line"><span class="code"> 		1. 别名可以定义多个,但是 id 属性只能有⼀个值</span></span><br><span class="line"><span class="code">		2. containsBeanDefinition 方法只能判断 id 属性，不能判断 name 属性；containsBean 方法即可以判断 id 属性，也可以判断 name 属性</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="注入"><a href="#注入" class="headerlink" title="注入"></a>注入</h2><p>Spring IoC 注入是指 Spring 容器负责将依赖关系和配置信息自动注入到应用程序的组件中（即为组件的成员变量赋值），以此实现对象之间的解耦和灵活性</p>
+<p>注入方式：</p>
+<ul>
+<li>Setter 方法注入</li>
+<li>构造注入</li>
+</ul>
+<h3 id="Setter-注入"><a href="#Setter-注入" class="headerlink" title="Setter 注入"></a>Setter 注入</h3><p>通过为目标类提供 setter 方法，让 Spring 容器可以通过这些 setter 方法来注入依赖对象</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 通过 setter 方法注入属性 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;user1&quot;</span> <span class="attr">class</span>=<span class="string">&quot;me.zyp.spring5.User&quot;</span>&gt;</span></span><br><span class="line">	<span class="comment">&lt;!-- 通过 property 标签进行属性注入 --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;name&quot;</span> <span class="attr">value</span>=<span class="string">&quot;张三&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>value 属性可使用标签替代，上面代码等同于：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 通过 setter 方法注入属性 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;user1&quot;</span> <span class="attr">class</span>=<span class="string">&quot;me.zyp.spring5.User&quot;</span>&gt;</span></span><br><span class="line">	<span class="comment">&lt;!-- 通过 property 标签进行属性注入 --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;name&quot;</span>&gt;</span></span><br><span class="line">    	<span class="tag">&lt;<span class="name">value</span>&gt;</span>张三<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><font color=red>针对 Bean 属性的类型不同，value 标签还需替换为其他标签</font>，Spring 可注入数据类型如下</p>
+<ul>
+<li><p>八种数据类型及字符串</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 注入 JDK 内置类型使用 value 标签 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">value</span>&gt;</span>张三<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>数组</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 注入数组类型使用 arr 标签 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;array&quot;</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">array</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">value</span>&gt;</span>1<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">value</span>&gt;</span>2<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">array</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>List 列表</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 注入 List 类型使用 list 标签 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;list&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">list</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>张三<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 对象类型 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">ref</span> <span class="attr">bean</span>=<span class="string">&quot;user&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">ref</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">list</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Set 集合</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 注入 Set 类型使用 set 标签 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;set&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">set</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>zhangsan<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 对象类型 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">ref</span> <span class="attr">bean</span>=<span class="string">&quot;user&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">ref</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">set</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Map 集合</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 注入 Map 类型使用 map 标签 --&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 每一个元素使用 entry 标签表示，key 表示 map 的键，值根据类型不同使用不同标签 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;map&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">map</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">entry</span> <span class="attr">key</span>=<span class="string">&quot;name&quot;</span> <span class="attr">value</span>=<span class="string">&quot;张三&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">entry</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 对象类型 --&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- key-ref、value-ref:bean的id --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">entry</span> <span class="attr">key-ref</span>=<span class="string">&quot;user&quot;</span> <span class="attr">value-red</span>=<span class="string">&quot;user1&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">entry</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">map</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Properties</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 注入 Properties 类型使用 property 标签 --&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 每一个元素使用 props 标签表示，Properties 的每个元素的键值都为字符串类型 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;user&quot;</span> <span class="attr">class</span>=<span class="string">&quot;me.zyp.spring5.User&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;props&quot;</span>&gt;</span></span><br><span class="line">	  <span class="tag">&lt;<span class="name">props</span>&gt;</span></span><br><span class="line">		  <span class="tag">&lt;<span class="name">prop</span> <span class="attr">key</span>=<span class="string">&quot;username&quot;</span>&gt;</span>root<span class="tag">&lt;<span class="name">prop</span>&gt;</span></span><br><span class="line">		  <span class="tag">&lt;<span class="name">prop</span> <span class="attr">key</span>=<span class="string">&quot;password&quot;</span>&gt;</span>1234<span class="tag">&lt;<span class="name">prop</span>&gt;</span></span><br><span class="line">	  <span class="tag">&lt;/<span class="name">props</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>自定义 Bean</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 注入自定义 Bean 有两种方式：1.内部 Bean，2.ref 属性引用其他 Bean --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;userService&quot;</span> <span class="attr">class</span>=<span class="string">&quot;xxxx.UserServiceImpl&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;userDAO&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">&quot;xxx.UserDAOImpl&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 内部 Bean 注入方式创建的 Bean 无法被其他 Bean 引用，为其他 Bean 再次注入时需要再次创建 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;userDAO&quot;</span> <span class="attr">class</span>=<span class="string">&quot;xxx.UserDAOImpl&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;userService&quot;</span> <span class="attr">class</span>=<span class="string">&quot;xxx.UserServiceImpl&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;userDAO&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">ref</span> <span class="attr">bean</span>=<span class="string">&quot;userDAO&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<p>使用 <code>p 命名空间</code> 可以直接为 Bean 的属性赋值，避免了繁琐的 property 标签的使用，简化 Spring 配置</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;person&quot;</span> <span class="attr">class</span>=<span class="string">&quot;xxx.Person&quot;</span> <span class="attr">p:name</span>=<span class="string">&quot;suns&quot;</span>/&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;userService&quot;</span> <span class="attr">class</span>=<span class="string">&quot;xxx.UserServiceImpl&quot;</span> <span class="attr">p:userDAO-ref</span>=<span class="string">&quot;userDAO&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="构造注入"><a href="#构造注入" class="headerlink" title="构造注入"></a>构造注入</h3><p>构造注入是通过构造函数接收参数来实现依赖注入，Spring 容器在创建 Bean 时通过提供的构造参数值来实例化对象，建立对象之间的关联关系</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 通过有参构造注入属性--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;user2&quot;</span> <span class="attr">class</span>=<span class="string">&quot;me.zyp.spring5.User&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">constructor-arg</span> <span class="attr">name</span>=<span class="string">&quot;name&quot;</span> <span class="attr">value</span>=<span class="string">&quot;张三&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">constructor-arg</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>可以通过构造方法重载，完成不同属性注入</p>
+<ul>
+<li><p>参数个数不同时</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">通过控制 <span class="language-xml"><span class="tag">&lt;<span class="name">constructor-arg</span>&gt;</span></span> 标签的数量进⾏区分</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>参数个数相同时</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">通过在标签引⼊ type 属性 进⾏类型的区分 <span class="language-xml"><span class="tag">&lt;<span class="name">constructor-arg</span> <span class="attr">type</span>=<span class="string">&quot;&quot;</span>&gt;</span></span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="复杂对象创建"><a href="#复杂对象创建" class="headerlink" title="复杂对象创建"></a>复杂对象创建</h2><p>针对简单对象（可以通过 new 关键字创建的对象）来讲，通过简单配置即可以进行对象的实例化与属性注入。但对于复杂对象（无法通过 new 关键字创建的对象，如 Connection、SqlSessionFactory 等）则通常使用 <code>FactoryBean</code>、静态工厂与实例工厂进行实例化与属性注入</p>
+<h3 id="FactoryBean"><a href="#FactoryBean" class="headerlink" title="FactoryBean"></a>FactoryBean</h3><p><code>FactoryBean</code> 是 Spring 框架提供的一种接口，允许定制化对象的创建过程，通过实现 <code>FactoryBean</code> 接口的 <code>getObject</code> 方法来返回所需的对象实例</p>
+<p>FactoryBean 开发步骤：</p>
+<ol>
+<li><p>实现 FactoryBean 接口</p>
+<p><img src="https://cdgwsd.oss-cn-guangzhou.aliyuncs.com/img/202311212057140.png" alt="image.png"></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MyFactoryBean</span> <span class="keyword">implements</span> <span class="title class_">FactoryBean</span> &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> Object <span class="title function_">getObject</span><span class="params">()</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">        <span class="type">User</span> <span class="variable">user</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">User</span>();</span><br><span class="line">        <span class="keyword">return</span> user;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> Class&lt;?&gt; getObjectType() &#123;</span><br><span class="line">        <span class="keyword">return</span> User.class;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">isSingleton</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>配置文件配置</p>
+</li>
+</ol>
+  <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 在容器中通过 id=&quot;factoryBean&quot; 获取到的对象为 MyFactoryBean 类的 getObject 方法返回的 User 类型对象，而非 MyFactoryBean 类型对象 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;factoryBean&quot;</span> <span class="attr">class</span>=<span class="string">&quot;me.zyp.spring5.MyFactoryBean&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><font color = red>如果想要获取 FactoryBean 类型的对象，只需要在 id 前加 &amp; 符号即可</font></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">testBean</span><span class="params">()</span>&#123;</span><br><span class="line">      <span class="type">ApplicationContext</span> <span class="variable">applicationContext</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ClassPathXmlApplicationContext</span>(<span class="string">&quot;bean2.xml&quot;</span>);</span><br><span class="line">      <span class="type">Object</span> <span class="variable">factoryBean</span> <span class="operator">=</span> applicationContext.getBean(<span class="string">&quot;&amp;factoryBean&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="实例工厂"><a href="#实例工厂" class="headerlink" title="实例工厂"></a>实例工厂</h3><p>实例工厂是<strong>将对象的创建过程封装到另外一个对象实例的方法</strong>里</p>
+<ul>
+<li><p>实例工厂类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SimpleObjectFactory</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> SimpleObject <span class="title function_">createSimpleObject</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">SimpleObject</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>配置文件</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;simpleObjectFactory&quot;</span> <span class="attr">class</span>=<span class="string">&quot;com.example.SimpleObjectFactory&quot;</span> /&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- factory-bean：实例工厂Bean，factory-method：实例工厂用于创建对象的方法 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;simpleObject&quot;</span> <span class="attr">factory-bean</span>=<span class="string">&quot;simpleObjectFactory&quot;</span> <span class="attr">factory-method</span>=<span class="string">&quot;createSimpleObject&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="静态工厂"><a href="#静态工厂" class="headerlink" title="静态工厂"></a>静态工厂</h3><p>静态工厂是<strong>将对象创建的过程封装到静态方法</strong>中</p>
+<ul>
+<li><p>静态工厂类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SimpleObjectFactory</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> SimpleObject <span class="title function_">createSimpleObject</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">SimpleObject</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>配置文件</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;simpleObject&quot;</span> <span class="attr">id</span>=<span class="string">&quot;simpleObjectFactory&quot;</span> <span class="attr">class</span>=<span class="string">&quot;com.example.SimpleObjectFactory&quot;</span> <span class="attr">factory-method</span>=<span class="string">&quot;createSimpleObject&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ul>
+<li><strong>FactoryBean：</strong> Spring 提供的接口，允许自定义对象的创建和配置，通过实现 <code>FactoryBean</code> 接口的 <code>getObject</code> 方法来返回所需的 Bean 实例</li>
+<li><strong>静态工厂：</strong> 使用类的静态方法创建 Bean 实例，通过类名直接调用，适用于简单对象的创建</li>
+<li><strong>实例工厂：</strong> 创建 Bean 实例的类的实例方法，通常需要先实例化工厂类，再调用其实例方法，适用于一些需要状态管理或创建过程较为复杂的场景</li>
+</ul>
+<h2 id="作用域"><a href="#作用域" class="headerlink" title="作用域"></a>作用域</h2><p>Spring 作用域定义了 Bean 实例的生命周期范围，影响 Bean 在容器中的存在时间和共享性</p>
+<p>Bean 的作用域有以下几种取值：</p>
+<ul>
+<li>singleton：单例</li>
+<li>prototype：多例</li>
+</ul>
+<p>使用 bean 标签的 <strong>scope</strong> 属性来指定 Bean 的作用域</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;exampleBean&quot;</span> <span class="attr">class</span>=<span class="string">&quot;com.example.ExampleBean&quot;</span> <span class="attr">scope</span>=<span class="string">&quot;singleton&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="生命周期"><a href="#生命周期" class="headerlink" title="生命周期"></a>生命周期</h2><p>Spring Bean 的生命周期包括实例化、初始化、使用和销毁四个阶段，由 Spring 容器管理，允许开发者通过回调方法和配置进行定制</p>
+<h3 id="实例化"><a href="#实例化" class="headerlink" title="实例化"></a>实例化</h3><p>实例化是指在 Spring 容器中创建 Bean 对象的过程</p>
+<p>根据 Bean 作用域不同，创建时机也不同</p>
+<ul>
+<li>singleton<ul>
+<li>Spring 工厂创建的同时，对象也被创建</li>
+<li>可通过设置 <code>lazy-init=true</code> 使对象等到被获取时再创建</li>
+</ul>
+</li>
+<li>prototype<ul>
+<li>在获取对象时，对象被创建</li>
+</ul>
+</li>
+</ul>
+<h3 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h3><p>初始化是指在 Spring 容器创建 Bean 实例后，通过调⽤对象的初始化⽅法，完成对应的初始化操作</p>
+<p>配置 Bean 初始化方法有两种方式</p>
+<ol>
+<li><p>实现 <code>InitializingBean</code> 接口</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ExampleBean</span> <span class="keyword">implements</span> <span class="title class_">InitializingBean</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">afterPropertiesSet</span><span class="params">()</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">        <span class="comment">// 在这里可以执行Bean初始化时的逻辑</span></span><br><span class="line">        System.out.println(<span class="string">&quot;Bean正在进行初始化...&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>当该 Bean 被 Spring 容器创建后，<code>afterPropertiesSet</code> 方法将被调用，从而执行自定义的初始化逻辑</p>
+</li>
+<li><p>配置 <code>inti-method</code> 属性</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;exampleBean&quot;</span> <span class="attr">class</span>=<span class="string">&quot;com.example.ExampleBean&quot;</span> <span class="attr">init-method</span>=<span class="string">&quot;init&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><code>ExampleBean</code> 类的 <code>init</code> 方法将在该 Bean 被创建后进行调用，执行自定义的初始化逻辑</p>
+</li>
+</ol>
+<h3 id="销毁"><a href="#销毁" class="headerlink" title="销毁"></a>销毁</h3><p>销毁是指在 Spring 容器关闭或销毁时，对 Bean 进行资源释放和清理的过程</p>
+<p>配置 Bean 销毁方法有两种方式</p>
+<ol>
+<li><p>实现 <code>DisposableBean</code> 接口</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ExampleBean</span> <span class="keyword">implements</span> <span class="title class_">DisposableBean</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">destroy</span><span class="params">()</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">        <span class="comment">// 在这里可以执行Bean销毁时的清理逻辑</span></span><br><span class="line">        System.out.println(<span class="string">&quot;Bean正在进行销毁...&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>当该 Bean 被 Spring 容器销毁时，<code>destroy</code> 方法将被调用，从而执行自定义的清理逻辑</p>
+</li>
+<li><p>配置 <code>destroy-method</code> 属性</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;exampleBean&quot;</span> <span class="attr">class</span>=<span class="string">&quot;com.example.ExampleBean&quot;</span> <span class="attr">destroy-method</span>=<span class="string">&quot;destroy&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p> <code>ExampleBean</code> 类的 <code>destroy</code> 方法将在该 Bean 被销毁后进行调用，执行自定义的销毁逻辑</p>
+</li>
+</ol>
+<h2 id="配置文件参数化"><a href="#配置文件参数化" class="headerlink" title="配置文件参数化"></a>配置文件参数化</h2><p>在之前使用 Spring 集成数据源配置时，常常会将数据源配置信息直接硬编码在配置文件中</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--连接池--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;dataSource&quot;</span> <span class="attr">class</span>=<span class="string">&quot;com.alibaba.druid.pool.DruidDataSource&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;driverClassName&quot;</span> <span class="attr">value</span>=<span class="string">&quot;com.mysql.jdbc.Driver&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;url&quot;</span> <span class="attr">value</span>=<span class="string">&quot;jdbc:mysql://localhost:3306/suns?useSSL=false&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;username&quot;</span> <span class="attr">value</span>=<span class="string">&quot;root&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;password&quot;</span> <span class="attr">value</span>=<span class="string">&quot;123456&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>随着项目增加，各种配置信息将混杂在一起，后续维护、修改会很麻烦。为了解决以上问题，可以将这些经常需要修改的数据维护到单独的配置文件中。</p>
+<p>Spring 引入了 <code>context:property-placeholder</code> 用于解决这一问题</p>
+<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><ul>
+<li><p>定义配置文件</p>
+  <figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">password</span>=<span class="string">xxxx</span></span><br><span class="line"><span class="attr">username</span>=<span class="string">xxxx</span></span><br><span class="line"><span class="attr">url</span>=<span class="string">xxxx</span></span><br><span class="line"><span class="attr">driver</span>=<span class="string">xxxx</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在 Spring 配置中引入 <code>context</code> 命名空间</p>
+  <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xmlns:context=&quot;http://www.springframework.org/schema/context&quot;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用 <code>context:property-placeholder</code> 引入外部配置文件</p>
+  <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">context:property-placeholder</span> <span class="attr">location</span>=<span class="string">&quot;classpath:jdbc.properties&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用 <code>$&#123;&#125;</code> 占位符引用属性值</p>
+  <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;dataSource&quot;</span> <span class="attr">class</span>=<span class="string">&quot;com.alibaba.druid.pool.DruidDataSource&quot;</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;driverClassName&quot;</span> <span class="attr">value</span>=<span class="string">&quot;$&#123;driver&#125;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;url&quot;</span> <span class="attr">value</span>=<span class="string">&quot;$&#123;url&#125;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;username&quot;</span> <span class="attr">value</span>=<span class="string">&quot;$&#123;username&#125;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;password&quot;</span> <span class="attr">value</span>=<span class="string">&quot;$&#123;password&#125;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="类型转换器"><a href="#类型转换器" class="headerlink" title="类型转换器"></a>类型转换器</h2><p>在 Spring 中类型转换器用于将一种数据类型转换为另一种数据类型。在下面的示例中 Spring 将自动将 String 类型转换为 int 类型并注入给 age 属性</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="type">int</span> age;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;age&quot;</span> <span class="attr">value</span>=<span class="string">&quot;18&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>Spring 类型转换器基于 <code>Converter</code> 接口</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">Converter</span>&lt;S, T&gt; &#123;</span><br><span class="line">    <span class="comment">// 将类型 S 转换为 类型 T</span></span><br><span class="line">	T <span class="title function_">convert</span><span class="params">(S source)</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Spring 为我们提供了一批内置类型转换器用于处理常用的数据类型转换。除此之外我们也可以通过实现 <code>Converter</code> 接口定义自定义类型转换器</p>
+<h3 id="自定义类型转换器"><a href="#自定义类型转换器" class="headerlink" title="自定义类型转换器"></a>自定义类型转换器</h3><p>定义自定义类型转换器只需要实现 <code>Converter</code> 接口，并 <code>convert</code> 方法中实现转换逻辑即可</p>
+<p>下面代码将实现 yyyy-MM-dd 格式日期字符串转 Date 类型</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">DateConverter</span> <span class="keyword">implements</span> <span class="title class_">Converter</span>&lt;String, Date&gt; &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> Date <span class="title function_">convert</span><span class="params">(String source)</span> &#123;</span><br><span class="line">        <span class="type">Date</span> <span class="variable">date</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="type">SimpleDateFormat</span> <span class="variable">sdf</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">SimpleDateFormat</span>(<span class="string">&quot;yyyy-MM-dd&quot;</span>);</span><br><span class="line">            date = sdf.parse(source);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (ParseException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> date;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="后置处理器"><a href="#后置处理器" class="headerlink" title="后置处理器"></a>后置处理器</h2><p>通过后置处理器可以对 Spring 创建的对象进行再加工</p>
+<ul>
+<li><p>创建后置处理器类</p>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MyBeanPostProcessor</span> <span class="keyword">implements</span> <span class="title class_">BeanPostProcessor</span> &#123;  </span><br><span class="line">    <span class="meta">@Override</span>  </span><br><span class="line">    <span class="keyword">public</span> Object <span class="title function_">postProcessBeforeInitialization</span><span class="params">(Object bean, String beanName)</span> <span class="keyword">throws</span> BeansException &#123;  </span><br><span class="line">        System.out.println(<span class="string">&quot;========postProcessBeforeInitialization========&quot;</span>);  </span><br><span class="line">        System.out.println(bean);  </span><br><span class="line">        System.out.println(beanName);  </span><br><span class="line">        <span class="keyword">return</span> bean;  </span><br><span class="line">    &#125;  </span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span>  </span><br><span class="line">    <span class="keyword">public</span> Object <span class="title function_">postProcessAfterInitialization</span><span class="params">(Object bean, String beanName)</span> <span class="keyword">throws</span> BeansException &#123;  </span><br><span class="line">        System.out.println(<span class="string">&quot;========postProcessAfterInitialization========&quot;</span>);  </span><br><span class="line">        System.out.println(bean);  </span><br><span class="line">        System.out.println(beanName);  </span><br><span class="line">        <span class="keyword">return</span> bean;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>注册后置处理器</p>
+  <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">&quot;me.zyp.entity.MyBeanPostProcessor&quot;</span> <span class="attr">id</span>=<span class="string">&quot;beanPostProcessor&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<p><font color="red">配置的后置处理器将对所有注册的 Bean 生效</font></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/03/d49d02e24b6a.html" data-id="cltptjb900015tovr2zfh7bzl" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-AOP" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/03/e075094a2a81.html" class="article-date">
+  <time class="dt-published" datetime="2024-03-13T13:09:57.970Z" itemprop="datePublished">2024-03-13</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Spring/">Spring</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="AOP"><a href="#AOP" class="headerlink" title="AOP"></a>AOP</h1>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/03/e075094a2a81.html" data-id="cltptjb8s000wtovrba3o7tdo" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-根据字段去重" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/03/8fa8bde8db15.html" class="article-date">
+  <time class="dt-published" datetime="2024-03-13T13:09:57.963Z" itemprop="datePublished">2024-03-13</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Oracle/">Oracle</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>根据 uf_regionList 表的 regionCode 字段进行去重</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DELETE</span></span><br><span class="line"><span class="keyword">FROM</span> uf_regionList</span><br><span class="line"><span class="keyword">WHERE</span> ROWID <span class="keyword">NOT</span> <span class="keyword">IN</span> (<span class="keyword">SELECT</span> <span class="built_in">MAX</span>(ROWID) <span class="keyword">FROM</span> uf_regionList <span class="keyword">GROUP</span> <span class="keyword">BY</span> regionCode)</span><br></pre></td></tr></table></figure>
+
+<p><code>ROWID</code> 被用来标识每行，并通过<code>MAX(ROWID)</code> 找到每个 <code>regionCode</code> 的最大 <code>ROWID</code>，然后删除其他行，保留每个 <code>regionCode</code> 的唯一记录。</p>
+<h2 id="ROWID"><a href="#ROWID" class="headerlink" title="ROWID"></a>ROWID</h2><p>在Oracle数据库中，<code>ROWID</code> 是一个唯一标识数据库中行的内部表示。每一行都有一个对应的 <code>ROWID</code>，它是一个字符型的标识符，包含有关行的物理存储信息，如文件、块（block）和行内偏移。</p>
+<p><code>ROWID</code> 通常用于快速定位表中的特定行。由于 <code>ROWID</code> 直接指向数据块，因此可以在不执行全表扫描的情况下快速检索行。然而，需要注意的是，<code>ROWID</code> 并不是永久的，它可能在表维护、数据导入导出等操作后发生变化</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/03/8fa8bde8db15.html" data-id="cltptjb8l000ttovr55889mgp" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-查看指定时间段日志" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/03/058fadadff92.html" class="article-date">
+  <time class="dt-published" datetime="2024-03-13T13:09:57.957Z" itemprop="datePublished">2024-03-13</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Linux/">Linux</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="1-查看指定时间段日志"><a href="#1-查看指定时间段日志" class="headerlink" title="1. 查看指定时间段日志"></a>1. 查看指定时间段日志</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">sed -n <span class="string">&#x27;/起始日期时间/,/结束日期时间/p&#x27;</span> 日志文件</span></span><br><span class="line">sed -n &#x27;/2021-05-21 10:08/,/2021-05-21 10:09/p&#x27; nohup.out</span><br></pre></td></tr></table></figure>
+
+<h1 id="2-查看指定时间段日志并输出到新文件"><a href="#2-查看指定时间段日志并输出到新文件" class="headerlink" title="2. 查看指定时间段日志并输出到新文件"></a>2. 查看指定时间段日志并输出到新文件</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">sed -n <span class="string">&#x27;/起始日期时间/,/结束日期时间/p&#x27;</span> 日志文件 &gt; 新日志文件</span></span><br><span class="line">sed -n &#x27;/2021-05-21 10:08/,/2021-05-21 10:09/p&#x27; nohup.out &gt; newnohup.out</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/03/058fadadff92.html" data-id="cltptjb7m000otovradknhmen" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Centos 安装 MySQL" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/03/ea47dbe99085.html" class="article-date">
+  <time class="dt-published" datetime="2024-03-13T13:09:57.955Z" itemprop="datePublished">2024-03-13</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Linux/">Linux</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="Centos-安装-MySQL"><a href="#Centos-安装-MySQL" class="headerlink" title="Centos 安装 MySQL"></a>Centos 安装 MySQL</h1><h2 id="下载并安装-MySQL"><a href="#下载并安装-MySQL" class="headerlink" title="下载并安装 MySQL"></a>下载并安装 MySQL</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wget http://dev.mysql.com/get/mysql57-community-release-el7-10.noarch.rpm &amp;&amp;</span><br><span class="line">yum -y install mysql57-community-release-el7-10.noarch.rpm &amp;&amp;</span><br><span class="line">yum install -y mysql-community-server --nogpgcheck</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdgwsd.oss-cn-guangzhou.aliyuncs.com/img/202403011451012.png" alt="image-20240301145145246"></p>
+<h2 id="启动-MySQL"><a href="#启动-MySQL" class="headerlink" title="启动 MySQL"></a>启动 MySQL</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl start mysqld.service</span><br></pre></td></tr></table></figure>
+
+<h2 id="查看-MySQL-初始密码"><a href="#查看-MySQL-初始密码" class="headerlink" title="查看 MySQL 初始密码"></a>查看 MySQL 初始密码</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep <span class="string">&quot;password&quot;</span> /var/log/mysqld.log</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdgwsd.oss-cn-guangzhou.aliyuncs.com/img/202403011452787.png" alt="image-20240301145246431"></p>
+<h2 id="登录-修改密码"><a href="#登录-修改密码" class="headerlink" title="登录 &amp; 修改密码"></a>登录 &amp; 修改密码</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -uroot -p</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdgwsd.oss-cn-guangzhou.aliyuncs.com/img/202403011454512.png" alt="image-20240301145437944"></p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">set</span> global validate_password_policy=0;  <span class="comment">#修改密码安全策略为低（只校验密码长度，至少8位）。</span></span><br><span class="line">ALTER USER <span class="string">&#x27;root&#x27;</span>@<span class="string">&#x27;localhost&#x27;</span> IDENTIFIED BY <span class="string">&#x27;12345678&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdgwsd.oss-cn-guangzhou.aliyuncs.com/img/202403011455043.png" alt="image-20240301145508549"></p>
+<h2 id="授予-root-用户远程管理权限"><a href="#授予-root-用户远程管理权限" class="headerlink" title="授予 root 用户远程管理权限"></a>授予 root 用户远程管理权限</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GRANT ALL PRIVILEGES ON *.* TO <span class="string">&#x27;root&#x27;</span>@<span class="string">&#x27;%&#x27;</span> IDENTIFIED BY <span class="string">&#x27;12345678&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdgwsd.oss-cn-guangzhou.aliyuncs.com/img/202403011457305.png" alt="image-20240301145737027"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/03/ea47dbe99085.html" data-id="cltptjb7l000ntovrgvz14gwu" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-读取类路径下资源" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/03/947dadcfe4b4.html" class="article-date">
+  <time class="dt-published" datetime="2024-03-13T13:09:57.929Z" itemprop="datePublished">2024-03-13</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Java/">Java</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="读取类路径下资源"><a href="#读取类路径下资源" class="headerlink" title="读取类路径下资源"></a>读取类路径下资源</h1><p><img src="https://cdgwsd.oss-cn-guangzhou.aliyuncs.com/img/202312211640844.png" alt="image-20231221164054250"></p>
+<p>Java 中读取类路径下文件可以使用 <code>Class.getResource(String name)</code> 和 <code>ClassLoader.getResource(String name)</code> </p>
+<p>接下来分别使用两种方式获取 <code>application.properties</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">        System.out.println(Test.class.getResource(<span class="string">&quot;/application.properties&quot;</span>));</span><br><span class="line">        System.out.println(Test.class.getClassLoader().getResource(<span class="string">&quot;application.properties&quot;</span>));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>输出：</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">file:/E:/ZYP/Code/boot/target/classes/application.properties</span><br><span class="line">file:/E:/ZYP/Code/boot/target/classes/application.properties</span><br></pre></td></tr></table></figure>
+
+<h2 id="ClassLoader-getResource"><a href="#ClassLoader-getResource" class="headerlink" title="ClassLoader.getResource"></a>ClassLoader.getResource</h2><p>测试一下路径带 <code>/</code> 与不带 <code>/</code> 的区别</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">System.out.println(Test.class.getClassLoader().getResource(<span class="string">&quot;&quot;</span>));</span><br><span class="line">System.out.println(Test.class.getClassLoader().getResource(<span class="string">&quot;/&quot;</span>));</span><br></pre></td></tr></table></figure>
+
+<p>输出：</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">file:/E:/ZYP/Code/boot/target/classes/</span><br><span class="line">null</span><br></pre></td></tr></table></figure>
+
+<p>结果分析：</p>
+<ul>
+<li><code>getClassLoader().getResource(&quot;&quot;)</code>不带 <code>/</code> 时候是从 <code>classpath</code> 的根路径获取</li>
+<li><code>getClassLoader().getResource(&quot;/&quot;)</code>带有 <code>/</code> 打印为 <code>null</code></li>
+</ul>
+<h2 id="Class-getResource"><a href="#Class-getResource" class="headerlink" title="Class.getResource"></a>Class.getResource</h2><p>测试一下路径带 <code>/</code> 与不带 <code>/</code> 的区别</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">System.out.println(Test.class.getResource(<span class="string">&quot;&quot;</span>));</span><br><span class="line">System.out.println(Test.class.getResource(<span class="string">&quot;/&quot;</span>));</span><br></pre></td></tr></table></figure>
+
+<p>输出：</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">file:/E:/ZYP/Code/boot/target/classes/</span><br><span class="line">file:/E:/ZYP/Code/boot/target/classes/</span><br></pre></td></tr></table></figure>
+
+<p>结果分析：</p>
+<ul>
+<li><code>getResource(&quot;&quot;)</code> 不带 <code>/</code> 时候是从当前类所在包路径去获取资源</li>
+<li><code>getResource(&quot;&quot;)</code> 带 <code>/</code> 时候是从 <code>classpath</code> 的根路径获取资源</li>
+</ul>
+<h2 id="源码解析"><a href="#源码解析" class="headerlink" title="源码解析"></a>源码解析</h2><h3 id="Class-getResource-解析"><a href="#Class-getResource-解析" class="headerlink" title="Class.getResource 解析"></a>Class.getResource 解析</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> java.net.URL <span class="title function_">getResource</span><span class="params">(String name)</span> &#123;</span><br><span class="line">    name = resolveName(name);</span><br><span class="line">    <span class="comment">// 返回当前类的类加载器，如果当前类为系统类则返回null</span></span><br><span class="line">    <span class="type">ClassLoader</span> <span class="variable">cl</span> <span class="operator">=</span> getClassLoader0();</span><br><span class="line">    <span class="keyword">if</span> (cl==<span class="literal">null</span>) &#123;</span><br><span class="line">        <span class="comment">// A system class.</span></span><br><span class="line">        <span class="comment">// 获取系统类路径下的资源</span></span><br><span class="line">        <span class="keyword">return</span> ClassLoader.getSystemResource(name);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> cl.getResource(name);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>可以看到，<code>Class.getResource</code> 方法最终还是调用 <code>ClassLoader.getResource</code> 方法，只是对路径调用了 <code>resolveName</code> 方法处理</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> String <span class="title function_">resolveName</span><span class="params">(String name)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (name == <span class="literal">null</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> name;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (!name.startsWith(<span class="string">&quot;/&quot;</span>)) &#123;</span><br><span class="line">        Class&lt;?&gt; c = <span class="built_in">this</span>;</span><br><span class="line">        <span class="keyword">while</span> (c.isArray()) &#123;</span><br><span class="line">            c = c.getComponentType();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">String</span> <span class="variable">baseName</span> <span class="operator">=</span> c.getName();</span><br><span class="line">        <span class="type">int</span> <span class="variable">index</span> <span class="operator">=</span> baseName.lastIndexOf(<span class="string">&#x27;.&#x27;</span>);</span><br><span class="line">        <span class="keyword">if</span> (index != -<span class="number">1</span>) &#123;</span><br><span class="line">            name = baseName.substring(<span class="number">0</span>, index).replace(<span class="string">&#x27;.&#x27;</span>, <span class="string">&#x27;/&#x27;</span>)</span><br><span class="line">                +<span class="string">&quot;/&quot;</span>+name;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        name = name.substring(<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> name;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>可以看到在 <code>resolveName</code> 方法中，如果路径是以 <code>/</code> 开头时会被直接截取，相当于在类路径的根目录下查找</p>
+<p>如果不是以 <code>/</code> 开头，则获取当前类的目录并拼接到资源路径前</p>
+<h3 id="ClassLoader-getResource-1"><a href="#ClassLoader-getResource-1" class="headerlink" title="ClassLoader.getResource"></a>ClassLoader.getResource</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> URL <span class="title function_">getResource</span><span class="params">(String name)</span> &#123;</span><br><span class="line">    URL url;</span><br><span class="line">    <span class="keyword">if</span> (parent != <span class="literal">null</span>) &#123;</span><br><span class="line">        <span class="comment">// 父加载器为null，则该类为系统类</span></span><br><span class="line">        url = parent.getResource(name);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">// 获取类加载器的启动类加载器的资源。启动类加载器是 Java 虚拟机的根类加载器，它负责加载 Java 运行时环境的核心库</span></span><br><span class="line">        url = getBootstrapResource(name);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (url == <span class="literal">null</span>) &#123;</span><br><span class="line">        <span class="comment">// 在类路径下查找类加载器的资源。如果资源存在，则返回它的 URL。如果资源不存在，则返回  null</span></span><br><span class="line">        url = findResource(name);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> url;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>什么是系统类<ul>
+<li>系统类是指由 Java 虚拟机本身加载的类。这些类包括 Java 运行时环境的核心库和其他系统级库。系统类通常位于系统类路径中</li>
+</ul>
+</li>
+<li>在系统类路径中的类一定是系统类么<ul>
+<li>不一定。在系统类路径中的类不一定是系统类。如果一个类是由用户自定义的类，并且它位于系统类路径中，那么它仍然是一个用户自定义的类</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/03/947dadcfe4b4.html" data-id="cltptjca60024tovr9ybo7aqp" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-注解" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/03/8333b8d7aa3c.html" class="article-date">
+  <time class="dt-published" datetime="2024-03-13T13:09:57.928Z" itemprop="datePublished">2024-03-13</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Java/">Java</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="注解"><a href="#注解" class="headerlink" title="注解"></a>注解</h1><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><blockquote>
+<p>JDK 从 5.0 开始引入注解机制</p>
+</blockquote>
+<p>Java 注解也叫做<font color = red>元数据</font>，以<font color=red> <code>@注解名</code></font> 的方式在代码中存在。它是一种在源代码中标注的特殊标记，<font color=red>可以标注在源代码中的类、构造器、方法、属性、参数上</font>。主要用于创建文档，跟踪代码中的依赖性，甚至执行基本编译时检查</p>
+<h3 id="格式"><a href="#格式" class="headerlink" title="格式"></a>格式</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> 注解名&#123;</span><br><span class="line">	<span class="comment">// 属性列表</span></span><br><span class="line">    <span class="keyword">public</span> 属性格式 属性名() <span class="keyword">default</span> 默认值;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h3><p>注解大致分为三类：自定义注解、JDK 内置注解、第三方框架提供的注解</p>
+<ul>
+<li>自定义注解：自己定义的注解</li>
+<li>JDK 内置注解：比如 <code>@Override</code> 检验方法重写、<code>@Deprecated</code> 标识方法过期等</li>
+<li>第三方框架提供的注解：如 Spring MVC 的 <code>@RequestMapping</code> 等</li>
+</ul>
+<h3 id="使用位置"><a href="#使用位置" class="headerlink" title="使用位置"></a>使用位置</h3><p>实际开发中，注解常常出现在类、方法、成员变量、形参位置。当然还有其他位置，这里不提及</p>
+<h3 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h3><p>如果说注释是写给人看的，那么注解就是写给程序看的。<strong>它更像一个标签，</strong>贴在一个类、一个方法或者字段上。它的目的是<strong>为当前读取该注解的程序提供判断依据及少量附加信息。</strong>比如程序只要读到加了 <code>@Test</code> 的方法，就知道该方法是待测试方法，又比如 <code>@Before</code> 注解，程序看到这个注解，就知道该方法要放在 <code>@Test</code> 方法之前执行。有时我们还可以通过注解属性，为将来读取这个注解的程序提供必要的附加信息，比如 <code>@RequestMapping(&quot;/user/info&quot;)</code> 提供了 Controller 某个接口的 URL 路径</p>
+<h3 id="级别"><a href="#级别" class="headerlink" title="级别"></a>级别</h3><p>注解和类、接口、枚举是同一级别的</p>
+<h2 id="使用反射读取注解信息"><a href="#使用反射读取注解信息" class="headerlink" title="使用反射读取注解信息"></a>使用反射读取注解信息</h2><p>上文说过，注解就像一个标签，是贴在程序代码上供另一个程序读取的。所以三者关系是：</p>
+<p><img src="https://cdgwsd.oss-cn-guangzhou.aliyuncs.com/img/202204261644529.jpeg" alt="img"></p>
+<p>要牢记，只要用到注解，必然有三角关系：</p>
+<ul>
+<li><strong>定义</strong>注解</li>
+<li><strong>使用</strong>注解</li>
+<li><strong>读取</strong>注解</li>
+</ul>
+<p>接下来我们通过反射读取注解</p>
+<h3 id="定义注解"><a href="#定义注解" class="headerlink" title="定义注解"></a>定义注解</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> MyAnnotation &#123;</span><br><span class="line">    String <span class="title function_">desc</span><span class="params">()</span> <span class="keyword">default</span> <span class="string">&quot;自定义注解&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="使用注解"><a href="#使用注解" class="headerlink" title="使用注解"></a>使用注解</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@MyAnnotation(desc = &quot;作用于类的注解&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Demo</span> &#123;</span><br><span class="line">    <span class="meta">@MyAnnotation(desc = &quot;作用于属性的注解&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@MyAnnotation</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">say</span><span class="params">()</span>&#123;</span><br><span class="line">        System.out.println(name);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="获取注解信息"><a href="#获取注解信息" class="headerlink" title="获取注解信息"></a>获取注解信息</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">AnnotationTest</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> NoSuchFieldException, NoSuchMethodException &#123;</span><br><span class="line">        Class&lt;Demo&gt; demoClass = Demo.class;</span><br><span class="line">        <span class="type">MyAnnotation</span> <span class="variable">annotationOnClass</span> <span class="operator">=</span> demoClass.getAnnotation(MyAnnotation.class);</span><br><span class="line">        System.out.println(annotationOnClass.desc());</span><br><span class="line"></span><br><span class="line">        <span class="type">Field</span> <span class="variable">field</span> <span class="operator">=</span> demoClass.getDeclaredField(<span class="string">&quot;name&quot;</span>);</span><br><span class="line">        <span class="type">MyAnnotation</span> <span class="variable">annotationOnField</span> <span class="operator">=</span> field.getAnnotation(MyAnnotation.class);</span><br><span class="line">        System.out.println(annotationOnField.desc());</span><br><span class="line"></span><br><span class="line">        <span class="type">Method</span> <span class="variable">method</span> <span class="operator">=</span> demoClass.getMethod(<span class="string">&quot;say&quot;</span>);</span><br><span class="line">        <span class="type">MyAnnotation</span> <span class="variable">annotationOnMethod</span> <span class="operator">=</span> method.getAnnotation(MyAnnotation.class);</span><br><span class="line">        System.out.println(annotationOnMethod.desc());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>运行代码，出现以下错误</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Exception in thread <span class="string">&quot;main&quot;</span> java.lang.NullPointerException</span><br><span class="line">	at me.zyp.AnnotationTest.main(AnnotationTest.java:<span class="number">16</span>)</span><br></pre></td></tr></table></figure>
+
+<p>这是因为注解其实有所谓“保留策略”的说法。大家学习 JSP 时，应该学过 <code>&lt;!-- --&gt;</code> 和 <code>&lt;%-- --&gt;</code> 的区别：前者可以在浏览器检查网页源代码时看到，而另一个在服务器端输出时就被抹去了。同样的，注解通过保留策略，控制自己可以保留到哪个阶段。保留策略也是通过注解实现，它属于元注解，也叫元数据</p>
+<h2 id="元注解"><a href="#元注解" class="headerlink" title="元注解"></a>元注解</h2><p><strong>所谓元注解，就是加在注解上的注解</strong>，作为程序员，常用的元注解：</p>
+<ul>
+<li><code>@Documented</code>：用于制作文档，不重要，可以忽略</li>
+<li><code>@Target</code>：加载注解上，限定该注解的使用位置。不写时，默认各个位置都可以</li>
+<li><code>@Retention</code>：注解保留策略</li>
+</ul>
+<h3 id="注解保留策略"><a href="#注解保留策略" class="headerlink" title="注解保留策略"></a>注解保留策略</h3><p>注解保留策略有三种：Source、Class、Runtime</p>
+<p><img src="https://cdgwsd.oss-cn-guangzhou.aliyuncs.com/img/202204261711519.jpeg" alt="img"></p>
+<p>一般来说，普通开发者使用注解的时机都是运行时，比如反射读取注解（也有类似 Lombok 这类编译期注解）。既然反射是运行时调用，那就要求注解的信息必须保留到虚拟机将 .class 文件加载到内存为止。如果你需要反射读取注解，却把保留策略设置为 RetentionPolicy.SOURCE、RetentionPolicy.CLASS，那就读取不到了</p>
+<h3 id="加了保留策略的自定义注解"><a href="#加了保留策略的自定义注解" class="headerlink" title="加了保留策略的自定义注解"></a>加了保留策略的自定义注解</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Retention(RUNTIME)</span></span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> MyAnnotation &#123;</span><br><span class="line">    String <span class="title function_">desc</span><span class="params">()</span> <span class="keyword">default</span> <span class="string">&quot;自定义注解&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>运行测试</p>
+<figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">作用于类的注解</span><br><span class="line">作用于属性的注解</span><br><span class="line">自定义注解</span><br></pre></td></tr></table></figure>
+
+<h2 id="注解属性数据类型"><a href="#注解属性数据类型" class="headerlink" title="注解属性数据类型"></a>注解属性数据类型</h2><ul>
+<li>八种基本数据类型</li>
+<li>String</li>
+<li>枚举</li>
+<li>Class</li>
+<li>注解类型</li>
+<li>以上类型的一维数组</li>
+</ul>
+<h3 id="value-属性"><a href="#value-属性" class="headerlink" title="value 属性"></a>value 属性</h3><p>如果注解的属性只有一个，且叫value，那么使用该注解时，可以不用指定属性名，因为默认就是给value赋值</p>
+<p>但是注解的属性如果有多个，无论是否叫value，都必须写明属性的对应关系</p>
+<h3 id="数组属性"><a href="#数组属性" class="headerlink" title="数组属性"></a>数组属性</h3><p>如果数组的元素只有一个，可以省略花括号 {}</p>
+<h2 id="自定义-Junit"><a href="#自定义-Junit" class="headerlink" title="自定义 Junit"></a>自定义 Junit</h2><h3 id="定义注解-1"><a href="#定义注解-1" class="headerlink" title="定义注解"></a>定义注解</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Target(ElementType.METHOD)</span></span><br><span class="line"><span class="meta">@Retention(RetentionPolicy.RUNTIME)</span></span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> MyTest &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="使用注解-1"><a href="#使用注解-1" class="headerlink" title="使用注解"></a>使用注解</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">JunitTest</span> &#123;</span><br><span class="line">    <span class="meta">@MyTest</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">say</span><span class="params">()</span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;JunitTest&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MyJunitFrameWork</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> InstantiationException, IllegalAccessException, InvocationTargetException &#123;</span><br><span class="line">        Class&lt;JunitTest&gt; junitTestClass = JunitTest.class;</span><br><span class="line">        <span class="type">JunitTest</span> <span class="variable">junitTest</span> <span class="operator">=</span> junitTestClass.newInstance();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 获取所有方法</span></span><br><span class="line">        Method[] declaredMethods = junitTestClass.getDeclaredMethods();</span><br><span class="line">        <span class="keyword">for</span> (Method method:declaredMethods)&#123;</span><br><span class="line">            <span class="comment">// 判断是否加了@MyTest注解</span></span><br><span class="line">            <span class="keyword">if</span> (method.isAnnotationPresent(MyTest.class))&#123;</span><br><span class="line">                method.invoke(junitTest);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/03/8333b8d7aa3c.html" data-id="cltptjc9y0023tovrfob2f3ts" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-反射" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/03/ed6e87d756a7.html" class="article-date">
+  <time class="dt-published" datetime="2024-03-13T13:09:57.926Z" itemprop="datePublished">2024-03-13</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Java/">Java</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="反射"><a href="#反射" class="headerlink" title="反射"></a>反射</h1><p>Reflation（反射）被视为<font color="red">动态语言</font>的关键</p>
+<p>反射允许程序在执行期间通过 <code>Reflaction API</code> 取得任何类的内部信息（比如构造器、成员变量、成员方法）等，并能直接操作任意对象的内部属性及方法</p>
+<p>Java 虚拟机加载完类之后会在<font color="red">堆的方法区</font>中产生了一个 Class 类型的对象（一个 Class 文件对应一个 Class 类型对象），这个对象就包含了类的完整结构信息，我们可以通过这个对象看到类的结构信息</p>
+<h2 id="类加载"><a href="#类加载" class="headerlink" title="类加载"></a>类加载</h2><p>java 程序经过 <code>javac.exe</code> 编译之后会生成一个或多个字节码文件（.class 文件）</p>
+<p>可以使用 <code>java.exe</code> 对某个字节码文件进行解释运行，相当于将字节码文件加载到内存中，此过程就叫做<font color=red>类加载</font></p>
+<p>加载到内存中的类，就称为<font color=red>运行时类</font>，此运行时类就是 Class 类的一个实例</p>
+<p>类加载会经过<font color=red>加载、链接、初始化</font>三个步骤</p>
+<ul>
+<li><p>加载</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">通过类加载器（ClassLoader）将 class 文件加载到内存中，并为之创建一个 <span class="code">`java.lang.Class`</span> 对象</span><br><span class="line"></span><br><span class="line">任何类在使用时，系统都会为之创建一个 java.lang.Class 对象</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>链接</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">将类的二进制数据合并到 JVM 的运行环境中</span><br><span class="line"></span><br><span class="line">链接阶段包括三个步骤：验证、准备、解析</span><br><span class="line"></span><br><span class="line"><span class="bullet">-</span> 验证：确保加载的 Java 类符合 Java 语言规范</span><br><span class="line"><span class="bullet">-</span> 准备：为类的静态变量分配内存，并设置默认初始值</span><br><span class="line"><span class="bullet">-</span> 解析：将类、接口、字段和方法的符号引用转换为直接引用</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>初始化</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">在这一步，JVM 执行类的初始化代码，包括静态变量的赋值和静态代码块的执行。这是类加载过程的最后一步</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="符号引用与直接引用"><a href="#符号引用与直接引用" class="headerlink" title="符号引用与直接引用"></a>符号引用与直接引用</h3><ul>
+<li><p>符号引用</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">在 Java 源代码中引用类、接口、字段或方法时使用的符号，它们并不直接指向内存中的数据，而是以符号的形式表示。例如，当在代码中引用一个类的方法时，这个引用就是符号引用</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>直接引用</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">这是指向内存地址的真实指针，可以直接访问目标对象的数据。与符号引用不同，直接引用是具体的内存地址或偏移量</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>举例：假设我们有两个类，一个是 <code>ClassA</code>，另一个是 <code>ClassB</code>。<code>ClassB</code> 包含一个静态方法，而 <code>ClassA</code> 通过符号引用调用 <code>ClassB</code> 的这个静态方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ClassA.java</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ClassA</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="comment">// 通过符号引用调用ClassB的静态方法</span></span><br><span class="line">        ClassB.staticMethod();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// ClassB.java</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ClassB</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">staticMethod</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;ClassB&#x27;s static method is called.&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在这个例子中，<code>ClassA</code> 中的  <code>ClassB.staticMethod()</code> 是一个符号引用，因为在编译时无法确定 <code>staticMethod</code> 的具体地址</p>
+</li>
+</ul>
+<h3 id="加载步骤"><a href="#加载步骤" class="headerlink" title="加载步骤"></a>加载步骤</h3><ol>
+<li>假如类还未被加载和连接，则程序先加载并连接该类</li>
+<li>假如该类的直接父类还未被初始化，则先初始化其直接父类</li>
+<li>假如类中有初始化语句，则系统依次执行这些初始化语句</li>
+</ol>
+<p>注意：在执行第 2 个步骤时，系统对直接父类的初始化步骤也遵循初始化步骤 1-3</p>
+<h3 id="加载时机"><a href="#加载时机" class="headerlink" title="加载时机"></a>加载时机</h3><ul>
+<li>创建类的实例：当通过关键字 <code>new</code> 实例化对象时，对应的类会被加载和初始化</li>
+<li>调用类静态方法</li>
+<li>访问静态变量，或为静态变量赋值</li>
+<li>使用反射获取某个类或接口对应的 <code>java.lang.Class</code> 对象</li>
+<li>初始化某个类的子类：当一个类的子类被初始化时，其父类也会被加载和初始化</li>
+<li>直接使用 <code>java.exe</code> 命令来运行某个类</li>
+</ul>
+<p>在<font color=red>第一次</font>通过上述方式操作类或接口时，都会加载被操作的类或接口</p>
+<h2 id="类加载器"><a href="#类加载器" class="headerlink" title="类加载器"></a>类加载器</h2><p>类加载器用于将 class 文件字节码内容加载到内存中，并将这些静态数据转换成<font color=red>方法区的运行时数据结构</font>，然后在堆中生成一个代表这个类的 <code>java.lang.Class</code> 对象，作为方法区中类数据的访问入口</p>
+<p>标准的 JavaSE 类加载器可以按照要求查找类，但一旦某个类被加载到类加载器中，它将维持（缓存）一段时间。JVM 垃圾回收机制可以回收这些 Class 对象</p>
+<h3 id="类加载器分类"><a href="#类加载器分类" class="headerlink" title="类加载器分类"></a>类加载器分类</h3><ul>
+<li>Bootstap Class Loader：JVM 自带类加载器，负责 Java 平台核心库，用来装载核心类库，该加载器无法直接获取</li>
+<li>Extension Class Loader：负责 <code>jre/lib/ext</code> 目录下的 jar 包或 <code>-D java.ext.dirs</code> 指定目录下的 jar 包装入工作库</li>
+<li>Application Class Loader：系统类加载器，负责 <code>java -classpath</code> 或 <code>-D java.class.path</code> 所指的目录下的类与 jar 包装入工作，是最常用的类加载器</li>
+</ul>
+<h3 id="使用类加载器读取配置文件"><a href="#使用类加载器读取配置文件" class="headerlink" title="使用类加载器读取配置文件"></a>使用类加载器读取配置文件</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> InputStream <span class="title function_">getResourceAsStream</span><span class="params">(String path)</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">TestClassLoader</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">        <span class="type">InputStream</span> <span class="variable">inputStream</span> <span class="operator">=</span> TestClassLoader.class.getClassLoader().getResourceAsStream(<span class="string">&quot;test.properties&quot;</span>);</span><br><span class="line">        <span class="type">Properties</span> <span class="variable">properties</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Properties</span>();</span><br><span class="line">        properties.load(inputStream);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="获取-Class-实例的方式"><a href="#获取-Class-实例的方式" class="headerlink" title="获取 Class 实例的方式"></a>获取 Class 实例的方式</h2><ul>
+<li><p>调用运行时类属性</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Class</span> <span class="variable">studentClass</span> <span class="operator">=</span> Student.class</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>通过运行时类的对象的 getClass 方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Student</span> <span class="variable">student</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Student</span>;</span><br><span class="line"><span class="type">Class</span> <span class="variable">studentClass</span> <span class="operator">=</span> student.getClass();</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Class.forName() 方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Class</span> <span class="variable">studentClass</span> <span class="operator">=</span> Class.forName(<span class="string">&quot;com.zyp.Student&quot;</span>);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>类加载器</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">ClassLoader</span> <span class="variable">classLoader</span> <span class="operator">=</span> Reflact.class.getClassLoader();</span><br><span class="line"><span class="type">Class</span> <span class="variable">studentClass</span> <span class="operator">=</span> classLoader.loadClass(<span class="string">&quot;com.zyp.Student&quot;</span>):</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p><font color=red>Class.forName 获取类的实例时会执行类的静态方法，而类加载器不会</font></p>
+<h2 id="反射-1"><a href="#反射-1" class="headerlink" title="反射"></a>反射</h2><h3 id="通过反射获取构造方法"><a href="#通过反射获取构造方法" class="headerlink" title="通过反射获取构造方法"></a>通过反射获取构造方法</h3><p>在反射中，通过 <code>Constructor</code> 类表示构造方法，在 Class 中有四个方法可以获取到类的构造方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 返回包含所有公共构造方法对象的数组</span></span><br><span class="line"><span class="keyword">public</span> Constructor&lt;?&gt;[] getConstructors()</span><br><span class="line"><span class="comment">// 返回包含所有构造方法对象的数组</span></span><br><span class="line"><span class="keyword">public</span> Constructor&lt;?&gt;[] getDeclaredConstructors()</span><br><span class="line"><span class="comment">// 返回单个公共构造方法对象</span></span><br><span class="line"><span class="keyword">public</span> Constructor&lt;T&gt; <span class="title function_">getConstructor</span><span class="params">(Class&lt;?&gt;... parameterTypes)</span></span><br><span class="line"><span class="comment">// 返回单个构造方法对象</span></span><br><span class="line"><span class="keyword">public</span> Constructor&lt;T&gt; <span class="title function_">getDeclaredConstructor</span><span class="params">(Class&lt;?&gt;... parameterTypes)</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>测试</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">Class&lt;Student&gt; studentClass = Student.class;</span><br><span class="line"></span><br><span class="line">Constructor&lt;?&gt;[] constructors = studentClass.getConstructors();</span><br><span class="line"><span class="keyword">for</span> (Constructor constructor : constructors)&#123;</span><br><span class="line">    System.out.println(constructor);</span><br><span class="line">&#125;</span><br><span class="line">System.out.println(<span class="string">&quot;--------------------------&quot;</span>);</span><br><span class="line"></span><br><span class="line">Constructor&lt;?&gt;[] declaredConstructors = studentClass.getDeclaredConstructors();</span><br><span class="line"><span class="keyword">for</span> (Constructor constructor:declaredConstructors)&#123;</span><br><span class="line">    System.out.println(constructor);</span><br><span class="line">&#125;</span><br><span class="line">System.out.println(<span class="string">&quot;--------------------------&quot;</span>);</span><br><span class="line"></span><br><span class="line">Constructor&lt;Student&gt; constructor = studentClass.getConstructor();</span><br><span class="line">System.out.println(constructor);</span><br><span class="line">System.out.println(<span class="string">&quot;--------------------------&quot;</span>);</span><br><span class="line"></span><br><span class="line">Constructor&lt;Student&gt; declaredConstructor = studentClass.getDeclaredConstructor(String.class, <span class="type">int</span>.class, String.class);</span><br><span class="line">System.out.println(declaredConstructor);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>输出</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">public com.zyp.Student()</span></span><br><span class="line"><span class="section">--------------------------</span></span><br><span class="line">public com.zyp.Student()</span><br><span class="line"><span class="section">com.zyp.Student(java.lang.String,int,java.lang.String)</span></span><br><span class="line"><span class="section">--------------------------</span></span><br><span class="line"><span class="section">public com.zyp.Student()</span></span><br><span class="line"><span class="section">--------------------------</span></span><br><span class="line">com.zyp.Student(java.lang.String,int,java.lang.String)</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="利用反射创建对象"><a href="#利用反射创建对象" class="headerlink" title="利用反射创建对象"></a>利用反射创建对象</h3><p><code>Constructor</code> 类提供了 <code>newInstance</code> 方法用于创建对象</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Student</span> <span class="variable">student</span> <span class="operator">=</span> constructor.newInstance();</span><br><span class="line">System.out.println(student);</span><br><span class="line">System.out.println(<span class="string">&quot;--------------------------&quot;</span>);</span><br><span class="line"><span class="type">Student</span> <span class="variable">student1</span> <span class="operator">=</span> declaredConstructor.newInstance(<span class="string">&quot;张三&quot;</span>, <span class="number">18</span>, <span class="string">&quot;北京&quot;</span>);</span><br><span class="line">System.out.println(student1);</span><br></pre></td></tr></table></figure>
+
+<h3 id="通过反射获取成员变量"><a href="#通过反射获取成员变量" class="headerlink" title="通过反射获取成员变量"></a>通过反射获取成员变量</h3><p>在反射中，通过 <code>Fields</code> 类表示成员变量，在 Class 中有四个方法可以获取到类的成员变量</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 返回包含所有公共成员变量对象的数组</span></span><br><span class="line"><span class="keyword">public</span> Field[] getFields();</span><br><span class="line"><span class="comment">// 返回包含所有成员变量对象的数组</span></span><br><span class="line"><span class="keyword">public</span> Field[] getDeclaredFields();</span><br><span class="line"><span class="comment">// 返回单个公共成员变量对象</span></span><br><span class="line"><span class="keyword">public</span> Field <span class="title function_">getField</span><span class="params">(String name)</span>;</span><br><span class="line"><span class="comment">// 返回单个成员变量对象</span></span><br><span class="line"><span class="keyword">public</span> Field <span class="title function_">getDeclaredField</span><span class="params">(String name)</span>;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>测试</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">Class&lt;Student&gt; studentClass = Student.class;</span><br><span class="line">Field[] fields = studentClass.getFields();</span><br><span class="line"><span class="keyword">for</span> (Field field : fields) &#123;</span><br><span class="line">    System.out.println(field);</span><br><span class="line">&#125;</span><br><span class="line">System.out.println(<span class="string">&quot;--------------------------&quot;</span>);</span><br><span class="line"></span><br><span class="line">Field[] declaredFields = studentClass.getDeclaredFields();</span><br><span class="line"><span class="keyword">for</span> (Field field : declaredFields) &#123;</span><br><span class="line">    System.out.println(field);</span><br><span class="line">&#125;</span><br><span class="line">System.out.println(<span class="string">&quot;--------------------------&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="type">Field</span> <span class="variable">address</span> <span class="operator">=</span> studentClass.getField(<span class="string">&quot;address&quot;</span>);</span><br><span class="line">System.out.println(address);</span><br><span class="line">System.out.println(<span class="string">&quot;--------------------------&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="type">Field</span> <span class="variable">name</span> <span class="operator">=</span> studentClass.getDeclaredField(<span class="string">&quot;name&quot;</span>);</span><br><span class="line">System.out.println(name);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>输出</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">public java.lang.String com.zyp.Student.address</span></span><br><span class="line"><span class="section">--------------------------</span></span><br><span class="line">private java.lang.String com.zyp.Student.name</span><br><span class="line">int com.zyp.Student.age</span><br><span class="line"><span class="section">public java.lang.String com.zyp.Student.address</span></span><br><span class="line"><span class="section">--------------------------</span></span><br><span class="line"><span class="section">public java.lang.String com.zyp.Student.address</span></span><br><span class="line"><span class="section">--------------------------</span></span><br><span class="line">private java.lang.String com.zyp.Student.name</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="利用反射为对象成员变量赋值"><a href="#利用反射为对象成员变量赋值" class="headerlink" title="利用反射为对象成员变量赋值"></a>利用反射为对象成员变量赋值</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">Constructor&lt;Student&gt; constructor = studentClass.getConstructor();</span><br><span class="line"><span class="type">Student</span> <span class="variable">student</span> <span class="operator">=</span> constructor.newInstance();</span><br><span class="line"><span class="type">Field</span> <span class="variable">studentName</span> <span class="operator">=</span> studentClass.getDeclaredField(<span class="string">&quot;name&quot;</span>);</span><br><span class="line"><span class="comment">// 取消检查</span></span><br><span class="line">studentName.setAccessible(<span class="literal">true</span>);</span><br><span class="line">studentName.set(student, <span class="string">&quot;张三&quot;</span>);</span><br><span class="line"><span class="type">Field</span> <span class="variable">studentAddress</span> <span class="operator">=</span> studentClass.getField(<span class="string">&quot;address&quot;</span>);</span><br><span class="line">studentAddress.set(student, <span class="string">&quot;北京&quot;</span>);</span><br><span class="line">studentName.setAccessible(<span class="literal">true</span>);</span><br><span class="line"><span class="type">Field</span> <span class="variable">studentAge</span> <span class="operator">=</span> studentClass.getDeclaredField(<span class="string">&quot;age&quot;</span>);</span><br><span class="line">studentAge.set(student, <span class="number">20</span>);</span><br><span class="line">System.out.println(student);</span><br></pre></td></tr></table></figure>
+
+<h3 id="通过反射获取成员方法"><a href="#通过反射获取成员方法" class="headerlink" title="通过反射获取成员方法"></a>通过反射获取成员方法</h3><p>在反射中，通过 <code>Method</code> 类表示成员方法，在 Class 中有四个方法可以获取到类的成员方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 返回包含所有公共成员方法对象的数组</span></span><br><span class="line"><span class="keyword">public</span> Method[] getMethods();</span><br><span class="line"><span class="comment">// 返回包含所有成员方法对象的数组</span></span><br><span class="line"><span class="keyword">public</span> Method[] getDeclaredMethods();</span><br><span class="line"><span class="comment">// 返回单个公共成员方法对象</span></span><br><span class="line"><span class="keyword">public</span> Method <span class="title function_">getMethod</span><span class="params">(String name, Class&lt;?&gt;... parameterTypes)</span>;</span><br><span class="line"><span class="comment">// 返回单个成员方法对象</span></span><br><span class="line"><span class="keyword">public</span> Method <span class="title function_">getDeclaredMethod</span><span class="params">(String name, Class&lt;?&gt;... parameterTypes)</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="反射调用对象方法"><a href="#反射调用对象方法" class="headerlink" title="反射调用对象方法"></a>反射调用对象方法</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Constructor&lt;Student&gt; constructor = studentClass.getDeclaredConstructor(String.class, <span class="type">int</span>.class, String.class);</span><br><span class="line"><span class="type">Student</span> <span class="variable">student</span> <span class="operator">=</span> constructor.newInstance(<span class="string">&quot;张三&quot;</span>, <span class="number">20</span>, <span class="string">&quot;北京&quot;</span>);</span><br><span class="line"><span class="type">Method</span> <span class="variable">studentSay</span> <span class="operator">=</span> studentClass.getMethod(<span class="string">&quot;say&quot;</span>);</span><br><span class="line">studentSay.invoke(student);</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/03/ed6e87d756a7.html" data-id="cltptjb5m0001tovrgh63cmm4" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java-Web/">Java Web</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Oracle/">Oracle</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Spring/">Spring</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Spring-Boot/">Spring Boot</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Spring-MVC/">Spring MVC</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%97%A5%E8%AE%B0/">日记</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/JDBC/" rel="tag">JDBC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Servlet/" rel="tag">Servlet</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BA%8B%E5%8A%A1/" rel="tag">事务</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5%E6%B1%A0/" rel="tag">数据库连接池</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/JDBC/" style="font-size: 20px;">JDBC</a> <a href="/tags/Servlet/" style="font-size: 10px;">Servlet</a> <a href="/tags/%E4%BA%8B%E5%8A%A1/" style="font-size: 10px;">事务</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5%E6%B1%A0/" style="font-size: 10px;">数据库连接池</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">March 2024</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/03/4a9a07cbb3ef.html">Servlet 获取请求参数</a>
+          </li>
+        
+          <li>
+            <a href="/2024/03/ad9e7716878b.html">JDBC CRUD</a>
+          </li>
+        
+          <li>
+            <a href="/2024/03/112fd92327c2.html">JDBC API</a>
+          </li>
+        
+          <li>
+            <a href="/2024/03/0c61ff4ad6c6.html">JDBC 事物</a>
+          </li>
+        
+          <li>
+            <a href="/2024/03/0e36029b04f7.html">JDBC 批处理</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Apache DBUtils | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Apache DBUtils学习 Apache DBUtils 之前我们先回顾一下传统的 JDBC 有什么缺点：  返回的结果集 ResultSet 与 Connection 是关联的，当调用 Connection 的 close 方法关闭连接后（放回连接池），ResultSet 对象就不能用了。如果在关闭连接后仍调用ResultSet，会报异常，如下图所示 :    即使获取完 ResultSe">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Apache DBUtils">
+<meta property="og:url" content="http://example.com/2024/03/ff4889513449.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Apache DBUtils学习 Apache DBUtils 之前我们先回顾一下传统的 JDBC 有什么缺点：  返回的结果集 ResultSet 与 Connection 是关联的，当调用 Connection 的 close 方法关闭连接后（放回连接池），ResultSet 对象就不能用了。如果在关闭连接后仍调用ResultSet，会报异常，如下图所示 :    即使获取完 ResultSe">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://cdgwsd.oss-cn-guangzhou.aliyuncs.com/img/202403122023050.png">
+<meta property="og:image" content="https://cdgwsd.oss-cn-guangzhou.aliyuncs.com/img/202403122029560.png">
+<meta property="og:image" content="c:\Users\ZYP\AppData\Roaming\Typora\typora-user-images\image-20240312205221034.png">
+<meta property="article:published_time" content="2024-03-13T13:10:25.000Z">
+<meta property="article:modified_time" content="2024-03-13T13:11:08.670Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="JDBC">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdgwsd.oss-cn-guangzhou.aliyuncs.com/img/202403122023050.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-JDBC/Apache DBUtils" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/03/ff4889513449.html" class="article-date">
+  <time class="dt-published" datetime="2024-03-13T13:10:25.000Z" itemprop="datePublished">2024-03-13</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Java-Web/">Java Web</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      Apache DBUtils
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="Apache-DBUtils"><a href="#Apache-DBUtils" class="headerlink" title="Apache DBUtils"></a>Apache DBUtils</h1><p>学习 <code>Apache DBUtils</code> 之前我们先回顾一下传统的 JDBC 有什么缺点：</p>
+<ol>
+<li><p>返回的结果集 ResultSet 与 Connection 是关联的，当调用 Connection 的 close 方法关闭连接后（放回连接池），ResultSet 对象就不能用了。如果在关闭连接后仍调用ResultSet，会报异常，如下图所示 : </p>
+<p><img src="https://cdgwsd.oss-cn-guangzhou.aliyuncs.com/img/202403122023050.png" alt="img"></p>
+</li>
+<li><p>即使获取完 ResultSet 的数据之后再关闭连接，ResultSet 也仅仅使用了一次，<font color=red>不利于数据的管理</font></p>
+</li>
+<li><p>ResultSet 获取结果只能通过 <code>getXxx(int|String)</code> 或 <code>getObject(int|String)</code> 方法，不符合日常代码习惯</p>
+</li>
+</ol>
+<p>而 <code>Apache DBUtils</code> 就是为了解决上述问题出现爱你的</p>
+<blockquote>
+<p>Apache DBUtils 通过创造一个 Java 类用于对应一张表，该类中所有的属性对应表中的所有字段，即该类的每个对象都表示了表中的一条记录。查询到表中有几条记录，就创建几个该类的实例，不同实例的属性可以自行设置。这样一来，我们只需要将该类的对象存放在 ArrayList 集合中，就实现了数据的“迁移”，结果集中的数据也得以复用</p>
+</blockquote>
+<p><img src="https://cdgwsd.oss-cn-guangzhou.aliyuncs.com/img/202403122029560.png" alt="image-20240312202952102"></p>
+<h2 id="API"><a href="#API" class="headerlink" title="API"></a>API</h2><p>dbutils 中常用类与接口如下：</p>
+<ul>
+<li><strong>QueryRunner</strong> 类 : 该类封装了SQL的执行，并且是线程安全的；可以实现增删查改，并且支持批处理</li>
+<li><strong>ResultSetHandler</strong> 接口 : 该接口用于处理 <code>java.sql.ResultSet</code>，将数据按照要求转换为另一种格式。常见实现类如下<ul>
+<li><strong>ArrayHandler</strong> : 将结果集中的第一行数据转换成对象数组</li>
+<li><strong>ArrayListHandler</strong> : 将结果集中的每一行数据转换成对象数组，再存入 List 中</li>
+<li><strong>BeanHandler</strong> : 将结果集中的第一行数据封装到一个对应的 JavaBean 实例中（适用于返回单条记录的情况）</li>
+<li><strong>BeanListHandler</strong> : 将结果集中的每一行数据都封装到对应的 JavaBean 实例中，再存放到 List 集合中</li>
+<li><strong>ColumnListHandler</strong> : 将结果集中某一列的数据存放到 List 中</li>
+<li><strong>KeyedHandler(name)</strong> : 将结果集中的每行数据都封装到 Map 里，然后将所有的map再单独存放到一个 map 中，其 key 为指定的key</li>
+<li><strong>MapHandler</strong> : 将结果集中的第一行数据封装到一个 Map 里，key 是列名，value 就是对应的值</li>
+<li><strong>MapListHandler</strong> : 将结果集中的每一行数据都封装到 Map 里，再存入 List</li>
+<li><strong>ScalarHandler</strong> : 将结果集中的一列映射为一个 Object 对象，适用于返回单行单列的情况</li>
+</ul>
+</li>
+</ul>
+<h2 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h2><p>表结构</p>
+<p><img src="C:\Users\ZYP\AppData\Roaming\Typora\typora-user-images\image-20240312205221034.png" alt="image-20240312205221034"></p>
+<p>实体类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Getter</span></span><br><span class="line"><span class="meta">@Setter</span></span><br><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="meta">@ToString</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">User</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> id;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> age;</span><br><span class="line">    <span class="keyword">private</span> <span class="type">double</span> salary;</span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> sex;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>测试</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">testDBUtils</span><span class="params">()</span> <span class="keyword">throws</span> Exception&#123;</span><br><span class="line">    <span class="type">Properties</span> <span class="variable">properties</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Properties</span>();</span><br><span class="line">    properties.load(<span class="built_in">this</span>.getClass().getClassLoader().getResourceAsStream(<span class="string">&quot;druid.properties&quot;</span>));</span><br><span class="line">    <span class="type">DataSource</span> <span class="variable">dataSource</span> <span class="operator">=</span> DruidDataSourceFactory.createDataSource(properties);</span><br><span class="line">    <span class="keyword">try</span> (<span class="type">Connection</span> <span class="variable">connection</span> <span class="operator">=</span> dataSource.getConnection()) &#123;</span><br><span class="line">        <span class="type">String</span> <span class="variable">sql</span> <span class="operator">=</span> <span class="string">&quot;select * from t_user where id = ?&quot;</span>;</span><br><span class="line">        <span class="type">QueryRunner</span> <span class="variable">queryRunner</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">QueryRunner</span>();</span><br><span class="line">        List&lt;User&gt; userList = (List&lt;User&gt;) queryRunner.query(connection, sql, <span class="keyword">new</span> <span class="title class_">BeanListHandler</span>(User.class), <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; userList.size(); i++) &#123;</span><br><span class="line">            <span class="comment">// User(id=1, name=lisi, age=1, salary=0.0, sex=0)</span></span><br><span class="line">            System.out.println(userList.get(i));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="源码解析"><a href="#源码解析" class="headerlink" title="源码解析"></a>源码解析</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> &lt;T&gt; T <span class="title function_">query</span><span class="params">(Connection conn, <span class="type">boolean</span> closeConn, String sql, ResultSetHandler&lt;T&gt; rsh, Object... params)</span> &#123;</span><br><span class="line">    <span class="type">PreparedStatement</span> <span class="variable">stmt</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">    <span class="type">ResultSet</span> <span class="variable">rs</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">    <span class="type">T</span> <span class="variable">result</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="comment">// 调用 conn.preparedStatement() 方法创建 prepareStatement</span></span><br><span class="line">        stmt = <span class="built_in">this</span>.prepareStatement(conn, sql);</span><br><span class="line">        <span class="comment">// 设置参数</span></span><br><span class="line">        <span class="built_in">this</span>.fillStatement(stmt, params);</span><br><span class="line">        <span class="comment">// 获取结果集</span></span><br><span class="line">        rs = <span class="built_in">this</span>.wrap(stmt.executeQuery());</span><br><span class="line">        <span class="comment">// 根据 Handler 类型针对结果集做处理</span></span><br><span class="line">        result = rsh.handle(rs);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (SQLException e) &#123;</span><br><span class="line">        <span class="built_in">this</span>.rethrow(e, sql, params);</span><br><span class="line">    &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">        <span class="comment">// 关闭连接</span></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            close(rs);</span><br><span class="line">        &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">            close(stmt);</span><br><span class="line">            <span class="keyword">if</span> (closeConn) &#123;</span><br><span class="line">                close(conn);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">	<span class="comment">// 返回结果集</span></span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>BeanListHandler 处理结果集</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> &lt;T&gt; List&lt;T&gt; <span class="title function_">toBeanList</span><span class="params">(ResultSet rs, Class&lt;? extends T&gt; type)</span> <span class="keyword">throws</span> SQLException &#123;</span><br><span class="line">    List&lt;T&gt; results = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;T&gt;();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (!rs.next()) &#123;</span><br><span class="line">        <span class="keyword">return</span> results;</span><br><span class="line">    &#125;</span><br><span class="line">	<span class="comment">// 获取类信息</span></span><br><span class="line">    PropertyDescriptor[] props = <span class="built_in">this</span>.propertyDescriptors(type);</span><br><span class="line">    <span class="comment">// 获取结果集元信息</span></span><br><span class="line">    <span class="type">ResultSetMetaData</span> <span class="variable">rsmd</span> <span class="operator">=</span> rs.getMetaData();</span><br><span class="line">    <span class="type">int</span>[] columnToProperty = <span class="built_in">this</span>.mapColumnsToProperties(rsmd, props);</span><br><span class="line">    <span class="keyword">do</span> &#123;     </span><br><span class="line">        <span class="comment">// 实例化对象</span></span><br><span class="line">        results.add(<span class="built_in">this</span>.createBean(rs, type, props, columnToProperty));</span><br><span class="line">    &#125; <span class="keyword">while</span> (rs.next());</span><br><span class="line">    <span class="keyword">return</span> results;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="DML"><a href="#DML" class="headerlink" title="DML"></a>DML</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">testDBUtilsDML</span><span class="params">()</span> <span class="keyword">throws</span> Exception&#123;</span><br><span class="line">    <span class="type">Properties</span> <span class="variable">properties</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Properties</span>();</span><br><span class="line">    properties.load(<span class="built_in">this</span>.getClass().getClassLoader().getResourceAsStream(<span class="string">&quot;druid.properties&quot;</span>));</span><br><span class="line">    <span class="type">DataSource</span> <span class="variable">dataSource</span> <span class="operator">=</span> DruidDataSourceFactory.createDataSource(properties);</span><br><span class="line">    <span class="keyword">try</span> (<span class="type">Connection</span> <span class="variable">connection</span> <span class="operator">=</span> dataSource.getConnection()) &#123;</span><br><span class="line">        <span class="type">String</span> <span class="variable">sql</span> <span class="operator">=</span> <span class="string">&quot;insert into t_user(name) values(?)&quot;</span>;</span><br><span class="line">        <span class="type">QueryRunner</span> <span class="variable">queryRunner</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">QueryRunner</span>();</span><br><span class="line">        <span class="comment">// 返回自增列</span></span><br><span class="line">        <span class="type">Long</span> <span class="variable">id</span> <span class="operator">=</span> queryRunner.insert(connection, sql, <span class="keyword">new</span> <span class="title class_">ScalarHandler</span>&lt;&gt;(), <span class="string">&quot;zhansan&quot;</span>);</span><br><span class="line">        System.out.println(id);</span><br><span class="line">        <span class="type">User</span> <span class="variable">user</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">User</span>();</span><br><span class="line">        user.setAge(<span class="number">20</span>);</span><br><span class="line">        user.setName(<span class="string">&quot;zhangsan&quot;</span>);</span><br><span class="line">        user.setId(Math.toIntExact(id));</span><br><span class="line">        sql = <span class="string">&quot;update t_user set name = ?,age = ? where id = ?&quot;</span>;</span><br><span class="line">        <span class="comment">// 返回受影响行数</span></span><br><span class="line">        <span class="type">int</span> <span class="variable">update</span> <span class="operator">=</span> queryRunner.update(connection, sql, user.getName(), user.getAge(), user.getId());</span><br><span class="line">        System.out.println(update);</span><br><span class="line">        sql = <span class="string">&quot;delete from t_user where id = ?&quot;</span>;</span><br><span class="line">        <span class="comment">// 返回受影响行数</span></span><br><span class="line">        update = queryRunner.update(connection, sql, id);</span><br><span class="line">        System.out.println(update);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/03/ff4889513449.html" data-id="cltptjb6i0006tovrcbqigaf1" data-title="Apache DBUtils" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JDBC/" rel="tag">JDBC</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2024/03/4f3efe834772.html" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          JDBC 简介
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2024/03/d83729c39df8.html" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java-Web/">Java Web</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Oracle/">Oracle</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Spring/">Spring</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Spring-Boot/">Spring Boot</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Spring-MVC/">Spring MVC</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%97%A5%E8%AE%B0/">日记</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/JDBC/" rel="tag">JDBC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Servlet/" rel="tag">Servlet</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BA%8B%E5%8A%A1/" rel="tag">事务</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5%E6%B1%A0/" rel="tag">数据库连接池</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/JDBC/" style="font-size: 20px;">JDBC</a> <a href="/tags/Servlet/" style="font-size: 10px;">Servlet</a> <a href="/tags/%E4%BA%8B%E5%8A%A1/" style="font-size: 10px;">事务</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5%E6%B1%A0/" style="font-size: 10px;">数据库连接池</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">March 2024</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/03/4a9a07cbb3ef.html">Servlet 获取请求参数</a>
+          </li>
+        
+          <li>
+            <a href="/2024/03/ad9e7716878b.html">JDBC CRUD</a>
+          </li>
+        
+          <li>
+            <a href="/2024/03/112fd92327c2.html">JDBC API</a>
+          </li>
+        
+          <li>
+            <a href="/2024/03/0c61ff4ad6c6.html">JDBC 事物</a>
+          </li>
+        
+          <li>
+            <a href="/2024/03/0e36029b04f7.html">JDBC 批处理</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

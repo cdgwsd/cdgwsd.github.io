@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>JDBC API | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="JDBC APIDriver Manager驱动管理类getConnection(url,user,pwd) 获取数据库连接Connection数据库连接对象createStatement() 创建 Statement 对象preparedStatement(String sql) 生成预处理对象Statement执行静态 SQL 语句并返回执行结果int executeUpdate(String">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JDBC API">
+<meta property="og:url" content="http://example.com/2024/03/112fd92327c2.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="JDBC APIDriver Manager驱动管理类getConnection(url,user,pwd) 获取数据库连接Connection数据库连接对象createStatement() 创建 Statement 对象preparedStatement(String sql) 生成预处理对象Statement执行静态 SQL 语句并返回执行结果int executeUpdate(String">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-03-13T13:10:58.000Z">
+<meta property="article:modified_time" content="2024-03-13T13:11:36.665Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="JDBC">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-JDBC/JDBC API" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/03/112fd92327c2.html" class="article-date">
+  <time class="dt-published" datetime="2024-03-13T13:10:58.000Z" itemprop="datePublished">2024-03-13</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Java-Web/">Java Web</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      JDBC API
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="JDBC-API"><a href="#JDBC-API" class="headerlink" title="JDBC API"></a>JDBC API</h1><h2 id="Driver-Manager"><a href="#Driver-Manager" class="headerlink" title="Driver Manager"></a>Driver Manager</h2><h3 id="驱动管理类"><a href="#驱动管理类" class="headerlink" title="驱动管理类"></a>驱动管理类</h3><h3 id="getConnection-url-user-pwd-获取数据库连接"><a href="#getConnection-url-user-pwd-获取数据库连接" class="headerlink" title="getConnection(url,user,pwd) 获取数据库连接"></a>getConnection(url,user,pwd) 获取数据库连接</h3><h2 id="Connection"><a href="#Connection" class="headerlink" title="Connection"></a>Connection</h2><h3 id="数据库连接对象"><a href="#数据库连接对象" class="headerlink" title="数据库连接对象"></a>数据库连接对象</h3><h3 id="createStatement-创建-Statement-对象"><a href="#createStatement-创建-Statement-对象" class="headerlink" title="createStatement() 创建 Statement 对象"></a>createStatement() 创建 Statement 对象</h3><h3 id="preparedStatement-String-sql-生成预处理对象"><a href="#preparedStatement-String-sql-生成预处理对象" class="headerlink" title="preparedStatement(String sql) 生成预处理对象"></a>preparedStatement(String sql) 生成预处理对象</h3><h2 id="Statement"><a href="#Statement" class="headerlink" title="Statement"></a>Statement</h2><h3 id="执行静态-SQL-语句并返回执行结果"><a href="#执行静态-SQL-语句并返回执行结果" class="headerlink" title="执行静态 SQL 语句并返回执行结果"></a>执行静态 SQL 语句并返回执行结果</h3><h3 id="int-executeUpdate-String-sql-执行-DML-语句，返回受影响行数"><a href="#int-executeUpdate-String-sql-执行-DML-语句，返回受影响行数" class="headerlink" title="int executeUpdate(String sql) 执行 DML 语句，返回受影响行数"></a>int executeUpdate(String sql) 执行 DML 语句，返回受影响行数</h3><h3 id="ResultSet-executeQuery-String-sql-执行查询语句，返回结果集"><a href="#ResultSet-executeQuery-String-sql-执行查询语句，返回结果集" class="headerlink" title="ResultSet executeQuery(String sql) 执行查询语句，返回结果集"></a>ResultSet executeQuery(String sql) 执行查询语句，返回结果集</h3><h3 id="boolean-execute-String-sql-执行任意-sql，返回执行结果"><a href="#boolean-execute-String-sql-执行任意-sql，返回执行结果" class="headerlink" title="boolean execute(String sql) 执行任意 sql，返回执行结果"></a>boolean execute(String sql) 执行任意 sql，返回执行结果</h3><h2 id="PreparedStatement"><a href="#PreparedStatement" class="headerlink" title="PreparedStatement"></a>PreparedStatement</h2><h3 id="执行预编译-SQL-语句"><a href="#执行预编译-SQL-语句" class="headerlink" title="执行预编译 SQL 语句"></a>执行预编译 SQL 语句</h3><h3 id="int-executeUpdate-执行-DML-语句，返回受影响行数"><a href="#int-executeUpdate-执行-DML-语句，返回受影响行数" class="headerlink" title="int executeUpdate() 执行 DML 语句，返回受影响行数"></a>int executeUpdate() 执行 DML 语句，返回受影响行数</h3><h3 id="ResultSet-executeQuery-执行查询语句，返回结果集"><a href="#ResultSet-executeQuery-执行查询语句，返回结果集" class="headerlink" title="ResultSet executeQuery() 执行查询语句，返回结果集"></a>ResultSet executeQuery() 执行查询语句，返回结果集</h3><h3 id="boolean-execute-执行任意-sql，返回执行结果"><a href="#boolean-execute-执行任意-sql，返回执行结果" class="headerlink" title="boolean execute() 执行任意 sql，返回执行结果"></a>boolean execute() 执行任意 sql，返回执行结果</h3><h3 id="setXxx-占位符索引，占位符值"><a href="#setXxx-占位符索引，占位符值" class="headerlink" title="setXxx(占位符索引，占位符值)"></a>setXxx(占位符索引，占位符值)</h3><h3 id="SetObj-占位符索引，占位符值"><a href="#SetObj-占位符索引，占位符值" class="headerlink" title="SetObj(占位符索引，占位符值)"></a>SetObj(占位符索引，占位符值)</h3><h4 id="setObject-方法可以自动识别-Java-对象的类型，并将其转换为对应的-SQL-类型"><a href="#setObject-方法可以自动识别-Java-对象的类型，并将其转换为对应的-SQL-类型" class="headerlink" title="setObject() 方法可以自动识别 Java 对象的类型，并将其转换为对应的 SQL 类型"></a>setObject() 方法可以自动识别 Java 对象的类型，并将其转换为对应的 SQL 类型</h4><h4 id="如果传入参数值为-null，则必须显式指定参数类型或者使用-setNull-方法"><a href="#如果传入参数值为-null，则必须显式指定参数类型或者使用-setNull-方法" class="headerlink" title="如果传入参数值为 null，则必须显式指定参数类型或者使用 setNull() 方法"></a>如果传入参数值为 null，则必须显式指定参数类型或者使用 setNull() 方法</h4><h5 id="ps-setObject-1-null-Types-INTEGER"><a href="#ps-setObject-1-null-Types-INTEGER" class="headerlink" title="ps.setObject(1, null, Types.INTEGER);"></a>ps.setObject(1, null, Types.INTEGER);</h5><h5 id="ps-setNull-1"><a href="#ps-setNull-1" class="headerlink" title="ps.setNull(1);"></a>ps.setNull(1);</h5><h2 id="ResultSet"><a href="#ResultSet" class="headerlink" title="ResultSet"></a>ResultSet</h2><h3 id="数据库查询结果集"><a href="#数据库查询结果集" class="headerlink" title="数据库查询结果集"></a>数据库查询结果集</h3><h3 id="next-向下移动一行，如果没有下一行，返回-false"><a href="#next-向下移动一行，如果没有下一行，返回-false" class="headerlink" title="next() 向下移动一行，如果没有下一行，返回 false"></a>next() 向下移动一行，如果没有下一行，返回 false</h3><h3 id="previous-向上移动一行，如果没有上一行，返回-false"><a href="#previous-向上移动一行，如果没有上一行，返回-false" class="headerlink" title="previous 向上移动一行，如果没有上一行，返回 false"></a>previous 向上移动一行，如果没有上一行，返回 false</h3><h3 id="Xxx-getXxx-列索引-列名-返回对应列的值"><a href="#Xxx-getXxx-列索引-列名-返回对应列的值" class="headerlink" title="Xxx getXxx(列索引|列名) 返回对应列的值"></a>Xxx getXxx(列索引|列名) 返回对应列的值</h3><h3 id="Object-getObject-列索引-列名-返回对应列的值"><a href="#Object-getObject-列索引-列名-返回对应列的值" class="headerlink" title="Object getObject(列索引|列名) 返回对应列的值"></a>Object getObject(列索引|列名) 返回对应列的值</h3>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/03/112fd92327c2.html" data-id="cltptjb6l0009tovrdt7c06bl" data-title="JDBC API" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JDBC/" rel="tag">JDBC</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2024/03/ad9e7716878b.html" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          JDBC CRUD
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2024/03/0c61ff4ad6c6.html" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">JDBC 事物</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java-Web/">Java Web</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Oracle/">Oracle</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Spring/">Spring</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Spring-Boot/">Spring Boot</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Spring-MVC/">Spring MVC</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%97%A5%E8%AE%B0/">日记</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/JDBC/" rel="tag">JDBC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Servlet/" rel="tag">Servlet</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BA%8B%E5%8A%A1/" rel="tag">事务</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5%E6%B1%A0/" rel="tag">数据库连接池</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/JDBC/" style="font-size: 20px;">JDBC</a> <a href="/tags/Servlet/" style="font-size: 10px;">Servlet</a> <a href="/tags/%E4%BA%8B%E5%8A%A1/" style="font-size: 10px;">事务</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5%E6%B1%A0/" style="font-size: 10px;">数据库连接池</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">March 2024</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/03/4a9a07cbb3ef.html">Servlet 获取请求参数</a>
+          </li>
+        
+          <li>
+            <a href="/2024/03/ad9e7716878b.html">JDBC CRUD</a>
+          </li>
+        
+          <li>
+            <a href="/2024/03/112fd92327c2.html">JDBC API</a>
+          </li>
+        
+          <li>
+            <a href="/2024/03/0c61ff4ad6c6.html">JDBC 事物</a>
+          </li>
+        
+          <li>
+            <a href="/2024/03/0e36029b04f7.html">JDBC 批处理</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

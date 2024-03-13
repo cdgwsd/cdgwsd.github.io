@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="123&lt;context:component-scan base-package&#x3D;&quot;me.zyp.furn&quot;&gt;    &lt;context:exclude-filter type&#x3D;&quot;annotation&quot; expression&#x3D;&quot;org.springframework.stereotype.Controller&quot;&#x2F;&gt;&amp;l">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/2024/03/063b7414f7d5.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="123&lt;context:component-scan base-package&#x3D;&quot;me.zyp.furn&quot;&gt;    &lt;context:exclude-filter type&#x3D;&quot;annotation&quot; expression&#x3D;&quot;org.springframework.stereotype.Controller&quot;&#x2F;&gt;&amp;l">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-03-13T13:09:57.990Z">
+<meta property="article:modified_time" content="2024-03-10T07:57:51.763Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-component-scan 标签" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/03/063b7414f7d5.html" class="article-date">
+  <time class="dt-published" datetime="2024-03-13T13:09:57.990Z" itemprop="datePublished">2024-03-13</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Spring-MVC/">Spring MVC</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">context:component-scan</span> <span class="attr">base-package</span>=<span class="string">&quot;me.zyp.furn&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">context:exclude-filter</span> <span class="attr">type</span>=<span class="string">&quot;annotation&quot;</span> <span class="attr">expression</span>=<span class="string">&quot;org.springframework.stereotype.Controller&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">context:component-scan</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h1><ol>
+<li>扫描指定包（由 base-package 属性指定）及其子包下的所有类，将被 @Component、@Respository、@Service、@Controller、@RestController、@ControllerAdvice 和 @Configuration 注解标注的类注册为 Spring 的组件</li>
+<li>自动激活作用一中所注册类的 @Required、@Autowired、@PostConstruct、@PreDestroy、@Resource、@PersistenceContext 和 @PersistenceUnit 注解</li>
+</ol>
+<h1 id="子标签"><a href="#子标签" class="headerlink" title="子标签"></a>子标签</h1><p>&lt;context:component-scan&gt; 还有两个具有过滤作用的子标签</p>
+<ul>
+<li>&lt;context:include-filter&gt;</li>
+<li>&lt;context:exclude-filter&gt;</li>
+</ul>
+<h2 id="include-filter"><a href="#include-filter" class="headerlink" title="include-filter"></a>include-filter</h2><p>指定 component-scan 在扫描组件时<font color=red>除了默认注解外</font>还将扫描哪些注解</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">context:component-scan</span> <span class="attr">base-package</span>=<span class="string">&quot;me.zyp.furn&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">context:include-filter</span> <span class="attr">type</span>=<span class="string">&quot;annotation&quot;</span> <span class="attr">expression</span>=<span class="string">&quot;me.zyp.stereotype.Component&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">context:component-scan</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>上述代码会将 <code>me.zyp.furn</code> 包及其子包下被 @Component 注解标注的类注册为 Spring 组件</p>
+<h2 id="exclude-filter"><a href="#exclude-filter" class="headerlink" title="exclude-filter"></a>exclude-filter</h2><p>指定 component-scan 在扫描组件时排除哪些类型</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">context:component-scan</span> <span class="attr">base-package</span>=<span class="string">&quot;me.zyp.furn&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">context:exclude-filter</span> <span class="attr">type</span>=<span class="string">&quot;annotation&quot;</span> <span class="attr">expression</span>=<span class="string">&quot;org.springframework.stereotype.Controller&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">context:component-scan</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>上述代码不会将 <code>me.zyp.furn</code> 包及其子包下被 @Controller 注解标注的类注册为 Spring 组件</p>
+<h2 id="过滤规则"><a href="#过滤规则" class="headerlink" title="过滤规则"></a>过滤规则</h2><p>这两个标签具有相同的属性：type、expression，通过这两个属性指定过滤规则</p>
+<h3 id="type"><a href="#type" class="headerlink" title="type"></a>type</h3><p>指定过滤器的类型，取值如下</p>
+<ol>
+<li><p><strong>annotation</strong>：通过注解过滤类，例如，排除所有包含 @Controller 注解的类</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">context:exclude-filter</span> <span class="attr">type</span>=<span class="string">&quot;annotation&quot;</span> <span class="attr">expression</span>=<span class="string">&quot;me.zyp.stereotype.Component&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>assignable</strong>：通过类或接口过滤类，例如，排除所有继承自<code>com.example.ExcludedClass</code>的类</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">context:exclude-filter</span> <span class="attr">type</span>=<span class="string">&quot;assignable&quot;</span> <span class="attr">expression</span>=<span class="string">&quot;com.example.ExcludedClass&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>regex</strong>：通过正则表达式过滤类，例如，排除所有以 Controller 结尾的类</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">context:exclude-filter</span> <span class="attr">type</span>=<span class="string">&quot;regex&quot;</span> <span class="attr">expression</span>=<span class="string">&quot;.*Conteoller&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>custom</strong>：自定义过滤器类，该类必须实现 <code>org.springframework.core.type.filter.TypeFilter</code> 接口</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">context:exclude-filter</span> <span class="attr">type</span>=<span class="string">&quot;custom&quot;</span> <span class="attr">expression</span>=<span class="string">&quot;com.example.CustomTypeFilter&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="expression"><a href="#expression" class="headerlink" title="expression"></a>expression</h3><p>过滤表达式，类型根据 type 属性确定</p>
+<h1 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h1><h2 id="base-package"><a href="#base-package" class="headerlink" title="base-package"></a>base-package</h2><p>指定需要扫描的包</p>
+<h2 id="use-default-filters"><a href="#use-default-filters" class="headerlink" title="use-default-filters"></a>use-default-filters</h2><p>指定是否使用默认的过滤器（通常情况下 Spring 将使用默认过滤器来确定需要将哪些注解标注的类注册进 Spring 容器）</p>
+<p>use-default-filters 属性默认值为 true，当设置为 false 时需要明确配置过滤器以确定哪些类被包含或排除</p>
+<h2 id="annotation-config"><a href="#annotation-config" class="headerlink" title="annotation-config"></a>annotation-config</h2><p>是否启用自动注入</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/03/063b7414f7d5.html" data-id="cltptjb9b001etovr1cpz6ycc" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2024/03/063dfab25c1e.html" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2024/03/45e7f923bebf.html" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java-Web/">Java Web</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Oracle/">Oracle</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Spring/">Spring</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Spring-Boot/">Spring Boot</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Spring-MVC/">Spring MVC</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%97%A5%E8%AE%B0/">日记</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/JDBC/" rel="tag">JDBC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Servlet/" rel="tag">Servlet</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BA%8B%E5%8A%A1/" rel="tag">事务</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5%E6%B1%A0/" rel="tag">数据库连接池</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/JDBC/" style="font-size: 20px;">JDBC</a> <a href="/tags/Servlet/" style="font-size: 10px;">Servlet</a> <a href="/tags/%E4%BA%8B%E5%8A%A1/" style="font-size: 10px;">事务</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5%E6%B1%A0/" style="font-size: 10px;">数据库连接池</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">March 2024</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/03/4a9a07cbb3ef.html">Servlet 获取请求参数</a>
+          </li>
+        
+          <li>
+            <a href="/2024/03/ad9e7716878b.html">JDBC CRUD</a>
+          </li>
+        
+          <li>
+            <a href="/2024/03/112fd92327c2.html">JDBC API</a>
+          </li>
+        
+          <li>
+            <a href="/2024/03/0c61ff4ad6c6.html">JDBC 事物</a>
+          </li>
+        
+          <li>
+            <a href="/2024/03/0e36029b04f7.html">JDBC 批处理</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

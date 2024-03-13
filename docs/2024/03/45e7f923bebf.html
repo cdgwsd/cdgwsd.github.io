@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="静态资源访问常见静态资源：JS、CSS、图片（.jpg、.png、.gif、.svg）、字体文件（Fonts）等 存放位置默认情况下只要静态资源存放在类路径的以下目录中就可以被直接访问  &#x2F;static &#x2F;public &#x2F;resources &#x2F;META-INF&#x2F;resources  该属性是由 WebProperties.java 类进行控制的 1">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/2024/03/45e7f923bebf.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="静态资源访问常见静态资源：JS、CSS、图片（.jpg、.png、.gif、.svg）、字体文件（Fonts）等 存放位置默认情况下只要静态资源存放在类路径的以下目录中就可以被直接访问  &#x2F;static &#x2F;public &#x2F;resources &#x2F;META-INF&#x2F;resources  该属性是由 WebProperties.java 类进行控制的 1">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-03-13T13:09:57.984Z">
+<meta property="article:modified_time" content="2024-03-10T07:57:51.762Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-静态资源访问" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/03/45e7f923bebf.html" class="article-date">
+  <time class="dt-published" datetime="2024-03-13T13:09:57.984Z" itemprop="datePublished">2024-03-13</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Spring-Boot/">Spring Boot</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="静态资源访问"><a href="#静态资源访问" class="headerlink" title="静态资源访问"></a>静态资源访问</h1><p>常见静态资源：JS、CSS、图片（.jpg、.png、.gif、.svg）、字体文件（Fonts）等</p>
+<h2 id="存放位置"><a href="#存放位置" class="headerlink" title="存放位置"></a>存放位置</h2><p>默认情况下只要静态资源存放在类路径的以下目录中就可以被直接访问</p>
+<ul>
+<li>&#x2F;static</li>
+<li>&#x2F;public</li>
+<li>&#x2F;resources</li>
+<li>&#x2F;META-INF&#x2F;resources</li>
+</ul>
+<p>该属性是由 <code>WebProperties.java</code> 类进行控制的</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@ConfigurationProperties(&quot;spring.web&quot;)</span>  </span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">WebProperties</span> &#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="title function_">WebProperties</span><span class="params">()</span> &#123;  </span><br><span class="line">		<span class="built_in">this</span>.localeResolver = WebProperties.LocaleResolver.ACCEPT_HEADER;  </span><br><span class="line">		<span class="built_in">this</span>.resources = <span class="keyword">new</span> <span class="title class_">Resources</span>();  </span><br><span class="line">	&#125;</span><br><span class="line">    </span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">class</span> <span class="title class_">Resources</span> &#123;</span><br><span class="line">		<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String[] CLASSPATH_RESOURCE_LOCATIONS = <span class="keyword">new</span> <span class="title class_">String</span>[]&#123;<span class="string">&quot;classpath:/META-INF/resources/&quot;</span>, <span class="string">&quot;classpath:/resources/&quot;</span>, <span class="string">&quot;classpath:/static/&quot;</span>, <span class="string">&quot;classpath:/public/&quot;</span>&#125;;</span><br><span class="line">        </span><br><span class="line">		<span class="keyword">private</span> String[] staticLocations;</span><br><span class="line">        </span><br><span class="line">		<span class="keyword">public</span> <span class="title function_">Resources</span><span class="params">()</span> &#123;  </span><br><span class="line">			<span class="built_in">this</span>.staticLocations = CLASSPATH_RESOURCE_LOCATIONS;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>属性值可在配置文件 <code>application.yml</code> 中进行修改。<font color = red>修改后的值会覆盖默认值</font></p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring:</span>  </span><br><span class="line">  <span class="attr">web:</span>  </span><br><span class="line">    <span class="attr">resources:</span>  </span><br><span class="line">      <span class="attr">static-locations:</span> [<span class="string">classpath:static</span>]</span><br></pre></td></tr></table></figure>
+<h2 id="访问前缀"><a href="#访问前缀" class="headerlink" title="访问前缀"></a>访问前缀</h2><p>默认：项目根路径&#x2F; + 静态资源名，例如：<code>http://127.0.0.1/hi.jpg</code><br>该属性是由 <code>WebMvcProperties.java</code> 类进行控制的</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@ConfigurationProperties(prefix = &quot;spring.mvc&quot;)</span>  </span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">WebMvcProperties</span> &#123;</span><br><span class="line">	<span class="keyword">private</span> String staticPathPattern;</span><br><span class="line">    </span><br><span class="line">	<span class="keyword">public</span> <span class="title function_">WebMvcProperties</span><span class="params">()</span> &#123;</span><br><span class="line">		<span class="built_in">this</span>.staticPathPattern = <span class="string">&quot;/**&quot;</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>属性值可在配置文件 <code>application.yml</code> 中进行修改。<font color = red>修改后的值会覆盖默认值</font></p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">mvc:</span></span><br><span class="line">    <span class="attr">static-path-pattern:</span> <span class="string">/static/**</span></span><br></pre></td></tr></table></figure>
+<p>修改静态资源访问路径为：<code>http://127.0.0.1/static/hi.jpg</code></p>
+<h2 id="运行逻辑"><a href="#运行逻辑" class="headerlink" title="运行逻辑"></a>运行逻辑</h2><p>SpringBoot 在处理请求时会先根据请求路径判断有没有 Controller 可以进行处理，不能处理的请求则根据配置的静态映射 <code>spring.mvc.static-path-pattern</code> 判断是否是静态资源，如果是则去静态资源目录 <code>spring.web.resources.static-locations</code> 下寻找对应资源，找到则返回资源，找不到则返回 404</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/03/45e7f923bebf.html" data-id="cltptjb99001btovrg7kkdar8" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2024/03/063b7414f7d5.html" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2024/03/8333b8d7aa3c.html" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java-Web/">Java Web</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Oracle/">Oracle</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Spring/">Spring</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Spring-Boot/">Spring Boot</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Spring-MVC/">Spring MVC</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%97%A5%E8%AE%B0/">日记</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/JDBC/" rel="tag">JDBC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Servlet/" rel="tag">Servlet</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BA%8B%E5%8A%A1/" rel="tag">事务</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5%E6%B1%A0/" rel="tag">数据库连接池</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/JDBC/" style="font-size: 20px;">JDBC</a> <a href="/tags/Servlet/" style="font-size: 10px;">Servlet</a> <a href="/tags/%E4%BA%8B%E5%8A%A1/" style="font-size: 10px;">事务</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5%E6%B1%A0/" style="font-size: 10px;">数据库连接池</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">March 2024</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/03/4a9a07cbb3ef.html">Servlet 获取请求参数</a>
+          </li>
+        
+          <li>
+            <a href="/2024/03/ad9e7716878b.html">JDBC CRUD</a>
+          </li>
+        
+          <li>
+            <a href="/2024/03/112fd92327c2.html">JDBC API</a>
+          </li>
+        
+          <li>
+            <a href="/2024/03/0c61ff4ad6c6.html">JDBC 事物</a>
+          </li>
+        
+          <li>
+            <a href="/2024/03/0e36029b04f7.html">JDBC 批处理</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
