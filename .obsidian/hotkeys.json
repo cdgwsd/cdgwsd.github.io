@@ -14,5 +14,14 @@
       ],
       "key": "Insert"
     }
+  ],
+  "insert-template": [
+    {
+      "modifiers": [
+        "Alt",
+        "Shift"
+      ],
+      "key": "PageUp"
+    }
   ]
 }
