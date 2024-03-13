@@ -6,5 +6,12 @@
   "showInlineTitle": false,
   "readableLineLength": true,
   "showIndentGuide": true,
-  "showLineNumber": false
+  "showLineNumber": false,
+  "userIgnoreFilters": [
+    "node_modules/",
+    "themes/",
+    "scaffolds/"
+  ],
+  "newFileLocation": "folder",
+  "newFileFolderPath": "source/_posts"
 }
