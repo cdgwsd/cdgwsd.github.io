@@ -1,0 +1,14 @@
+{
+  "accentColor": "",
+  "cssTheme": "Typora-Vue",
+  "theme": "moonstone",
+  "monospaceFontFamily": "",
+  "baseFontSize": 17,
+  "translucency": false,
+  "enabledCssSnippets": [
+    "test"
+  ],
+  "nativeMenus": false,
+  "interfaceFontFamily": "微软雅黑",
+  "textFontFamily": "微软雅黑"
+}
