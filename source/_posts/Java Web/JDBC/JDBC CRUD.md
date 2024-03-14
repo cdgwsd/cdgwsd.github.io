@@ -7,9 +7,7 @@ categories:
   - JDBC
 date: 2024-03-13 21:11:01
 ---
-# JDBC CRUD
-
-## 查询
+## **查询**
 
 ```java
 @Test
@@ -32,7 +30,6 @@ public void testInsert() throws Exception {
     }
 }
 ```
-
 ## 新增
 
 ```java
@@ -56,7 +53,6 @@ public void testInsert() throws Exception {
     }
 }
 ```
-
 ### 获取自增主键
 
 如果数据库的表设置了自增主键，那么在执行 `INSERT` 语句时，并不需要指定主键，数据库会自动分配主键。对于使用自增主键的程序，有个额外的步骤，就是如何获取插入后的自增主键的值
@@ -77,6 +73,12 @@ PreparedStatement prepareStatement(String sql, int columnIndexes[]);
 PreparedStatement prepareStatement(String sql, String columnNames[]);
 ```
 
+monster 表中 `id` 和 `age` 字段自增
+
+```java
+
+
+```
 ## 删除
 
 ```java
@@ -92,7 +94,6 @@ public void testDel() throws Exception {
     }
 }
 ```
-
 ## 更新
 
 ```java
@@ -109,4 +110,3 @@ public void testUpdate() throws Exception {
     }
 }
 ```
-
