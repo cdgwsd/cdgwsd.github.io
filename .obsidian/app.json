@@ -10,7 +10,8 @@
   "userIgnoreFilters": [
     "node_modules/",
     "themes/",
-    "scaffolds/"
+    "scaffolds/",
+    "docs/"
   ],
   "newFileLocation": "folder",
   "newFileFolderPath": "source/_posts"
