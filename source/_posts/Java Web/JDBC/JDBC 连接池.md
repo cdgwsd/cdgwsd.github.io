@@ -1,9 +1,12 @@
 ---
 title: JDBC 连接池
-date: 2024-03-13 21:10:32
 tags:
   - JDBC
   - 数据库连接池
+categories:
+  - Java Web
+  - JDBC
+date: 2024-03-13 21:10:32
 ---
 # JDBC 连接池
 

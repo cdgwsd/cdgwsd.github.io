@@ -1,3 +1,7 @@
+---
+categories:
+  - Spring MVC
+---
 # URL 匹配规则
 
 Servlet 使用 `url-pattern` 标签指定一个 Servlet 的 URL 映射规则，容器通过 `url-pattern` 设定的规则匹配请求路径，从而找到对应的 Servlet

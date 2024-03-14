@@ -1,3 +1,7 @@
+---
+categories:
+  - Linux
+---
 # Centos 安装 MySQL
 
 ## 下载并安装 MySQL

@@ -1,3 +1,7 @@
+---
+categories:
+  - Java
+---
 # I/O 流
 
 ![image.png](https://cdgwsd.oss-cn-guangzhou.aliyuncs.com/img/202312271502333.png)

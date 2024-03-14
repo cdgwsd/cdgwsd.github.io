@@ -1,3 +1,7 @@
+---
+categories:
+  - Spring MVC
+---
 ```xml
 <context:component-scan base-package="me.zyp.furn">
     <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>

@@ -1,3 +1,7 @@
+---
+categories:
+  - Spring
+---
 # IoC
 
 Spring 的 IoC（Inversion of Control，控制反转）是一种设计原则，它将应用程序中对象的创建和管理交由 Spring 容器负责，而不是由开发者手动管理，通过这种方式实现了对象的解耦和更灵活的组件化开发

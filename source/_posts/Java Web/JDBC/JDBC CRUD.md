@@ -1,8 +1,11 @@
 ---
 title: JDBC CRUD
-date: 2024-03-13 21:11:01
 tags:
   - JDBC
+categories:
+  - Java Web
+  - JDBC
+date: 2024-03-13 21:11:01
 ---
 # JDBC CRUD
 

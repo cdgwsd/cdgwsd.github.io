@@ -1,3 +1,7 @@
+---
+categories:
+  - Spring Boot
+---
 # YAML
 
 ## 基本语法

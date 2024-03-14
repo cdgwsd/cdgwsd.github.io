@@ -1,8 +1,11 @@
 ---
 title: JDBC API
-date: 2024-03-13 21:10:58
 tags:
   - JDBC
+categories:
+  - Java Web
+  - JDBC
+date: 2024-03-13 21:10:58
 ---
 # 	JDBC API
 

@@ -1,9 +1,12 @@
 ---
 title: JDBC 事物
-date: 2024-03-13 21:10:55
 tags:
   - JDBC
   - 事务
+categories:
+  - Java Web
+  - JDBC
+date: 2024-03-13 21:10:55
 ---
 # JDBC 事物
 

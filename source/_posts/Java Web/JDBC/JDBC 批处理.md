@@ -1,8 +1,11 @@
 ---
 title: JDBC 批处理
-date: 2024-03-13 21:10:53
 tags:
   - JDBC
+categories:
+  - Java Web
+  - JDBC
+date: 2024-03-13 21:10:53
 ---
 # JDBC 批处理
 

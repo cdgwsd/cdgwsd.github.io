@@ -1,3 +1,7 @@
+---
+categories:
+  - Spring
+---
 # BeanFactory
 
 Spring 容器最重要的作用就是负责实例化应用程序中的对象（Bean）。包括创建对象、初始化对象以及维护对象的生命周期
