@@ -7,8 +7,6 @@ categories:
   - JDBC
 date: 2024-03-13 21:10:58
 ---
-# 	JDBC API
-
 ## Driver Manager
 
 ### 驱动管理类

@@ -8,8 +8,6 @@ categories:
   - JDBC
 date: 2024-03-13 21:10:32
 ---
-# JDBC 连接池
-
 在执行 JDBC 的增删改查操作时，如果每一次操作都要建立一次数据库连接，操作，关闭连接，那么创建和销毁JDBC 连接的开销就太大。为了避免频繁地创建和销毁 JDBC 连接，我们可以通过连接池（Connection Pool）<font color=red>复用</font>已经创建好的连接
 
 ## 原理

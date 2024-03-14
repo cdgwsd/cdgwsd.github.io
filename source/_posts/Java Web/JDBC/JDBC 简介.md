@@ -7,8 +7,6 @@ categories:
   - JDBC
 date: 2024-03-13 21:10:29
 ---
-# JDBC 简介
-
 什么是 JDBC？JDBC 是 Java DataBase Connectivity 的缩写，它是 Java 程序访问数据库的标准接口
 
 使用 Java 程序访问数据库时，Java 代码并不是直接通过 TCP 连接去访问数据库，而是通过 JDBC 接口来访问，JDBC 接口则通过 JDBC 驱动来实现真正对数据库的访问

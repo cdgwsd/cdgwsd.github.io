@@ -7,12 +7,9 @@ categories:
   - JDBC
 date: 2024-03-13 21:10:25
 ---
-# Apache DBUtils
-
 学习 `Apache DBUtils` 之前我们先回顾一下传统的 JDBC 有什么缺点：
 
 1. 返回的结果集 ResultSet 与 Connection 是关联的，当调用 Connection 的 close 方法关闭连接后（放回连接池），ResultSet 对象就不能用了。如果在关闭连接后仍调用ResultSet，会报异常，如下图所示 : 
-
    ![img](https://cdgwsd.oss-cn-guangzhou.aliyuncs.com/img/202403122023050.png)
 
 2. 即使获取完 ResultSet 的数据之后再关闭连接，ResultSet 也仅仅使用了一次，<font color=red>不利于数据的管理</font>

@@ -57,7 +57,7 @@ public void testInsert() throws Exception {
 
 如果数据库的表设置了自增主键，那么在执行 `INSERT` 语句时，并不需要指定主键，数据库会自动分配主键。对于使用自增主键的程序，有个额外的步骤，就是如何获取插入后的自增主键的值
 
-在创建 `PreparedStatement` 的时候，指定一个 `RETURN_GENERATED_KEYS` 标志位，表示 JDBC 驱动必须返回插入的自增主键，然后使用 `getGeneratedKeys()` 方法获取自增主键
+JDBC 中 可以在创建 `PreparedStatement` 的时候，指定一个 `RETURN_GENERATED_KEYS` 标志位，表示 JDBC 驱动必须返回插入的自增主键，然后使用 `getGeneratedKeys()` 方法获取自增主键
 
 ```java
 // int RETURN_GENERATED_KEYS = 1; 返回自增主键
@@ -73,11 +73,29 @@ PreparedStatement prepareStatement(String sql, int columnIndexes[]);
 PreparedStatement prepareStatement(String sql, String columnNames[]);
 ```
 
-monster 表中 `id` 和 `age` 字段自增
+示例：`monster` 表中的 `id` 字段自增
 
 ```java
-
-
+@Test  
+public void testConn() throws Exception {  
+    // 注册驱动  
+    Class.forName("com.mysql.jdbc.Driver");  
+    // 获取连接  
+    try (Connection connection = DriverManager.getConnection("jdbc:mysql://120.24.90.60:3306/mybatis?useSSL=true&useUnicode=true&characterEncoding=UTF-8", "root", "Zyp,1234")) {  
+        // 执行数据库操作  
+        String sql = "insert into monster(name) values (?)";  
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {  
+            preparedStatement.setString(1, "cdgwsd");  
+            int i = preparedStatement.executeUpdate();  
+            System.out.println("插入成功：" + i);  
+            try(ResultSet generatedKeys = preparedStatement.getGeneratedKeys()){  
+                while (generatedKeys.next()){  
+                    System.out.println("id："+generatedKeys.getObject(1));  
+                }  
+            }  
+        }  
+    }  
+}
 ```
 ## 删除
 
