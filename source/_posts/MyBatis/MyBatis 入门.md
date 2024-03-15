@@ -76,7 +76,13 @@ CREATE TABLE `monster`  (
 </build>
 ```
 
+## 核心配置
+
 ### mybatis-config.xml
+
+习惯上命名为 `mybatis-config.xml`，这个文件名仅仅只是建议，并非强制要求。将来整合 Spring 之后，这个配置文件可以省略
+核心配置文件主要用于<font color=red>配置连接数据库的环境以及 MyBatis 的全局配置信息</font>
+核心配置文件存放的位置是 `src/main/resources` 目录下
 
 ```xml
 <?xml version="1.0" encoding="UTF-8" ?>
@@ -95,8 +101,147 @@ CREATE TABLE `monster`  (
             </dataSource>
         </environment>
     </environments>
+    <!-- 引入mapper 映射文件 -->
     <mappers>
         <mapper resource="mapper/MonsterMapper.xml"/>
     </mappers>
 </configuration>
+```
+
+### mapper 接口
+
+MyBatis 中的 mapper 接口相当于以前的 dao。但是区别在于 mapper 仅仅是接口，我们不需要提供实现类
+
+```java
+public interface MonsterMapper {
+    // 插入
+    void insert(Monster monster);
+
+    // 删除
+    void delete(int id);
+
+    // 更新
+    void update(Monster monster);
+
+    // 查找
+    Monster findById(int id);
+}
+```
+
+### mapper 映射文件
+
+- 映射文件的命名规则
+  - 表所对应的<font color=red>实体类的类名+Mapper.xml</font>
+    - 例如：表 t_user，映射的实体类为 User，所对应的映射文件为 UserMapper.xml 
+  - 因此<font color=red>一个映射文件对应一个实体类，对应一张表的操作</font>
+  - MyBatis 映射文件用于编写 SQL，查询以及操作表中的数据
+  - MyBatis 映射文件存放的位置是 `src/main/resources/mappers` 目录下
+- MyBatis 中可以面向接口操作数据，要保证两个一致
+  - mapper 接口的全类名和映射文件的命名空间（namespace）保持一致
+  - mapper 接口中方法的方法名和映射文件中编写 SQL 的标签的 id 属性保持一致
+
+```xml
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace：对应 mapper 接口的全限定类名-->
+<mapper namespace="me.zyp.mapper.MonsterMapper">
+    <!-- id：对应 mapper 接口的方法名-->
+    <insert id="insert" parameterType="me.zyp.entity.Monster" useGeneratedKeys="true" keyProperty="id">
+        insert into monster(age, birthday, email, gender, name, salary)
+        values (#{age}, #{birthday}, #{email}, #{gender}, #{name}, #{salary})
+    </insert>
+
+    <delete id="delete" parameterType="int">
+        delete from monster where id = #{id}
+    </delete>
+
+    <update id="update" parameterType="me.zyp.entity.Monster">
+        update monster
+        set age = #{age}, birthday = #{birthday}, email = #{email}, gender = #{gender}, name = #{name}, salary =
+        #{salary}
+        where id = #{id}
+    </update>
+
+    <select id="findById" resultType="me.zyp.entity.Monster">
+        select * from monster where id = #{id}
+    </select>
+</mapper>
+```
+
+定义完 mapper 配置文件之后，需要在 `mybatis-config.xml` 文件中指定 mapper 配置文件位置
+
+```xml
+<mappers>
+    <mapper resource="mapper/MonsterMapper.xml"/>
+</mappers>
+```
+
+### 测试类
+
+```java
+public class MonsterMapperTest {
+
+    //这个是 Sql 会话,通过它可以发出 sql 语句
+    private SqlSession sqlSession;
+    private MonsterMapper monsterMapper;
+
+    @Before
+    public void init() throws Exception {
+        //通过 SqlSessionFactory 对象获取一个 SqlSession 会话
+        sqlSession = MyBatisUtils.getSqlSession();
+        //获取 MonsterMapper 接口对象, 该对象实现了 MonsterMapper
+        monsterMapper = sqlSession.getMapper(MonsterMapper.class);
+        System.out.println(monsterMapper.getClass());
+    }
+
+    @Test
+    public void addMonster() {
+        for (int i = 0; i < 1; i++) {
+            Monster monster = new Monster();
+            monster.setAge(100 + i);
+            monster.setBirthday(new Date());
+            monster.setEmail("tn@sohu.com");
+            monster.setGender(1);
+            monster.setName("松鼠精" + i);
+            monster.setSalary(9234.89 + i * 10);
+            monsterMapper.insert(monster);
+            System.out.println("刚刚添加的对象的 id=" + monster.getId());
+        }
+        //增删改，需要提交事务
+        if (sqlSession != null) {
+            sqlSession.commit();
+            sqlSession.close();
+        }
+        System.out.println("保存成功!");
+    }
+
+    @Test
+    public void deleteMonster() {
+        monsterMapper.delete(1);
+        if (sqlSession != null) {
+            sqlSession.commit();
+            sqlSession.close();
+        }
+    }
+
+    @Test
+    public void updateMonster() {
+        Monster monster = new Monster();
+        monster.setId(2);
+        monster.setAge(200);
+        monsterMapper.update(monster);
+        if (sqlSession != null) {
+            sqlSession.commit();
+            sqlSession.close();
+        }
+    }
+
+    @Test
+    public void findById() {
+        Monster monster = monsterMapper.findById(3);
+        System.out.println(monster);
+    }
+}
 ```
