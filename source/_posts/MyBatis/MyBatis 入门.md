@@ -1,8 +1,10 @@
 ---
 title: MyBatis 入门
-date: 2024-03-15 15:10:00
 tags:
   - MyBatis
+categories:
+  - MyBatis
+date: 2024-03-15 15:10:00
 ---
 通过 MyBatis 完成 monster 表的增删改查操作
 
