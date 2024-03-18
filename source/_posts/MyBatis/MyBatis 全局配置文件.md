@@ -1,8 +1,10 @@
 ---
 title: MyBatis 全局配置文件
-date: 2024-03-18 14:20:28
 tags:
   - MyBatis
+categories:
+  - MyBatis
+date: 2024-03-18 14:20:28
 ---
 
 # 全局配置文件
