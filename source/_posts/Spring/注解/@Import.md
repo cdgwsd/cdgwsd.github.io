@@ -9,7 +9,14 @@ date: 2024-03-20 17:13:00Import
 
 # @Import
 
-`@Import` 注解用于在 @Componnet 直接或间接标注的类中导入其他配置类或者注册额外的 Bean 定义 。通过 @Import 注解，可以将一个或多个其他配置类引入到当前的配置类中，以便组织和管理Bean的配置信息
+`@Import` 注解拥入导入一个或多个组件类
+
+`@Import` 注解可导入以下类型：
+
+1. **`@Configuration` **: 典型情况下，用于导入其他的配置类，以便在当前配置类中引入其他配置的 Bean
+2. **ImportSelector 实现**：ImportSelector 是一个接口，可以用于根据条件动态地选择要导入的配置类
+3. **ImportBeanDefinitionRegistrar 实现**：ImportBeanDefinitionRegistrar 是一个接口，用于在运行时动态地注册 BeanDefinition
+4. **普通组件类**: 从 Spring 4.2 版本开始，`@Import` 注解也可以导入普通的组件类，这些类不需要标记为 `@Configuration`，它们将被作为 Bean 注册到当前配置类中
 
 ```java
 @Target(ElementType.TYPE)
@@ -25,13 +32,6 @@ public @interface Import {
 
 }
 ```
-
-@Import 注解可导入以下类型：
-
-1. **配置类 (`@Configuration` 类)**: 典型情况下，用于导入其他的配置类，以便在当前配置类中引入其他配置的 Bean
-2. **ImportSelector 实现类**: ImportSelector 是一个接口，可以用于根据条件动态地选择要导入的配置类
-3. **ImportBeanDefinitionRegistrar 实现类**: ImportBeanDefinitionRegistrar 是一个接口，用于在运行时动态地注册 BeanDefinition
-4. **普通组件类**: 从 Spring 4.2 版本开始，`@Import` 注解也可以导入普通的组件类，这些类不需要标记为 `@Configuration`，它们将被作为 Bean 注册到当前配置类中
 
 ## ImportSelector 接口
 
