@@ -11,7 +11,7 @@ date: 2024-03-20 16:57:00
 
 `@Configuration` 注解是 Spring 框架中用于标识一个类为配置类的注解。在 Spring 中，<font color=red>配置类是用来定义 Bean 的地方，通常用于替代传统的 XML 配置文件</font>
 
-被 `@Configuration` 注解的类内部包含有一个或多个被 `@Bean` 注解的方法，用于构建 bean 定义，初始化Spring容器
+被 `@Configuration` 注解的类内部包含有一个或多个被 `@Bean` 注解的方法，用于构建 bean 定义，初始化Spring 容器
 
 被 `@Configuration` 标注的类需要满足以下条件
 

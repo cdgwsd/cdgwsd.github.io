@@ -14,5 +14,7 @@
     "docs/"
   ],
   "newFileLocation": "folder",
-  "newFileFolderPath": "source/_posts"
+  "newFileFolderPath": "source/_posts",
+  "useMarkdownLinks": true,
+  "newLinkFormat": "relative"
 }
