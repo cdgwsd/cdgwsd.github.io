@@ -1,5 +1,7 @@
 ---
 title: component-scan 标签
+categories:
+  - Spring MVC
 date: 2024-03-27 16:03:17
 tags:
 ---

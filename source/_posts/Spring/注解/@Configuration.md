@@ -1,9 +1,12 @@
 ---
-title: @Configuration
+title: Configuration
 tags:
-  - Spring 
+  - Spring
   - 注解
-  - @Configuration
+  - Configuration
+categories:
+  - Spring
+  - 注解
 date: 2024-03-20 16:57:00
 ---
 

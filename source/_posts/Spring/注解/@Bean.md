@@ -1,9 +1,12 @@
 ---
-title: @Bean
+title: Bean
 tags:
   - Spring
   - 注解
-  - @Bean
+  - Bean
+categories:
+  - Spring
+  - 注解
 date: 2024-03-20 17:10:00
 ---
 

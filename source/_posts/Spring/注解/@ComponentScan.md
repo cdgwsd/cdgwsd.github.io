@@ -1,9 +1,12 @@
 ---
-title: @ComponentScan
+title: ComponentScan
 tags:
-  - Spring 
+  - Spring
   - 注解
-  - @ComponentScan
+  - ComponentScan
+categories:
+  - Spring
+  - 注解
 date: 2024-03-27 15:40:00
 ---
 

@@ -1,5 +1,8 @@
 ---
-title: "@ConfigurationProperties"
+title: '@ConfigurationProperties'
+categories:
+  - Spring Boot
+  - 注解
 date: 2024-03-27 16:48:08
 tags:
 ---
