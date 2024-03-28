@@ -1,6 +1,10 @@
 ---
 categories:
   - Spring MVC
+title: URL 匹配规则
+date: 2024-03-28 15:49:39
+tags:
+  - 路径匹配符
 ---
 # URL 匹配规则
 
@@ -61,31 +65,14 @@ http://127.0.0.1/myapp/test.jsp
 
 ### 路径匹配
 
-匹配以指定路径开始的请求
+匹配以指定路径开始的请求，常用的路径匹配符包括：
 
-当配置信息如下时：
-
-```xml
-<servlet-mapping>
-    <servlet-name>MyServlet</servlet-name>
-    <url-pattern>/kata/*</url-pattern>
-</servlet-mapping>
-```
-
-则请求的 url 的路径是以 `/kata` 开始，就都会被匹配：
-
-```markdown
-http://127.0.0.1/myapp/kata/demo.html
-http://127.0.0.1/myapp/kata/test.jsp
-http://127.0.0.1/myapp/kata/test/detail.html
-http://127.0.0.1/myapp/kata/action
-```
+1. **`?`**：匹配一个字符，例如 `/user?` 可以匹配到 `/user1` 或 `/user2` 等路径。
+2. **`*`**：匹配任意数量的字符（包括0个），但不包括路径分隔符 `/`，例如 `/user*` 可以匹配到 `/user`、`/userabc` 等路径。但匹配不到 `/user/profile` 路径
+3. **`**`**：匹配任意数量的字符（包括0个），包括路径分隔符 `/`，例如`/user/**` 可以匹配到 `/user`、`/user/profile` 等路径。
 
 <font color=red>`/*` 是特殊的精确匹配符，它将匹配所有的 URL 路径</font>
 
-### 优先级
+## 优先级
 
 精确匹配 > 扩展名匹配 > 路径匹配
-
-## 
-

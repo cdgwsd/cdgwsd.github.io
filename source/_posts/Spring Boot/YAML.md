@@ -1,6 +1,9 @@
 ---
-categories:
-  - Spring Boot
+title: YAML
+date: 2024-03-28 14:30:22
+tags:
+  - SpringBoot
+  - 配置文件
 ---
 # YAML
 

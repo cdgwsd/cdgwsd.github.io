@@ -107,3 +107,5 @@ public @interface Configuration {
 
   每次直接调用 @Bean 方法时都会产生一个新的对象
 
+
+<font color=red>如果一个配置类只有一个有参构造器，则该构造器的所有参数将默认从容器中寻找</font>
