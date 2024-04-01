@@ -1,4 +1,20 @@
 {
+  "obsidian-mind-map:app:markmap-preview": [
+    {
+      "modifiers": [
+        "Alt"
+      ],
+      "key": "Insert"
+    }
+  ],
+  "obsidian-markmind:Create New MindMap": [
+    {
+      "modifiers": [
+        "Alt"
+      ],
+      "key": "Insert"
+    }
+  ],
   "insert-template": [
     {
       "modifiers": [

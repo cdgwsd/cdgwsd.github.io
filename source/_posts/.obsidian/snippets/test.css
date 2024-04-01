@@ -1,0 +1,24 @@
+p {
+    line-height: 1.6em;
+    /* 设置行间距为字体大小的1.2倍 */
+}
+
+.markdown-rendered div:has(> :is(p, pre, table, ul, ol))+div> :is(h1, h2, h3, h4, h5, h6) {
+    margin-top: 0;
+}
+
+.markdown-rendered pre {
+    font-weight: bold;
+}
+
+.workspace-split.mod-left-split>.workspace-leaf-resize-handle, .workspace-split.mod-right-split>.workspace-leaf-resize-handle {
+    display: none;
+}
+
+body {
+    --file-line-width: calc(80vh);
+}
+
+.cm-line.HyperMD-header {
+    padding-top: 0;
+}

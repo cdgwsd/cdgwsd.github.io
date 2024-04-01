@@ -1,0 +1,16 @@
+{
+  "frames": [
+    {
+      "url": "https://to-do.live.com/tasks/",
+      "displayName": "待办",
+      "icon": "check-square",
+      "hideOnMobile": true,
+      "addRibbonIcon": true,
+      "openInCenter": true,
+      "zoomLevel": 1,
+      "forceIframe": false,
+      "customCss": "/* hide the help, home, search, and productivity overview buttons, create extra space, and prevent toast pop-up from acting weird */\n#O365ShellHeader {\n\tdisplay: none;\n}"
+    }
+  ],
+  "padding": 1
+}
