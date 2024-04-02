@@ -1,9 +1,11 @@
 ---
 title: JWT
-date: 2024-04-02 11:04:19
 tags:
   - JWT
   - 身份认证
+categories:
+  - Java
+date: 2024-04-02 11:04:19
 ---
 # JWT
 

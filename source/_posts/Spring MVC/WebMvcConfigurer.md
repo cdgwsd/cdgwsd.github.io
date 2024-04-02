@@ -1,9 +1,11 @@
 ---
 title: WebMvcConfigurer
-date: 2024-04-02 16:04:30
 tags:
   - SpringMVC
   - Configurer
+categories:
+  - Spring MVC
+date: 2024-04-02 16:04:30
 ---
 # WebMvcConfigurer
 
