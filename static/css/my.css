@@ -1,0 +1,3 @@
+h1:not(.text.title) {
+    display: none;
+}
